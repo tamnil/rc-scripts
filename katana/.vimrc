@@ -315,8 +315,9 @@ nmap <leader>l :set list!<CR>
 silent! call repeat#set("\<Plug>tComment", v:count)
 silent! call repeat#set("\<Plug>surround", v:count)
 
-
+" debugger
 let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
 let g:vdebug_options = {'break_on_open': 0}
 let g:vdebug_options = {'server': 'localhost'}
 let g:vdebug_options = {'port': '9000'}
+
