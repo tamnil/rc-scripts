@@ -28,7 +28,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'easymotion/vim-easymotion'
+" Plugin 'easymotion/vim-easymotion'  " move with shortcuts
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'jszakmeister/vim-togglecursor'		"detector de cursor insert mode
 Plugin 'majutsushi/tagbar'				"tagbar navigation
@@ -59,6 +59,7 @@ Plugin 'shawncplus/phpcomplete.vim'  " autocompletion for php
 Plugin 'joonty/vdebug'  "debuger
 Plugin 'terryma/vim-multiple-cursors'  "debuger
 Plugin 'shougo/unite.vim'  "fuzzy navigator
+Plugin 'godlygeek/tabular' " tabular data organizer
 
 
 " Plugin 'yuratomo/w3m.vim'
@@ -103,7 +104,7 @@ set mouse=a " set mouse value
 let g:editorconfig_Beautifier= '~/.vim/.editorconfig'
 " LustyExplorer hide messages error:
 set hidden
-
+set nosol  "not go to start of line in 'G'
 let g:snips_author = 'Tamnil Saito Junior - www.tamnil.com'
 
 let g:BufferListWidth = 25
@@ -222,8 +223,22 @@ set listchars=tab:▸\ ,eol:¬
            
 """"""""""""""""""""""""""""""""""""" }}}
 
+let g:autoformat_verbosemode=1 
 
 
+" vim-autoformat:extra templates:  {{{
+"" for php use gg=G and f5(autoformat after
+" php
+
+let g:formatdef_tidy_php = '"tidy -q --show-errors 0 --show-warnings 0 --force-output --indent auto --indent-spaces ".shiftwidth()." --vertical-space yes --tidy-mark no -asphp -wrap ".&textwidth'
+let g:formatters_php = ['tidy_php']
+
+" phtml
+
+let g:formatdef_tidy_phtml = '"tidy -q --show-errors 0 --show-warnings 0 --force-output --indent auto --indent-spaces ".shiftwidth()." --vertical-space yes --tidy-mark no -asphtml -wrap ".&textwidth'
+let g:formatters_phtml = ['tidy_phtml']
+
+""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 
 "                               }}} **********  End of enviroment variables **********
@@ -306,6 +321,43 @@ nnoremap k gk
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
+
+" Code folding options
+nmap <leader>f0 :set foldlevel=0<CR>
+nmap <leader>f1 :set foldlevel=1<CR>
+nmap <leader>f2 :set foldlevel=2<CR>
+nmap <leader>f3 :set foldlevel=3<CR>
+nmap <leader>f4 :set foldlevel=4<CR>
+nmap <leader>f5 :set foldlevel=5<CR>
+nmap <leader>f6 :set foldlevel=6<CR>
+nmap <leader>f7 :set foldlevel=7<CR>
+nmap <leader>f8 :set foldlevel=8<CR>
+nmap <leader>f9 :set foldlevel=9<CR>
+
+
+" Tabularize {
+if isdirectory(expand("~/.vim/bundle/tabular"))
+    nmap <Leader>a& :Tabularize /&<CR>
+    vmap <Leader>a& :Tabularize /&<CR>
+    nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+    vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+    nmap <Leader>a=> :Tabularize /=><CR>
+    vmap <Leader>a=> :Tabularize /=><CR>
+    nmap <Leader>a: :Tabularize /:<CR>
+    vmap <Leader>a: :Tabularize /:<CR>
+    nmap <Leader>a:: :Tabularize /:\zs<CR>
+    vmap <Leader>a:: :Tabularize /:\zs<CR>
+    nmap <Leader>a, :Tabularize /,<CR>
+    vmap <Leader>a, :Tabularize /,<CR>
+    nmap <Leader>a,, :Tabularize /,\zs<CR>
+    vmap <Leader>a,, :Tabularize /,\zs<CR>
+    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+endif
+" }
+
+
+
 
 
 
