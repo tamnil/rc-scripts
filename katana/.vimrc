@@ -47,7 +47,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'scrooloose/syntastic'    "code syntax review
 Plugin 'tobys/pdv'    "PDV para phpDocumentor
 Plugin 'tobys/vmustache'    "PDV para phpDocumentor
-Plugin 'garbas/vim-snipmate'
+" Plugin 'garbas/vim-snipmate'
 Plugin 'SirVer/ultisnips'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'matze/vim-move'    " move blocks/lines
@@ -165,7 +165,7 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
-set wildmode=longest:full
+set wildmode=longest:list,full
 set wildmenu
 """"""""""""""""""""""""""" Enable Code Folding"""""""""""""""""""""""""""'
 
@@ -177,8 +177,6 @@ set foldmethod=indent
 set number
 au FocusLost * :set number
 au FocusGained * :set relativenumber
-" autocmd InsertEnter * :set number
-"autocmd InsertLeave * :set relativenumber
 
 " let php_folding=1
 set nofoldenable
@@ -226,12 +224,10 @@ set listchars=tab:▸\ ,eol:¬
 
 "" for php use gg=G and f5(autoformat) after
 " php
-
 let g:formatdef_tidy_php = '"tidy -q --show-errors 0 --show-warnings 0 --force-output --indent auto --indent-spaces ".shiftwidth()." --vertical-space yes --tidy-mark no -asphp -wrap ".&textwidth'
 let g:formatters_php = ['tidy_php']
 
 " phtml
-
 let g:formatdef_tidy_phtml = '"tidy -q --show-errors 0 --show-warnings 0 --force-output --indent auto --indent-spaces ".shiftwidth()." --vertical-space yes --tidy-mark no -asphtml -wrap ".&textwidth'
 let g:formatters_phtml = ['tidy_phtml']
 
@@ -273,20 +269,22 @@ let g:UltiSnipsEditSplit="vertical"
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
-imap <C-CR> <C-o>o
+
 "tagbar shortcut
 nmap <F8> :TagbarToggle<CR>
+
+" emmet expan dshortcut
 imap <S-Space> <C-y>,
+
 " map <F3> :RN<CR>
 nmap <F12> <Esc>:source ~/.vimrc<CR>
 " map <F5> <Esc>:EnableFastPHPFolds<Cr>
 " map <F6> <Esc>:EnablePHPFolds<Cr>
 " map <F7> <Esc>:DisablePHPFolds<Cr>
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
 
-" emmet expan dshortcut
-    imap <F3> <C-y>,
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+
 " tmux hack arrows:
 if &term =~ '^screen'
     "tmux will send xterm-style keys when its xterm-keys option is on
@@ -348,8 +346,8 @@ if isdirectory(expand("~/.vim/bundle/tabular"))
     vmap <Leader>a, :Tabularize /,<CR>
     nmap <Leader>a,, :Tabularize /,\zs<CR>
     vmap <Leader>a,, :Tabularize /,\zs<CR>
-    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    nmap <Leader>a<Space> :Tabularize / <CR>
+    vmap <Leader>a<Space> :Tabularize / <CR>
 endif
 " }
 
@@ -357,22 +355,17 @@ nnoremap <leader><leader><leader> :Unite -start-insert<CR>
 nnoremap <leader><leader>f :Unite file -start-insert<CR>
 nnoremap <leader><leader>fr :Unite file_rec -start-insert<CR>
 nnoremap <leader><leader>fb :Unite file buffer -start-insert<CR>
-
 nnoremap <leader><leader>b :Unite buffer -start-insert<CR>
 nnoremap <leader><leader>bt :Unite buffer_tab -start-insert<CR>
-
 nnoremap <leader><leader>j :Unite jump -start-insert<CR>
-
 nnoremap <leader><leader>w :Unite window -start-insert<CR>
-
 nnoremap <leader><leader>t :Unite tab -start-insert<CR>
 nnoremap <leader><leader>m :Unite mappings -start-insert<CR>
-
 nnoremap <leader><leader>c :Unite command -start-insert<CR>
 nnoremap <leader><leader>r :Unite registers -start-insert <CR>
 
-
-
+imap <C-f> <Right>
+imap <C-b> <Left>
 
 "                                }}} ********************end of key mappings********************
 

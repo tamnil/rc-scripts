@@ -100,6 +100,9 @@ source $ZSH/oh-my-zsh.sh
 export ACKRC=".ackrc"
 
 
+# ignore duplicate history:
+setopt HIST_IGNORE_DUPS
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
@@ -130,7 +133,7 @@ bindkey '^b' backward-char
 bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
 bindkey '^[l' forward-word                        # [Alt-l] - move forward one word
 bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
-bindkey '^[h' backward-word                       # [Alt-h] - move backward one word
+bindkey '^[h' backward-word                       # [Ctrl-h] - move backward one word
 
 # bindkey '^[[C' forward-word                        # [Ctrl-RightArrow] - move forward one word
 # bindkey '^[[D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
