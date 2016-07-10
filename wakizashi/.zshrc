@@ -37,29 +37,34 @@ ZSH_THEME="lukerandall"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="TRUE"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+# UNCOMMENT THE FOLLOWING LINE TO DISPLAY RED DOTS WHILST WAITING FOR COMPLETION.
+# COMPLETION_WAITING_DOTS="TRUE"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# UNCOMMENT THE FOLLOWING LINE IF YOU WANT TO DISABLE MARKING UNTRACKED FILES
+# UNDER VCS AS DIRTY. THIS MAKES REPOSITORY STATUS CHECK FOR LARGE REPOSITORIES
+# MUCH, MUCH FASTER.
+# DISABLE_UNTRACKED_FILES_DIRTY="TRUE"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+# UNCOMMENT THE FOLLOWING LINE IF YOU WANT TO CHANGE THE COMMAND EXECUTION TIME
+# STAMP SHOWN IN THE HISTORY COMMAND OUTPUT.
+# THE OPTIONAL THREE FORMATS: "MM/DD/YYYY"|"DD.MM.YYYY"|"YYYY-MM-DD"
+# HIST_STAMPS="MM/DD/YYYY"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# WOULD YOU LIKE TO USE ANOTHER CUSTOM FOLDER THAN $ZSH/CUSTOM?
+# ZSH_CUSTOM=/PATH/TO/NEW-CUSTOM-FOLDER
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode )
+# WHICH PLUGINS WOULD YOU LIKE TO LOAD? (PLUGINS CAN BE FOUND IN ~/.OH-MY-ZSH/PLUGINS/*)
+# CUSTOM PLUGINS MAY BE ADDED TO ~/.OH-MY-ZSH/CUSTOM/PLUGINS/
+# EXAMPLE FORMAT: PLUGINS=(RAILS GIT TEXTMATE RUBY LIGHTHOUSE)
+# ADD WISELY, AS TOO MANY PLUGINS SLOW DOWN SHELL STARTUP.
+
+# ZSH_TMUX_AUTOSTART=true
+# ZSH_TMUX_AUTOSTART_ONCE=false
+# ZSH_TMUX_AUTOCONNECT=true
+
+plugins=(git vi-mode tmux)
 
 # User configuration
 
@@ -105,13 +110,30 @@ bindkey '^U' backward-kill-line
 bindkey '^Y' yank
 
 # bind keys for up/down search (vi mode)
+#tmux
 bindkey '^[OA' up-line-or-beginning-search
 bindkey '^[OB' down-line-or-beginning-search
+#notmux
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+
+bindkey '^N' up-line-or-beginning-search
+bindkey '^P' down-line-or-beginning-search
+
+#tranpose words
+bindkey '^T' transpose-words
+
+bindkey '^f' forward-char
+bindkey '^b' backward-char
+
 
 bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
+bindkey '^[l' forward-word                        # [Alt-l] - move forward one word
 bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
+bindkey '^[h' backward-word                       # [Alt-h] - move backward one word
 
-function git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
-}
+# bindkey '^[[C' forward-word                        # [Ctrl-RightArrow] - move forward one word
+# bindkey '^[[D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
+
+alias ccat='pygmentize -O style=monokai -f terminal -g'
+
