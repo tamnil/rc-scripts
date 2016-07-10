@@ -1,95 +1,96 @@
+" vim:fdm=marker
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
+" Plugins install   {{{*  
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 """""""""""""""""""""""init of Vundle plugins"""""""""""
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" Plugin 'tpope/vim-rsi'
-"
+Plugin 'tpope/vim-fugitive' " plugin on GitHub repo
 " All of your Plugins must be added before the following line
-" installing snippets plugin ##############################
-" Bundle 'Shougo/unite.vim'
-" Plugin 'xolox/vim-notes' 	"vim note 
-Plugin 'tamnil/vim-browser-reload-linux' " Session manager 	
 
+Plugin 'mbbill/undotree' " undo manager     
+Plugin 'tamnil/vim-browser-reload-linux' " Session manager 
 Bundle 'Shougo/vimproc'
+Bundle 'stephpy/vim-php-cs-fixer'
 Bundle 'm2mdas/phpcomplete-extended'
-Plugin '2072/PHP-Indenting-for-VIm'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'KabbAmine/vCoolor.vim'		" color picker:
-Plugin 'MarcWeber/vim-addon-mw-utils'	"necessary for snippets
-" Plugin 'Valloric/YouCompleteMe'    "autocmplete plugin
+Plugin 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
+Plugin 'KabbAmine/vCoolor.vim'      " color picker:
+Plugin 'Valloric/YouCompleteMe'    "autocmplete plugin
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ap/vim-css-color'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'easymotion/vim-easymotion'
+" Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'easymotion/vim-easymotion'  " move with shortcuts
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'jszakmeister/vim-togglecursor'		"detector de cursor insert mode
-Plugin 'majutsushi/tagbar'				"tagbar navigation
+Plugin 'jszakmeister/vim-togglecursor'        "detector de cursor insert mode
+Plugin 'majutsushi/tagbar'                "tagbar navigation
 Plugin 'marijnh/tern_for_vim' "javascript tag corrector
-Plugin 'mattn/emmet-vim'		"emmet plugin	
+Plugin 'mattn/emmet-vim'        "emmet plugin    
 Plugin 'mileszs/ack.vim'
-Plugin 'pangloss/vim-javascript'		"javascript compatibility plugin
+Plugin 'pangloss/vim-javascript'        "javascript compatibility plugin
 Plugin 'roblillack/vim-bufferlist'
 Plugin 'scrooloose/nerdtree' "tree file explorer
-Plugin 'tomtom/tlib_vim'  		"necessary for snippets
+Plugin 'tomtom/tlib_vim'          "necessary for snippets
 Plugin 'tpope/vim-surround' " plugin for surrounding in tags
 Plugin 'tyok/nerdtree-ack'  "plugin nerdtree + ack
 Plugin 'vim-scripts/tComment'
-Plugin 'wincent/Command-T'
+" Plugin 'wincent/Command-T'
 Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session' " Session manager 	
+Plugin 'xolox/vim-session' " Session manager     
 Plugin 'tpope/vim-repeat'
-Plugin 'yuratomo/w3m.vim'
+Plugin 'scrooloose/syntastic'    "code syntax review
+Plugin 'tobys/pdv'    "PDV para phpDocumentor
+Plugin 'tobys/vmustache'    "PDV para phpDocumentor
+Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'matze/vim-move'    " move blocks/lines
+Plugin 'jistr/vim-nerdtree-tabs'  " open nerdtree in tabs
+Plugin 'Xuyuanp/nerdtree-git-plugin'   "git plugin for nerdtree
+Plugin 'shawncplus/phpcomplete.vim'  " autocompletion for php
+Plugin 'joonty/vdebug'  "debuger
+Plugin 'terryma/vim-multiple-cursors'  "debuger
+Plugin 'shougo/unite.vim'  "fuzzy navigator
+Plugin 'godlygeek/tabular' " tabular data organizer
 
-" Plugin 'scrooloose/syntastic'    "code syntax review
-" Plugin 'powerline/powerline'
+" Plugin 'yuratomo/w3m.vim'
+" Plugin '2072/PHP-Indenting-for-VIm'
 " Plugin 'maksimr/vim-jsbeautify'
 " Plugin 'joonty/vim-phpqa.git'
-" Plugin 'honza/vim-snippets'
+" Plugin 'honza/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
 " Plugin 'einars/js-beautify' 
-" Plugin 'editorconfig/editorconfig-vim'
-" Plugin 'SirVer/ultisnips'
 " Plugin  'vim-scripts/highlight.vim'
 
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
-
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this 
-" ****************************************************************************
+" filetype plugin on
 """"""""""""""""""""""end of vundle plugins"""""""""""""""""""""""""""
 call vundle#end()            " required
 
 """"""""""""""""""""""plugins pathogen instalation begin""""""""""""""""""""""""""
 execute pathogen#infect()
+"  }}} end of plugins
 
-nmap \e :NERDTreeToggle<CR>
+" Enviromet variables  {{{**************************************************
+
+let g:airline#extensions#tabline#enabled = 1
 let NERDTreeShowLineNumbers=1
-" let rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
-" set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
 let g:airline_powerline_fonts = 1
 
 set undodir=~/.vim/tmp/undo//
+set undofile   " enable undo
 set backupdir=~/.vim/tmp/backup//
-set directory=~/.vim/tmp/swp//
+" set backup  "enable backups
 set laststatus=2
+set directory=~/.vim/tmp/swp//
 set t_Co=256
 set tabstop=4   " size of a hard tabstop
-set shiftwidth=4 " size of an "indent"
+set shiftwidth=4 " size of an indent
 " a combination of spaces and tabs are used to simulate tab stops at a width
 " other than the (hard)tabstop
 set smarttab " make "tab" insert indents instead of tabs at the beginning of a line
@@ -99,59 +100,9 @@ set encoding=utf-8
 set mouse=a " set mouse value
 let g:editorconfig_Beautifier= '~/.vim/.editorconfig'
 " LustyExplorer hide messages error:
-set hidden
-
-" let g:w3m#command = '/usr/bin/w3m'
-"ctags code explorer and taggins setup:
-"let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-"let Tlist_WinWidth = 50
+" set hidden
+set nosol  "not go to start of line in 'G'
 let g:snips_author = 'Tamnil Saito Junior - www.tamnil.com'
-map <silent> <F2> :call BufferList()<CR>
-"map <F4> :TlistToggle<cr>
-
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
-
-"""""""""""""""""""""""""""Snippets and code aux."""""""""""""""""""""""""
-" let g:snips_trigger_key = '<tab>'
-" let g:snips_trigger_key_backwards = '<s-tab>'
-" imap <C-j> <Plug>snipMateNextOrTrigger
-" smap <C-j> <Plug>snipMateNextOrTrigger
-"let g:user_emmet_leader_key='çç'
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<c-j>"
-" let g:UltiSnipsJumpForwardTrigger="<c-ç>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-s-j>"
-" Set ultisnips triggers
-let g:UltiSnipsExpandTrigger="<tab>"                                            
-let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>" 
-
-" let g:UltiSnipsExpandTrigger="<c-j>"
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-s-j>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-" vim 256 color support:
-" set _AB=^[[48;5;%dm
-" set t_AF=^[[38;5;%dm
-
-"tagbar shortcut
-nmap <F8> :TagbarToggle<CR>
-imap <s-space> <c-y>,
-" map <F3> :RN<CR>
-map <F12> :source ~/.vimrc<CR>
-" map <F5> <Esc>:EnableFastPHPFolds<Cr>
-" map <F6> <Esc>:EnablePHPFolds<Cr>
-" map <F7> <Esc>:DisablePHPFolds<Cr>  
-"
 
 let g:BufferListWidth = 25
 let g:BufferListMaxWidth = 50
@@ -159,33 +110,56 @@ let g:BufferListMaxWidth = 50
 " hi BufferSelected term=reverse ctermfg=white ctermbg=red cterm=bold
 " hi BufferNormal term=NONE ctermfg=black ctermbg=darkcyan cterm=NONE
 " hi NonText ctermfg=7 guifg=black guibg=gray20
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+
+""""""""""""""""""""colors and desktop"""""""""""""""""""""""""""""""""""""
+colorscheme industry 
+" sessions states
+let g:session_autoload = 'yes'
+let g:session_autosave = 'yes'
+" dicionarios ispell configuraoes:
+au! BufNewFile,BufRead * let b:spell_language="brasileiro"
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_check_on_open = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
+autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default 
+" let g:syntastic_php_checkers = ["php" ]
+let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
+let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
+
+set clipboard^=unnamed  " set clipboard on GUI
+let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+
+
+""""""""""""""""""""code fixers"""""""""""
+" If php-cs-fixer is in $PATH, you don't need to define line below
+" let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_level = "psr2"              " which level ?
+let g:php_cs_fixer_config = "default"             " configuration
+"let g:php_cs_fixer_config_file = '.php_cs'       " configuration file
+let g:php_cs_fixer_php_path = "php"               " Path to PHP
+" If you want to define specific fixers:
+"let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
+let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
+
+let php_folding = 1        "Set PHP folding of classes and functions.
+let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
+let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
+let php_noShortTags = 1    "Disable PHP short tags.
+
+
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 "let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$','file': '\v\.(exe|so|dll)$','link': 'some_bad_symbolic_links' }
 " Use a custom file listing command:
-let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-""""""""""""""""""""colors and desktop"""""""""""""""""""""""""""""""""""""
-colorscheme industry 
-" hi Search guibg=peru guifg=wheat
-"  hi Search guibg=peru guifg=black
-"  hi Search cterm=NONE ctermfg=black ctermbg=red
-" sessions states
-let g:session_autoload = 'no'
-let g:session_autosave = 'no'
-" dicionarios ispell configuraoes:
-au! BufNewFile,BufRead * let b:spell_language="brasileiro"
+" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux  Ctrlp custom (trocado por unite \\f)
 
-" au BufRead,BufNewFile *.scss set filetype=scss.cssau BufRead,BufNewFile *.scss
-" set filetype=scss.css
-" 		Notes:
-" let g:notes_directories = ['~/Documents/Notes', '~/Dropbox/Shared Notes']
-"
-noremap <F7> :Autoformat<CR><CR>
-
-"map <F7> :SpellCheck<CR>
-"map <F6> :SpellProposeAlternatives<CR>
 """""""""""""""""""""""""highlight search"""""""""""""""""""""""""""""""
 set incsearch
 set hlsearch
@@ -193,56 +167,23 @@ set ignorecase
 set smartcase
 set wildmode=longest:full
 set wildmenu
-"""""""""""""""""""""""""""' Enable Code Folding"""""""""""""""""""""""""""'
-
-" set foldmethod=syntax
-" set foldmethod=marker
-set foldmethod=indent
-set wildmenu
-"""""""""""""""""""""""""""' Enable Code Folding"""""""""""""""""""""""""""'
+""""""""""""""""""""""""""" Enable Code Folding"""""""""""""""""""""""""""'
 
 " set foldmethod=syntax
 " set foldmethod=marker
 set foldmethod=indent
 
-""""""""""""""""""""""""""""' line numbering """"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""" line numbering """"""""""""""""""""""""""""""""
 set number
 au FocusLost * :set number
 au FocusGained * :set relativenumber
 " autocmd InsertEnter * :set number
 "autocmd InsertLeave * :set relativenumber
 
-
 " let php_folding=1
 set nofoldenable
-set showcmd	
+set showcmd
 
-
-""""""""""""""""""begin easy motion"""""""""""""""""""""""""""""""
-
-" <Leader>f{char} to move to {char}
- map  <Leader>f <Plug>(easymotion-bd-f)
- nmap <Leader>f <Plug>(easymotion-overwin-f)
-
- " s{char}{char} to move to {char}{char}
-"  nmap s <Plug>(easymotion-overwin-f0)
-
- " Move to line
- map <Leader>L <Plug>(easymotion-bd-jk)
- nmap <Leader>L <Plug>(easymotion-overwin-line)
-
- " Move to word
- map  <Leader>w <Plug>(easymotion-bd-w)
-" nmap <Leader>w <Plug>(easymotion-overwin-w)
-
-"""""""""""""""""""""end easy motion""""""""""""""""""""""""""
-" disable autocomment:
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-" nnoremap ' `
-" nnoremap ` '
-nnoremap ç `
-nnoremap çç ``
-"nnoremap ` '
 set viminfo='1000,f1,<250
 """"""""""""""""""""""""""   File Type detection"""""""""""""""""""""""
 filetype on
@@ -252,72 +193,195 @@ filetype plugin indent on    " required
 "correct html code formatting
 let g:html_indent_inctags = "html,body,head,tbody"
 
-
-
 autocmd BufEnter * if &filetype == "" | setlocal ft=text | endif
-
-
-" set list listchars=tab:»·,trail:·,eol:«
-" ******************************firefox refresh function***********
-" autocmd BufWriteCmd *.html,*.css,*.js,*.php,*.gtpl :call Refresh_firefox()
-" function! Refresh_firefox()
-"     if &modified
-"         write
-"         silent !echo  'vimYo = content.window.pageYOffset;
-"                     \ vimXo = content.window.pageXOffset;
-"                     \ BrowserReload();
-"                     \ content.window.scrollTo(vimXo,vimYo);
-"                     \ repl.quit();'  |
-"                     \ nc -w 1 localhost 4242 2>&1 > /dev/null
-"     endif
-" endfunction
-" command! -nargs=1 Repl silent !echo
-"             \ "repl.home();
-"             \ content.location.href = '<args>';
-"             \ repl.enter(content);
-"             \ repl.quit();" |
-"             \ nc localhost 4242
-"
-" nmap <leader>mh :Repl http://
-" " mnemonic is MozRepl Http
-" nmap <silent> <leader>ml :Repl file:///%:p<CR>
-" " mnemonic is MozRepl Local
-" nmap <silent> <leader>md :Repl http://localhost/
-" mnemonic is MozRepl Development
-"
-" nmap \w :setlocal wrap!<CR>:setlocal wrap?<CR>
-
 set wak=no
-nnoremap j gj
-nnoremap k gk
-"
-" map <up> <nop>
-" map <down> <nop>
-" map <left> <nop>
-" map <right> <nop>
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0		
-let g:syntastic_php_checkers = ["php", "phpmd"]
-" MySQL
-" let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=whatever:dbname=mysql'
-set clipboard^=unnamed
-let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+" Change Ack to ag command
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" set tags=./tags,tags,.git/tags;
+autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o " remove autocomment
+
+" GitGutter colors:  {{{
+highlight clear SignColumn     " reset colors
+" terminal:
+highlight  GitGutterAdd           ctermfg=black ctermbg=green       guifg=black  guibg=green
+highlight  GitGutterChange        ctermfg=black ctermbg=yellow      guifg=black  guibg=yellow
+highlight  GitGutterDelete        ctermfg=black ctermbg=red         guifg=black  guibg=red
+highlight  GitGutterChangeDelete  ctermfg=black ctermbg=darkyellow  guifg=black  guibg=darkyellow
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+ 
+" highlight  NonText      guifg=#4a4a59
+" highlight  SpecialKey   guifg=#4a4a59
+ 
+""""""""""""""""""""""""""""""""""""" }}}
+:let multi_cursor_exit_from_insert_mode=0 " setup for multicursor on normal mode
+
+" vim-autoformat:extra templates:  {{{
+" let g:autoformat_verbosemode=1 
+
+"" for php use gg=G and f5(autoformat) after
+" php
+
+let g:formatdef_tidy_php = '"tidy -q --show-errors 0 --show-warnings 0 --force-output --indent auto --indent-spaces ".shiftwidth()." --vertical-space yes --tidy-mark no -asphp -wrap ".&textwidth'
+let g:formatters_php = ['tidy_php']
+
+" phtml
+
+let g:formatdef_tidy_phtml = '"tidy -q --show-errors 0 --show-warnings 0 --force-output --indent auto --indent-spaces ".shiftwidth()." --vertical-space yes --tidy-mark no -asphtml -wrap ".&textwidth'
+let g:formatters_phtml = ['tidy_phtml']
+
+""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 
+"                               }}} **********  End of enviroment variables **********
+
+"  Keyboard Mappings  {{{**************************************************
+
+" map <silent> <F2> :call BufferList()<CR> trocado por unite \\b
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
+"map <F4> :TlistToggle<cr>
+nmap \e :NERDTreeTabsToggle<CR>
+"""""""""""""""""""""""""""Snippets and code aux."""""""""""""""""""""""""
+"  let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/snippets']
+" let g:snips_trigger_key = '<tab>'
+" let g:snips_trigger_key_backwards = '<s-tab>'
+" smap <C-j> <Plug>snipMateNextOrTrigger
+" imap <C-j> <Plug>snipMateNextOrTrigger
+"let g:user_emmet_leader_key='çç'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<c-j>"
+" let g:UltiSnipsJumpForwardTrigger="<c-ç>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-s-j>"
+" Set ultisnips triggers
+" let g:UltiSnipsExpandTrigger="<c-j>"                                            
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"                                       
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>" 
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+imap <C-CR> <C-o>o
+"tagbar shortcut
+nmap <F8> :TagbarToggle<CR>
+imap <S-Space> <C-y>,
+" map <F3> :RN<CR>
+nmap <F12> <Esc>:source ~/.vimrc<CR>
+" map <F5> <Esc>:EnableFastPHPFolds<Cr>
+" map <F6> <Esc>:EnablePHPFolds<Cr>
+" map <F7> <Esc>:DisablePHPFolds<Cr>
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" emmet expan dshortcut
+    imap <F3> <C-y>,
 " tmux hack arrows:
 if &term =~ '^screen'
-            "tmux will send xterm-style keys when its xterm-keys option is on
+    "tmux will send xterm-style keys when its xterm-keys option is on
     execute "set <xUp>=\e[1;*A"
     execute "set <xDown>=\e[1;*B"
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
 endif
+let g:move_key_modifier = 'C'  " move plugin key settings C=control
+
+""""""""""""""""""begin easy motion"""""""""""""""""""""""""""""""
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+" s{char}{char} to move to {char}{char}
+"  nmap s <Plug>(easymotion-overwin-f0)
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+"""""""""""""""""""""end easy motion""""""""""""""""""""""""""
+noremap <F7> :Autoformat<CR><CR>
+" remap for wrap jumps
+nnoremap j gj
+nnoremap k gk
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" Code folding options
+nmap <leader>f0 :set foldlevel=0<CR>
+nmap <leader>f1 :set foldlevel=1<CR>
+nmap <leader>f2 :set foldlevel=2<CR>
+nmap <leader>f3 :set foldlevel=3<CR>
+nmap <leader>f4 :set foldlevel=4<CR>
+nmap <leader>f5 :set foldlevel=5<CR>
+nmap <leader>f6 :set foldlevel=6<CR>
+nmap <leader>f7 :set foldlevel=7<CR>
+nmap <leader>f8 :set foldlevel=8<CR>
+nmap <leader>f9 :set foldlevel=9<CR>
 
 
-"set updatetime=250
+" Tabularize {
+if isdirectory(expand("~/.vim/bundle/tabular"))
+    nmap <Leader>a& :Tabularize /&<CR>
+    vmap <Leader>a& :Tabularize /&<CR>
+    nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+    vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+    nmap <Leader>a=> :Tabularize /=><CR>
+    vmap <Leader>a=> :Tabularize /=><CR>
+    nmap <Leader>a: :Tabularize /:<CR>
+    vmap <Leader>a: :Tabularize /:<CR>
+    nmap <Leader>a:: :Tabularize /:\zs<CR>
+    vmap <Leader>a:: :Tabularize /:\zs<CR>
+    nmap <Leader>a, :Tabularize /,<CR>
+    vmap <Leader>a, :Tabularize /,<CR>
+    nmap <Leader>a,, :Tabularize /,\zs<CR>
+    vmap <Leader>a,, :Tabularize /,\zs<CR>
+    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+endif
+" }
+
+nnoremap <leader><leader><leader> :Unite -start-insert<CR>
+nnoremap <leader><leader>f :Unite file -start-insert<CR>
+nnoremap <leader><leader>fr :Unite file_rec -start-insert<CR>
+nnoremap <leader><leader>fb :Unite file buffer -start-insert<CR>
+
+nnoremap <leader><leader>b :Unite buffer -start-insert<CR>
+nnoremap <leader><leader>bt :Unite buffer_tab -start-insert<CR>
+
+nnoremap <leader><leader>j :Unite jump -start-insert<CR>
+
+nnoremap <leader><leader>w :Unite window -start-insert<CR>
+
+nnoremap <leader><leader>t :Unite tab -start-insert<CR>
+nnoremap <leader><leader>m :Unite mappings -start-insert<CR>
+
+nnoremap <leader><leader>c :Unite command -start-insert<CR>
+nnoremap <leader><leader>r :Unite registers -start-insert <CR>
+
+
+
+
+"                                }}} ********************end of key mappings********************
+
+"""""""""""""'initialize repeat after map functions
+silent! call repeat#set("\<Plug>tComment", v:count)
+silent! call repeat#set("\<Plug>surround", v:count)
+
+
+let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
+let g:vdebug_options = {'break_on_open': 0}
+let g:vdebug_options = {'server': 'localhost'}
+let g:vdebug_options = {'port': '9000'}
