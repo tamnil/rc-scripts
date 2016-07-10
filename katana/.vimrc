@@ -1,10 +1,8 @@
 " vim:fdm=marker
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Plugins install   {{{*  
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 """""""""""""""""""""""init of Vundle plugins"""""""""""
@@ -13,38 +11,38 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive' " plugin on GitHub repo
 " All of your Plugins must be added before the following line
 
-Plugin 'mbbill/undotree' " undo manager 	
-Plugin 'tamnil/vim-browser-reload-linux' " Session manager 	
+Plugin 'mbbill/undotree' " undo manager     
+Plugin 'tamnil/vim-browser-reload-linux' " Session manager 
 Bundle 'Shougo/vimproc'
 Bundle 'stephpy/vim-php-cs-fixer'
 Bundle 'm2mdas/phpcomplete-extended'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'MarcWeber/vim-addon-mw-utils'	"necessary for snippets
-Plugin 'KabbAmine/vCoolor.vim'		" color picker:
+Plugin 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
+Plugin 'KabbAmine/vCoolor.vim'      " color picker:
 Plugin 'Valloric/YouCompleteMe'    "autocmplete plugin
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ap/vim-css-color'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'easymotion/vim-easymotion'  " move with shortcuts
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'jszakmeister/vim-togglecursor'		"detector de cursor insert mode
-Plugin 'majutsushi/tagbar'				"tagbar navigation
+Plugin 'jszakmeister/vim-togglecursor'        "detector de cursor insert mode
+Plugin 'majutsushi/tagbar'                "tagbar navigation
 Plugin 'marijnh/tern_for_vim' "javascript tag corrector
-Plugin 'mattn/emmet-vim'		"emmet plugin	
+Plugin 'mattn/emmet-vim'        "emmet plugin    
 Plugin 'mileszs/ack.vim'
-Plugin 'pangloss/vim-javascript'		"javascript compatibility plugin
+Plugin 'pangloss/vim-javascript'        "javascript compatibility plugin
 Plugin 'roblillack/vim-bufferlist'
 Plugin 'scrooloose/nerdtree' "tree file explorer
-Plugin 'tomtom/tlib_vim'  		"necessary for snippets
+Plugin 'tomtom/tlib_vim'          "necessary for snippets
 Plugin 'tpope/vim-surround' " plugin for surrounding in tags
 Plugin 'tyok/nerdtree-ack'  "plugin nerdtree + ack
 Plugin 'vim-scripts/tComment'
 " Plugin 'wincent/Command-T'
 Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session' " Session manager 	
+Plugin 'xolox/vim-session' " Session manager     
 Plugin 'tpope/vim-repeat'
 Plugin 'scrooloose/syntastic'    "code syntax review
 Plugin 'tobys/pdv'    "PDV para phpDocumentor
@@ -61,7 +59,6 @@ Plugin 'terryma/vim-multiple-cursors'  "debuger
 Plugin 'shougo/unite.vim'  "fuzzy navigator
 Plugin 'godlygeek/tabular' " tabular data organizer
 
-
 " Plugin 'yuratomo/w3m.vim'
 " Plugin '2072/PHP-Indenting-for-VIm'
 " Plugin 'maksimr/vim-jsbeautify'
@@ -70,7 +67,7 @@ Plugin 'godlygeek/tabular' " tabular data organizer
 " Plugin 'einars/js-beautify' 
 " Plugin  'vim-scripts/highlight.vim'
 
-" To ignore plugin indent changes, instead use:
+
 " filetype plugin on
 """"""""""""""""""""""end of vundle plugins"""""""""""""""""""""""""""
 call vundle#end()            " required
@@ -93,7 +90,7 @@ set laststatus=2
 set directory=~/.vim/tmp/swp//
 set t_Co=256
 set tabstop=4   " size of a hard tabstop
-set shiftwidth=4 " size of an "indent"
+set shiftwidth=4 " size of an indent
 " a combination of spaces and tabs are used to simulate tab stops at a width
 " other than the (hard)tabstop
 set smarttab " make "tab" insert indents instead of tabs at the beginning of a line
@@ -103,7 +100,7 @@ set encoding=utf-8
 set mouse=a " set mouse value
 let g:editorconfig_Beautifier= '~/.vim/.editorconfig'
 " LustyExplorer hide messages error:
-set hidden
+" set hidden
 set nosol  "not go to start of line in 'G'
 let g:snips_author = 'Tamnil Saito Junior - www.tamnil.com'
 
@@ -128,7 +125,7 @@ set statusline+=%*
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0		
+let g:syntastic_check_on_wq = 0
 autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default 
 " let g:syntastic_php_checkers = ["php" ]
 let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
@@ -161,7 +158,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 "let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$','file': '\v\.(exe|so|dll)$','link': 'some_bad_symbolic_links' }
 " Use a custom file listing command:
-let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux  Ctrlp custom
+" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux  Ctrlp custom (trocado por unite \\f)
 
 """""""""""""""""""""""""highlight search"""""""""""""""""""""""""""""""
 set incsearch
@@ -217,17 +214,17 @@ highlight  GitGutterChangeDelete  ctermfg=black ctermbg=darkyellow  guifg=black 
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
-    
+ 
 " highlight  NonText      guifg=#4a4a59
 " highlight  SpecialKey   guifg=#4a4a59
-           
+ 
 """"""""""""""""""""""""""""""""""""" }}}
-
-let g:autoformat_verbosemode=1 
-
+:let multi_cursor_exit_from_insert_mode=0 " setup for multicursor on normal mode
 
 " vim-autoformat:extra templates:  {{{
-"" for php use gg=G and f5(autoformat after
+" let g:autoformat_verbosemode=1 
+
+"" for php use gg=G and f5(autoformat) after
 " php
 
 let g:formatdef_tidy_php = '"tidy -q --show-errors 0 --show-warnings 0 --force-output --indent auto --indent-spaces ".shiftwidth()." --vertical-space yes --tidy-mark no -asphp -wrap ".&textwidth'
@@ -245,7 +242,7 @@ let g:formatters_phtml = ['tidy_phtml']
 
 "  Keyboard Mappings  {{{**************************************************
 
-map <silent> <F2> :call BufferList()<CR>
+" map <silent> <F2> :call BufferList()<CR> trocado por unite \\b
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
@@ -278,18 +275,18 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 imap <C-CR> <C-o>o
 "tagbar shortcut
-nmap <F8> :TagbarToggle<CR> 
+nmap <F8> :TagbarToggle<CR>
 imap <S-Space> <C-y>,
 " map <F3> :RN<CR>
 nmap <F12> <Esc>:source ~/.vimrc<CR>
 " map <F5> <Esc>:EnableFastPHPFolds<Cr>
 " map <F6> <Esc>:EnablePHPFolds<Cr>
-" map <F7> <Esc>:DisablePHPFolds<Cr>  
+" map <F7> <Esc>:DisablePHPFolds<Cr>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " emmet expan dshortcut
-    imap <F3> <C-y>, 
+    imap <F3> <C-y>,
 " tmux hack arrows:
 if &term =~ '^screen'
     "tmux will send xterm-style keys when its xterm-keys option is on
@@ -356,7 +353,23 @@ if isdirectory(expand("~/.vim/bundle/tabular"))
 endif
 " }
 
+nnoremap <leader><leader><leader> :Unite -start-insert<CR>
+nnoremap <leader><leader>f :Unite file -start-insert<CR>
+nnoremap <leader><leader>fr :Unite file_rec -start-insert<CR>
+nnoremap <leader><leader>fb :Unite file buffer -start-insert<CR>
 
+nnoremap <leader><leader>b :Unite buffer -start-insert<CR>
+nnoremap <leader><leader>bt :Unite buffer_tab -start-insert<CR>
+
+nnoremap <leader><leader>j :Unite jump -start-insert<CR>
+
+nnoremap <leader><leader>w :Unite window -start-insert<CR>
+
+nnoremap <leader><leader>t :Unite tab -start-insert<CR>
+nnoremap <leader><leader>m :Unite mappings -start-insert<CR>
+
+nnoremap <leader><leader>c :Unite command -start-insert<CR>
+nnoremap <leader><leader>r :Unite registers -start-insert <CR>
 
 
 

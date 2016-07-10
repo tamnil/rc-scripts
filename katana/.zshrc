@@ -64,7 +64,7 @@ ZSH_THEME="lukerandall"
 # ZSH_TMUX_AUTOSTART_ONCE=false
 # ZSH_TMUX_AUTOCONNECT=true
 
-plugins=(git vi-mode )
+plugins=(git vi-mode tmux)
 
 # User configuration
 
@@ -121,10 +121,16 @@ bindkey '^N' up-line-or-beginning-search
 bindkey '^P' down-line-or-beginning-search
 
 #tranpose words
-bindkey '^[t' transpose-words
+bindkey '^T' transpose-words
+
+bindkey '^f' forward-char
+bindkey '^b' backward-char
+
 
 bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
+bindkey '^[l' forward-word                        # [Alt-l] - move forward one word
 bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
+bindkey '^[h' backward-word                       # [Alt-h] - move backward one word
 
 # bindkey '^[[C' forward-word                        # [Ctrl-RightArrow] - move forward one word
 # bindkey '^[[D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
