@@ -103,7 +103,7 @@ export ACKRC=".ackrc"
 # ignore duplicate history:
 setopt HIST_IGNORE_DUPS
 
-### Added by the Heroku Toolbelt
+### Added by the Heroku Tool belt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 export ANDROID_HOME=/home/tamnil/Android/Sdk
@@ -120,10 +120,13 @@ bindkey '^[OB' down-line-or-beginning-search
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 
-bindkey '^N' up-line-or-beginning-search
-bindkey '^P' down-line-or-beginning-search
+bindkey '^P' up-line-or-beginning-search
+bindkey '^N' down-line-or-beginning-search
 
-#tranpose words
+bindkey '^R' history-incremental-pattern-search-backward
+
+
+#transpose words
 bindkey '^T' transpose-words
 
 bindkey '^f' forward-char
@@ -139,4 +142,8 @@ bindkey '^[h' backward-word                       # [Ctrl-h] - move backward one
 # bindkey '^[[D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
 
 alias ccat='pygmentize -O style=monokai -f terminal -g'
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
