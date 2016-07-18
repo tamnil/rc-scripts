@@ -2,6 +2,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+  
 " Plugins install   {{{*  
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -20,15 +21,12 @@ Plugin 'KabbAmine/vCoolor.vim'      " color picker:
 Plugin 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
 Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'    "autocmplete plugin
-" Plugin 'Townk/vim-autoclose'    "autoclose plugin
-" Plugin 'Xuyuanp/nerdtree-git-plugin'   "git plugin for nerdtree
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ap/vim-css-color'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'godlygeek/tabular' " tabular data organizer
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-" Plugin 'jistr/vim-nerdtree-tabs'  " open nerdtree in tabs
 Plugin 'joonty/vdebug'  "debugger
 Plugin 'jszakmeister/vim-togglecursor'        "detector de cursor insert mode
 Plugin 'majutsushi/tagbar'                "tagbar navigation
@@ -50,7 +48,8 @@ Plugin 'tobys/vmustache'    "PDV para phpDocumentor
 Plugin 'tomtom/tlib_vim'          "necessary for snippets
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround' " plugin for surrounding in tags
-" Plugin 'tyok/nerdtree-ack'  "plugin nerdtree + ack
+Plugin 'zhaocai/GoldenView.Vim' " arrange windows
+Plugin 'Shougo/neomru.vim' " arrange windows
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/tComment'
@@ -58,6 +57,14 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session' " Session manager     
 Plugin 'easymotion/vim-easymotion'  " move with shortcuts
 Plugin 'beloglazov/vim-online-thesaurus'
+Plugin 'tamnil/vim-custom-scripts'  " scripts customizados diversos
+Plugin 'kshenoy/vim-signature'  " scripts customizados diversos
+
+" Plugin 'tyok/nerdtree-ack'  "plugin nerdtree + ack
+" Plugin 'jistr/vim-nerdtree-tabs'  " open nerdtree in tabs
+" Plugin 'Xuyuanp/nerdtree-git-plugin'   "git plugin for nerdtree
+" Plugin 'Townk/vim-autoclose'    "autoclose plugin
+" Plugin 'Raimondi/delimitMate'  " Fecha parenteses e outras formas ---------> caus problema em arrasta e copia-colar
 " Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'garbas/vim-snipmate'
 " Plugin 'wincent/Command-T'
@@ -68,7 +75,6 @@ Plugin 'beloglazov/vim-online-thesaurus'
 Plugin 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
 " Plugin 'einars/js-beautify' 
 " Plugin  'vim-scripts/highlight.vim'
-
 
 " filetype plugin on
 """"""""""""""""""""""end of vundle plugins"""""""""""""""""""""""""""
@@ -108,7 +114,13 @@ set scrolloff=3             " Start scrolling n lines before horizontal border o
 set sidescrolloff=7         " Start scrolling n chars before end of screen.
 set sidescroll=1            " The minimal number of columns to scroll horizontally.
 
-set mouse=a " set mouse value
+set mouse+=a " set mouse value
+
+if &term =~ '^screen'
+        " tmux knows the extended mouse mode
+            set ttymouse=xterm2
+        endif
+
 set autoread "reload a file when modified externally
 let g:editorconfig_Beautifier= '~/.vim/.editorconfig'
 " LustyExplorer hide messages error:
@@ -122,7 +134,6 @@ set undolevels=999          " Moar undo (default=100)
 set autoread                " reload files if changed externally
 
 " --- search / regexp ---
-set gdefault                " RegExp global by default
 set magic                   " Enable extended regexes.
 set hlsearch                " highlight searches
 set incsearch               " show the `best match so far' astyped
@@ -144,7 +155,6 @@ colorscheme monokai
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 
-
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -159,8 +169,6 @@ let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
 
 set clipboard^=unnamed  " set clipboard on GUI
 let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
-
-autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o " remove autocomment
 
 """"""""""""""""""""code fixers"""""""""""
 " If php-cs-fixer is in $PATH, you don't need to define line below
@@ -180,7 +188,6 @@ let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
 let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
 let php_noShortTags = 1    "Disable PHP short tags.
 
-
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 "let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$','file': '\v\.(exe|so|dll)$','link': 'some_bad_symbolic_links' }
@@ -192,6 +199,8 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
+hi Search cterm=bold,underline ctermfg=grey ctermbg=238
+hi Search guifg=white guibg=#767676
 """"""""""""""""""""""""""" Enable Code Folding"""""""""""""""""""""""""""'
 
 " set foldmethod=syntax
@@ -220,7 +229,7 @@ au FileType ruby,eruby setl ofu=rubycomplete#Complete
 au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
 au FileType c setl ofu=ccomplete#CompleteCpp
 au FileType css setl ofu=csscomplete#CompleteCSS
-
+au FileType python setl ofu=pythoncomplete#Complete
 
 let g:ycm_min_num_of_chars_for_completion = 1
 
@@ -240,11 +249,11 @@ endif
 " GitGutter colors:  {{{
 highlight clear SignColumn     " reset colors
 " terminal:
-highlight  GitGutterAdd           ctermfg=black ctermbg=green       guifg=black  guibg=green
-highlight  GitGutterChange        ctermfg=black ctermbg=yellow      guifg=black  guibg=yellow
-highlight  GitGutterDelete        ctermfg=black ctermbg=red         guifg=black  guibg=red
-highlight  GitGutterChangeDelete  ctermfg=black ctermbg=darkyellow  guifg=black  guibg=darkyellow
-
+hi   GitGutterAdd            ctermfg=black   ctermbg=green        guifg=black   guibg=green
+hi   GitGutterChange         ctermfg=black   ctermbg=yellow       guifg=black   guibg=yellow
+hi   GitGutterDelete         ctermfg=black   ctermbg=red          guifg=black   guibg=red
+hi   GitGutterChangeDelete   ctermfg=black   ctermbg=darkyellow   guifg=black   guibg=darkyellow
+hi   Visual                  ctermbg=blue    guibg=blue
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
  
@@ -276,18 +285,24 @@ set spelllang=en_us,pt
 set completeopt=menuone,longest,noinsert,preview
 set wildmode=longest:list,full
 set wildmenu
-set complete +=k
-
-
-
-
-
-
+" set complete +=k
+set omnifunc=syntaxcomplete#Complete
+set completefunc=syntaxcomplete#Complete
+set complete=.,w,b,u,U,t,i,d
+augroup omni_complete
+    " clear commands before resetting
+    autocmd!
+    " Enable omnicomplete for supported filetypes
+    autocmd FileType css,scss setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup END
 
 
 
 "                               }}} **********  End of environment variables **********
-
 
 "  Keyboard Mappings  {{{**************************************************
 
@@ -356,7 +371,7 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 ""}}""""""""""""""""""""end easy motion"""""""""""""""""""""""
-noremap <F7> :Autoformat<CR><CR>
+" noremap <F7> :Autoformat<CR><CR>
 " remap for wrap jumps
 nnoremap j gj
 nnoremap k gk
@@ -377,7 +392,6 @@ nmap <leader>f6 :set foldlevel=6<CR>
 nmap <leader>f7 :set foldlevel=7<CR>
 nmap <leader>f8 :set foldlevel=8<CR>
 nmap <leader>f9 :set foldlevel=9<CR>
-
 
 " Tabularize {
 if isdirectory(expand("~/.vim/bundle/tabular"))
@@ -401,18 +415,32 @@ endif
 " end of tabularize }
 
 "  Unite key bindings {{
+
 nnoremap <leader><leader><leader> :Unite -start-insert<CR>
 nnoremap <leader><leader>f :Unite file -start-insert<CR>
 nnoremap <leader><leader>fr :Unite file_rec -start-insert<CR>
+nnoremap <leader><leader>fm :Unite file_mru -start-insert<CR>
+nnoremap <leader><leader>fl :Unite file_list -start-insert<CR>
+nnoremap <leader><leader>fra :Unite file_rec/async -start-insert<CR>
+nnoremap <leader><leader>frg :Unite file_rec/git -start-insert<CR>
 nnoremap <leader><leader>fb :Unite file buffer -start-insert<CR>
 nnoremap <leader><leader>b :Unite buffer -start-insert<CR>
 nnoremap <leader><leader>bt :Unite buffer_tab -start-insert<CR>
 nnoremap <leader><leader>j :Unite jump -start-insert<CR>
 nnoremap <leader><leader>w :Unite window -start-insert<CR>
+nnoremap <leader><leader>wg :Unite window/gui -start-insert<CR>
 nnoremap <leader><leader>t :Unite tab -start-insert<CR>
 nnoremap <leader><leader>m :Unite mappings -start-insert<CR>
 nnoremap <leader><leader>c :Unite command -start-insert<CR>
-nnoremap <leader><leader>r :Unite registers -start-insert <CR>
+nnoremap <leader><leader>r :Unite register -start-insert <CR>
+nnoremap <leader><leader>d :Unite directory -start-insert <CR>
+nnoremap <leader><leader>dr :Unite directory_rec -start-insert <CR>
+nnoremap <leader><leader>dra :Unite directory_rec/async -start-insert <CR>
+nnoremap <leader><leader>dm :Unite directory_mru -start-insert <CR>
+nnoremap <leader><leader>g :Unite grep -start-insert <CR>
+nnoremap <leader><leader>gg :Unite grep/git -start-insert <CR>
+nnoremap <leader><leader>gv :Unite vimgrep -start-insert <CR>
+nnoremap <leader><leader> :Unite -start-insert <CR>
 "  }}                       end of Unite
 
 command! Bd BD
@@ -424,7 +452,6 @@ vmap <C-v><C-v> "+p
 nmap <C-v><C-v> "+P
 imap <C-v><C-v> <Esc>"+pa
 
-
 " }} fim do copy paste 
 
 let g:online_thesaurus_map_keys = 0
@@ -434,17 +461,28 @@ nnoremap <leader>d :OnlineThesaurusCurrentWord<CR>
 nmap <C-UP> gt
 nmap <C-DOWN> gT
 
-
 " easier window navigation
 execute "set <M-j>=\ej"
 execute "set <M-l>=\el"
 execute "set <M-h>=\eh"
 execute "set <M-k>=\ek"
-nmap <M-h> <C-w>h
-nmap <M-j> <C-w>j
-nmap <M-k> <C-w>k
-nmap <M-l> <C-w>l
 
+imap <M-h> <C-LEFT>
+imap <M-l> <C-RIGHT>
+imap <M-k> <LEFT>
+imap <M-j> <RIGHT>
+
+cmap <M-h> <C-LEFT>
+cmap <M-l> <C-RIGHT>
+cmap <M-k> <LEFT>
+cmap <M-j> <RIGHT>
+
+map <M-h> <C-LEFT>
+map <M-l> <C-RIGHT>
+
+map <M-k> <LEFT>
+map <M-j> <RIGHT>
+" nmap <M-o> o<ESC><ESC>
 
 "                                }}} ********************end of key mappings********************
 
@@ -452,14 +490,10 @@ nmap <M-l> <C-w>l
 silent! call repeat#set("\<Plug>tComment", v:count)
 silent! call repeat#set("\<Plug>surround", v:count)
 
-
 let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
 let g:vdebug_options = {'break_on_open': 0}
 let g:vdebug_options = {'server': 'localhost'}
 let g:vdebug_options = {'port': '9000'}
-
-
-
 
 "    custom functions{{
 
@@ -471,25 +505,20 @@ let g:vdebug_options = {'port': '9000'}
 nmap <Space> :
 
 " command 
-command! TipoPhp execute "set ft=php"
-command! TipoHtml execute "set ft=html"
-command! TipoJs execute "set ft=javascipt"
-command! LimpaPhp execute "call Limpa('php','phtml')"
-
-
-
-fun! Limpa(...)
-
-   " execute "set ft=".a:tipo
-   " normal "ggV=G"
-   for tipo in a:000
-       execute "set ft=".tipo
-       normal "ggV=G"
-
-       echo tipo
-       
-       set ft
-   endfor
-endf
 " **********************************end of custom commands*****}}
+
+autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o " remove autocomment
+
+"Tagbar
+noremap <silent> <Leader>t :<C-u>TagbarToggle<CR>
+
+let g:tagbar_type_css = {
+            \ 'ctagstype' : 'Css',
+            \ 'kinds'     : [
+                \ 'c:classes',
+                \ 's:selectors',
+                \ 'i:ids',
+                \ 't:tags',
+                \ 'm:media' ]
+            \ }
 

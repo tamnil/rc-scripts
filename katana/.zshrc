@@ -11,7 +11,6 @@ if [ -f `which powerline-daemon` ]; then
   . /usr/share/powerline/bindings/zsh/powerline.zsh
 fi
 
-
 # Path to your oh-my-zsh installation.
 export ZSH=/home/tamnil/.oh-my-zsh
 
@@ -97,8 +96,19 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export ACKRC=".ackrc"
+#
 
+alias ccat='pygmentize -O style=monokai -f terminal -g'
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias gv='gvim'
+alias novnc='/var/www/noVNC/utils/launch.sh'
+alias ctags-init='ctags -R -f ./.git/tags --tag-relative=yes'
+# le status dos arquivos de subdiretorios contendo repositorios
+alias git-ls-status="find . -maxdepth 1 -mindepth 1 -type d -exec sh -c '(echo {} && cd {} && git status -s && echo)' \;"
+# alias tma='tmux attach -d -t'
+# alias git-tmux='tmux new -s $(basename $(pwd))'
+#
+export ACKRC=".ackrc"
 
 # ignore duplicate history:
 setopt HIST_IGNORE_DUPS
@@ -125,13 +135,11 @@ bindkey '^N' down-line-or-beginning-search
 
 bindkey '^R' history-incremental-pattern-search-backward
 
-
 #transpose words
 bindkey '^T' transpose-words
 
 bindkey '^f' forward-char
 bindkey '^b' backward-char
-
 
 bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
 bindkey '^[l' forward-word                        # [Alt-l] - move forward one word
@@ -140,9 +148,6 @@ bindkey '^[h' backward-word                       # [Ctrl-h] - move backward one
 
 # bindkey '^[[C' forward-word                        # [Ctrl-RightArrow] - move forward one word
 # bindkey '^[[D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
-
-alias ccat='pygmentize -O style=monokai -f terminal -g'
-alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
