@@ -2,8 +2,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-  
-" Plugins install   {{{*  
+" Plugin Install  {{{ "
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 """""""""""""""""""""""init of Vundle plugins"""""""""""
@@ -11,7 +10,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive' " plugin on GitHub repo
 " All of your Plugins must be added before the following line
-
+" Vundle {{{2 "
 Plugin 'qpkorr/vim-bufkill' " kill/delete buffer without close window
 Bundle 'Shougo/vimproc'
 Bundle 'm2mdas/phpcomplete-extended'
@@ -59,6 +58,7 @@ Plugin 'easymotion/vim-easymotion'  " move with shortcuts
 Plugin 'beloglazov/vim-online-thesaurus'
 Plugin 'tamnil/vim-custom-scripts'  " scripts customizados diversos
 Plugin 'kshenoy/vim-signature'  " scripts customizados diversos
+Plugin 'vim-scripts/dbext.vim'  " database pipe
 
 " Plugin 'tyok/nerdtree-ack'  "plugin nerdtree + ack
 " Plugin 'jistr/vim-nerdtree-tabs'  " open nerdtree in tabs
@@ -76,19 +76,29 @@ Plugin 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no dir
 " Plugin 'einars/js-beautify' 
 " Plugin  'vim-scripts/highlight.vim'
 
+" 2}}} " endvundle
+
+
 " filetype plugin on
 """"""""""""""""""""""end of vundle plugins"""""""""""""""""""""""""""
 call vundle#end()            " required
             
 """"""""""""""""""""""plugins pathogen installation begin""""""""""""""""""""""""""
 execute pathogen#infect()
-"  }}} end of plugins
 
+
+" }}}  " end plugin2
 " Environment variables  {{{**************************************************
+" Basic Setup {{{basic "
 
 let g:airline#extensions#tabline#enabled = 1
 let NERDTreeShowLineNumbers=1
 let g:airline_powerline_fonts = 1
+" shell {{{ "
+"  set shell=/bin/bash\ -i
+ set shell=/bin/zsh\ -i
+" }}} shell "
+" Basic {{{ "
 
 runtime macros/matchit.vim  "match angle brackets(xml)
 set undodir=~/.vim/tmp/undo//
@@ -113,19 +123,23 @@ set splitbelow splitright   " how to split new windows.
 set scrolloff=3             " Start scrolling n lines before horizontal border of window.
 set sidescrolloff=7         " Start scrolling n chars before end of screen.
 set sidescroll=1            " The minimal number of columns to scroll horizontally.
-
-set mouse+=a " set mouse value
-
-if &term =~ '^screen'
-        " tmux knows the extended mouse mode
-            set ttymouse=xterm2
-        endif
-
-set autoread "reload a file when modified externally
-let g:editorconfig_Beautifier= '~/.vim/.editorconfig'
-" LustyExplorer hide messages error:
 set hidden
 set nosol  "not go to start of line in 'G'
+set autoread "reload a file when modified externally
+
+" }}} Basic "
+" mouse setup {{{ "
+
+set mouse+=a " set mouse value
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif
+" }}} mouse setup "
+
+
+let g:editorconfig_Beautifier= '~/.vim/.editorconfig'
+" LustyExplorer hide messages error:
 let g:snips_author = 'Tamnil Saito Junior - www.tamnil.com'
 
 " --- history / file handling ---
@@ -158,6 +172,17 @@ let g:session_autosave = 'yes'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+" end basic}}} end basic "
+" vcolor mappings {{{1 "
+let g:vcoolor_custom_picker = 'yad --title "custom" --color-selection --show-palette --init-color='
+let g:vcoolor_disable_mappings = 1
+" let g:vcoolor_map
+let g:vcoolor_map = '<leader>c'
+let g:vcool_ins_rgba_map = '<leader>cr'
+" 1}}} "end of vcolor mappings
+
+
+" Syntastic {{{1 "
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -166,10 +191,12 @@ autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default
 " let g:syntastic_php_checkers = ["php" ]
 let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
 let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
-
 set clipboard^=unnamed  " set clipboard on GUI
-let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+" end sysntastic}}} "-------####
 
+
+let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+" php {{{php1 "
 """"""""""""""""""""code fixers"""""""""""
 " If php-cs-fixer is in $PATH, you don't need to define line below
 " let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
@@ -187,20 +214,21 @@ let php_folding = 1        "Set PHP folding of classes and functions.
 let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
 let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
 let php_noShortTags = 1    "Disable PHP short tags.
-
+" end php}}} " php end
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 "let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$','file': '\v\.(exe|so|dll)$','link': 'some_bad_symbolic_links' }
 " Use a custom file listing command:
 " let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux  Ctrlp custom (trocado por unite \\f)
 
-"""""""""""""""""""""""""highlight search"""""""""""""""""""""""""""""""
+"highlight search {{{1 "
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
 hi Search cterm=bold,underline ctermfg=grey ctermbg=238
 hi Search guifg=white guibg=#767676
+"                                                               end hightlight}}} "
 """"""""""""""""""""""""""" Enable Code Folding"""""""""""""""""""""""""""'
 
 " set foldmethod=syntax
@@ -303,7 +331,6 @@ augroup END
 
 
 "                               }}} **********  End of environment variables **********
-
 "  Keyboard Mappings  {{{**************************************************
 
 " map <silent> <F2> :call BufferList()<CR> trocado por unite \\b
@@ -440,7 +467,7 @@ nnoremap <leader><leader>dm :Unite directory_mru -start-insert <CR>
 nnoremap <leader><leader>g :Unite grep -start-insert <CR>
 nnoremap <leader><leader>gg :Unite grep/git -start-insert <CR>
 nnoremap <leader><leader>gv :Unite vimgrep -start-insert <CR>
-nnoremap <leader><leader> :Unite -start-insert <CR>
+" nnoremap <leader><leader> :Unite -start-insert <CR>
 "  }}                       end of Unite
 
 command! Bd BD
@@ -483,33 +510,17 @@ map <M-l> <C-RIGHT>
 map <M-k> <LEFT>
 map <M-j> <RIGHT>
 " nmap <M-o> o<ESC><ESC>
+nmap <Space> :
+vmap <Space> :
 
 "                                }}} ********************end of key mappings********************
 
 """""""""""""'initialize repeat after map functions
 silent! call repeat#set("\<Plug>tComment", v:count)
 silent! call repeat#set("\<Plug>surround", v:count)
-
-let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
-let g:vdebug_options = {'break_on_open': 0}
-let g:vdebug_options = {'server': 'localhost'}
-let g:vdebug_options = {'port': '9000'}
-
-"    custom functions{{
-
-" **********************************end of custom functions*****}}
-
-"    custom commands  {{
-
-" skeleton:
-nmap <Space> :
-
-" command 
-" **********************************end of custom commands*****}}
-
 autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o " remove autocomment
 
-"Tagbar
+"Tagbar {{{1 "
 noremap <silent> <Leader>t :<C-u>TagbarToggle<CR>
 
 let g:tagbar_type_css = {
@@ -522,3 +533,16 @@ let g:tagbar_type_css = {
                 \ 'm:media' ]
             \ }
 
+" External Configuration{{{ "
+" Xdebug  configuration{{{1 "
+let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
+let g:vdebug_options = {'break_on_open': 0}
+let g:vdebug_options = {'server': 'localhost'}
+let g:vdebug_options = {'port': '9000'}
+
+" }}} end-sdebug" 
+" dbext configuration {{{1 "
+let g:dbext_default_profile_mySQLServer = 'type=SQLSRV:integratedlogin=1:srvname=mySrv:dbname=myDB'
+let g:dbext_default_profile_mySQL = 'type=MYSQL:user=root:passwd=whatever:dbname=mysql'
+" }}} Fold description " 
+" }}} end-external-configuration " 
