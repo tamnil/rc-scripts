@@ -251,6 +251,11 @@ filetype plugin on
 filetype plugin indent on    " required
 
 filetype plugin on
+
+
+au BufNewFile,BufRead *.gitignore set filetype=gitignore
+
+
 set omnifunc=syntaxcomplete#Complete
 au FileType php setl ofu=phpcomplete#CompletePHP
 au FileType ruby,eruby setl ofu=rubycomplete#Complete
@@ -258,6 +263,8 @@ au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
 au FileType c setl ofu=ccomplete#CompleteCpp
 au FileType css setl ofu=csscomplete#CompleteCSS
 au FileType python setl ofu=pythoncomplete#Complete
+
+
 
 let g:ycm_min_num_of_chars_for_completion = 1
 
