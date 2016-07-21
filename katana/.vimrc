@@ -94,10 +94,6 @@ execute pathogen#infect()
 let g:airline#extensions#tabline#enabled = 1
 let NERDTreeShowLineNumbers=1
 let g:airline_powerline_fonts = 1
-" shell {{{ "
-"  set shell=/bin/bash\ -i
- set shell=/bin/zsh\ -i
-" }}} shell "
 " Basic {{{ "
 
 runtime macros/matchit.vim  "match angle brackets(xml)
@@ -334,7 +330,6 @@ augroup omni_complete
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
-
 
 
 "                               }}} **********  End of environment variables **********
