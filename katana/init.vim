@@ -49,9 +49,11 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session' " Session manager     
 Plug 'easymotion/vim-easymotion'  " move with shortcuts
 Plug 'beloglazov/vim-online-thesaurus'
-Plug 'tamnil/vim-custom-scripts'  " scripts customizados diversos
 Plug 'kshenoy/vim-signature' "vim-signature is a Plug to place, toggle and display marks. 
 Plug 'vim-scripts/dbext.vim'  " database pipe
+Plug 'gctm/taboo.vim'  " Naming tabs
+"my custom scripts:
+Plug 'tamnil/vim-custom-scripts'  " scripts customizados diversos
 Plug 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
 
 " Plug 'zhaocai/GoldenView.Vim' " arrange windows
@@ -122,6 +124,8 @@ let g:airline_powerline_fonts = 1
 " }}} General plugins configurations "
 
 " sessions {{{ "
+
+set sessionoptions+=tabpages,globals  " to taboo(tab naming) remember names
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 
@@ -243,11 +247,11 @@ filetype on
 filetype plugin on
 filetype plugin indent on    " required
 
-filetype plugin on
 
-
+" custom filetype {{{ "
 au BufNewFile,BufRead *.gitignore set filetype=gitignore
 
+" }}} custom filetype "
 
 set omnifunc=syntaxcomplete#Complete
 au FileType php setl ofu=phpcomplete#CompletePHP
@@ -449,6 +453,7 @@ map <M-j> <RIGHT>
 " nmap <M-o> o<ESC><ESC>
 " nmap <Space> :
 " vmap <Space> :
+nmap <C-A> ggVG
 
 " }}} Navigation "
 
@@ -492,7 +497,7 @@ let g:vdebug_options = {'port': '9000'}
 " dbext configuration {{{ "
 let g:dbext_default_profile_mySQLServer = 'type=SQLSRV:integratedlogin=1:srvname=mySrv:dbname=myDB'
 let g:dbext_default_profile_mySQL = 'type=MYSQL:user=root:passwd=whatever:dbname=mysql'
-" }}} Fold description " 
+" }}} dbext" 
 
 
 " }}} External Functions "
