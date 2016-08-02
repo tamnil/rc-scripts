@@ -4,6 +4,7 @@ set nocompatible
 call plug#begin('~/.config/nvim/plugged')
 
 " Plugins go here
+Plug 'tpope/vim-fugitive'
 Plug 'KabbAmine/vCoolor.vim'      " color picker:
 Plug 'qpkorr/vim-bufkill' " kill/delete buffer without close window
 Plug 'Shougo/vimproc'
@@ -29,7 +30,7 @@ Plug 'matze/vim-move'    " move blocks/lines
 Plug 'mbbill/undotree' " undo manager     
 Plug 'mileszs/ack.vim'
 Plug 'pangloss/vim-javascript'        "javascript compatibility Plug
-Plug 'roblillack/vim-bufferlist'
+    " Plug 'roblillack/vim-bufferlist'
 Plug 'scrooloose/nerdtree' "tree file explorer
 Plug 'scrooloose/syntastic'    "code syntax review
 Plug 'shawncplus/phpcomplete.vim'  " autocompletion for php
@@ -51,7 +52,8 @@ Plug 'easymotion/vim-easymotion'  " move with shortcuts
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'kshenoy/vim-signature' "vim-signature is a Plug to place, toggle and display marks. 
 Plug 'vim-scripts/dbext.vim'  " database pipe
-Plug 'gctm/taboo.vim'  " Naming tabs
+Plug 'gcmt/taboo.vim'  " Naming tabs
+
 "my custom scripts:
 Plug 'tamnil/vim-custom-scripts'  " scripts customizados diversos
 Plug 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
@@ -108,14 +110,22 @@ set cursorline              " Highlight current line
 set cursorcolumn            "hightlight current column
 " set colorcolumn=80        " set column marker
 
+
+
+
+set guifont=Inconsolata-g\ for\ Powerline\ Medium\ 9
+
+
+
+
 " }}} General editor configuration "
 
 " General plugins configurations {{{ "
 let g:editorconfig_Beautifier= '~/.vim/.editorconfig'
 let g:snips_author = 'Tamnil Saito Junior - www.tamnil.com'
 
-let g:BufferListWidth = 25
-let g:BufferListMaxWidth = 50
+" let g:BufferListWidth = 25
+" let g:BufferListMaxWidth = 50
 
 let g:airline#extensions#tabline#enabled = 1
 let NERDTreeShowLineNumbers=1
@@ -157,7 +167,6 @@ set listchars=tab:▸\ ,eol:¬
 " --- history / file handling --- {{{
 set history=999             " Increase history (default = 20)
 set undolevels=999          " Moar undo (default=100)
-set autoread                " reload files if changed externally
 " end of file handling }}}
 
 " --- search / regexp ---{{{
@@ -236,7 +245,7 @@ let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by defaul
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 
-let php_folding = 1        "Set PHP folding of classes and functions.
+let php_folding = 0        "Set PHP folding of classes and functions.
 let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
 let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
 let php_noShortTags = 1    "Disable PHP short tags.
@@ -284,7 +293,7 @@ nmap \e :NERDTreeToggle<CR>
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"                                       
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>" 
 
-let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-snippets/UltiSnips"
+let g:UltiSnipsSnippetsDir = "~/.config/nvim/plugged/vim-snippets/UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
@@ -350,7 +359,7 @@ nmap <leader>f0 :set foldlevel=0<CR>
 nmap <leader>f1 :set foldlevel=1<CR>
 nmap <leader>f2 :set foldlevel=2<CR>
 nmap <leader>f3 :set foldlevel=3<CR>
-nmap <leader>f4 :set foldlevel=4<CR>
+    nmap <leader>f4 :set foldlevel=4<CR>
 nmap <leader>f5 :set foldlevel=5<CR>
 nmap <leader>f6 :set foldlevel=6<CR>
 nmap <leader>f7 :set foldlevel=7<CR>
@@ -412,11 +421,25 @@ nnoremap <leader><leader>gv :Unite vimgrep -start-insert <CR>
 command! Bd BD
 
 " copy paste {{{
-vmap <C-c><C-c> "+ygv"*y
+" vmap <C-c><C-c> "+ygv"*y
 " nmap <C-c> "dpyiw
-vmap <C-v><C-v> "+p
-nmap <C-v><C-v> "+P
-imap <C-v><C-v> <Esc>"+pa
+" vmap <C-v><C-v> "+p
+" nmap <C-v><C-v> "+P
+" imap <C-v><C-v> <Esc>"+pa
+"
+
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
 
 " }}} fim do copy paste 
 
@@ -453,7 +476,7 @@ map <M-j> <RIGHT>
 " nmap <M-o> o<ESC><ESC>
 " nmap <Space> :
 " vmap <Space> :
-nmap <C-A> ggVG
+" nmap <C-A> ggVG " colide com incremento
 
 " }}} Navigation "
 
@@ -495,8 +518,9 @@ let g:vdebug_options = {'port': '9000'}
 " }}} end-sdebug" 
 
 " dbext configuration {{{ "
-let g:dbext_default_profile_mySQLServer = 'type=SQLSRV:integratedlogin=1:srvname=mySrv:dbname=myDB'
-let g:dbext_default_profile_mySQL = 'type=MYSQL:user=root:passwd=whatever:dbname=mysql'
+let g:dbext_default_profile_mySQLLocal = 'type=SQLSRV:integratedlogin=1:srvname=mySrv:dbname=myDB'
+let g:dbext_default_profile = 'mySQLocal'
+let g:dbext_default_profile_mySQL = 'type=MYSQL:user=local:passwd=!local!:dbname=mysql'
 " }}} dbext" 
 
 

@@ -207,7 +207,7 @@ let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
 let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
 set clipboard^=unnamed  " set clipboard on GUI
 " end sysntastic}}} "-------####
-
+autocmd BufNewFile,BufRead cvim*.txt   set ft=web
 
 let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
 " php {{{php1 "
