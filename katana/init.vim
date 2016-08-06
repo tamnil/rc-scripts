@@ -38,7 +38,7 @@ Plug 'shougo/unite.vim'  "fuzzy navigator
 Plug 'tamnil/vim-browser-reload-linux' " Session manager 
 Plug 'terryma/vim-multiple-cursors'  "debuger
 Plug 'tobys/pdv'    "PDV para phpDocumentor
-Plug 'tobys/vmustache'    "PDV para phpDocumentor
+" Plug 'tobys/vmustache'    
 Plug 'tomtom/tlib_vim'          "necessary for snippets
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround' " Plug for surrounding in tags
@@ -95,7 +95,7 @@ set softtabstop=4
 set encoding=utf-8
 set title                   " Show the filename in the window title bar.
 set showcmd                 " show partial command on last line of screen.
-set showmatch               " show matching parenthesis
+set noshowmatch               " show matching parenthesis
 set splitbelow splitright   " how to split new windows.
 set scrolloff=3             " Start scrolling n lines before horizontal border of window.
 set sidescrolloff=7         " Start scrolling n chars before end of screen.
@@ -109,8 +109,7 @@ set backspace=indent,eol,start  " allow backspacing over everything.
 set cursorline              " Highlight current line
 set cursorcolumn            "hightlight current column
 " set colorcolumn=80        " set column marker
-
-
+set nofoldenable
 
 
 set guifont=Inconsolata-g\ for\ Powerline\ Medium\ 9
@@ -121,7 +120,7 @@ set guifont=Inconsolata-g\ for\ Powerline\ Medium\ 9
 " }}} General editor configuration "
 
 " General plugins configurations {{{ "
-let g:editorconfig_Beautifier= '~/.vim/.editorconfig'
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 let g:snips_author = 'Tamnil Saito Junior - www.tamnil.com'
 
 " let g:BufferListWidth = 25

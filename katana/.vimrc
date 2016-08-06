@@ -113,7 +113,7 @@ set softtabstop=4
 set encoding=utf-8
 set title                   " Show the filename in the window title bar.
 set showcmd                 " show partial command on last line of screen.
-set showmatch               " show matching parenthesis
+set noshowmatch               " show matching parenthesis
 set splitbelow splitright   " how to split new windows.
 set scrolloff=3             " Start scrolling n lines before horizontal border of window.
 set sidescrolloff=7         " Start scrolling n chars before end of screen.
