@@ -1,15 +1,15 @@
 "vim:fdm=marker
 set nocompatible  
 " Installer {{{ "
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 " Plugins go here
 Plug 'tpope/vim-fugitive'
 Plug 'KabbAmine/vCoolor.vim'      " color picker:
 Plug 'qpkorr/vim-bufkill' " kill/delete buffer without close window
-Plug 'Shougo/vimproc'
-Plug 'm2mdas/phpcomplete-extended'
-Plug 'stephpy/vim-php-cs-fixer'
+" Plug 'Shougo/vimproc'
+" Plug 'm2mdas/phpcomplete-extended'
+" Plug 'stephpy/vim-php-cs-fixer'
 Plug 'Chiel92/vim-autoformat'
 Plug 'KabbAmine/vCoolor.vim'      " color picker:
 Plug 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
@@ -33,11 +33,11 @@ Plug 'pangloss/vim-javascript'        "javascript compatibility Plug
     " Plug 'roblillack/vim-bufferlist'
 Plug 'scrooloose/nerdtree' "tree file explorer
 Plug 'scrooloose/syntastic'    "code syntax review
-Plug 'shawncplus/phpcomplete.vim'  " autocompletion for php
+" Plug 'shawncplus/phpcomplete.vim'  " autocompletion for php
 Plug 'shougo/unite.vim'  "fuzzy navigator
 Plug 'tamnil/vim-browser-reload-linux' " Session manager 
 Plug 'terryma/vim-multiple-cursors'  "debuger
-Plug 'tobys/pdv'    "PDV para phpDocumentor
+" Plug 'tobys/pdv'    "PDV para phpDocumentor
 " Plug 'tobys/vmustache'    
 Plug 'tomtom/tlib_vim'          "necessary for snippets
 Plug 'tpope/vim-repeat'
@@ -80,9 +80,9 @@ call plug#end()
 
 " General editor configuration {{{ "
 runtime macros/matchit.vim  "match angle brackets(xml)
-set undodir=~/.config/nvim/tmp/undo//
-set backupdir=~/.config/nvim/tmp/backup//
-set directory=~/.config/nvim/tmp/swp//
+set undodir=~/.vim/tmp/undo//
+set backupdir=~/.vim/tmp/backup//
+set directory=~/.vim/tmp/swp//
 set undofile   " enable undo
 set backup  "enable backups
 set laststatus=2
@@ -190,7 +190,7 @@ au FocusGained * :set relativenumber
 " au! BufNewFile,BufRead * let b:spell_language="en_us"
 set spelllang=en_us,pt
 " set spell
-set completeopt=longest,menuone,noinsert,preview
+set completeopt=menuone,longest,noinsert,preview
 set wildmode=longest:list,full
 set wildmenu
 " set complete +=k
@@ -208,6 +208,7 @@ augroup omni_complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
 
+autocmd BufNewFile,BufRead cvim*.txt   set ft=web
 
 " }}} Code completion "
 
@@ -263,11 +264,11 @@ au BufNewFile,BufRead *.gitignore set filetype=gitignore
 
 set omnifunc=syntaxcomplete#Complete
 au FileType php setl ofu=phpcomplete#CompletePHP
-au FileType ruby,eruby setl ofu=rubycomplete#Complete  sw=2 sts=2 et
+au FileType ruby,eruby setl ofu=rubycomplete#Complete
 au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
 au FileType c setl ofu=ccomplete#CompleteCpp
 au FileType css setl ofu=csscomplete#CompleteCSS
-au FileType python setl ofu=pythoncomplete#Complete sw=2 sts=2 et
+au FileType python setl ofu=pythoncomplete#Complete
 "   }}}  end of ft detection
 
 "  Keyboard Mappings  {{{
@@ -291,9 +292,8 @@ nmap \e :NERDTreeToggle<CR>
 " let g:UltiSnipsExpandTrigger="<c-j>"                                            
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"                                       
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>" 
-" let g:UltiSnipsListSnippets='<c-ç>'
- 
-let g:UltiSnipsSnippetsDir = "~/.config/nvim/plugged/vim-snippets/UltiSnips"
+
+let g:UltiSnipsSnippetsDir = "~/.vim/plugged/vim-snippets/UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
@@ -311,7 +311,7 @@ nmap <F8> :TagbarToggle<CR>
 imap <C-e> <C-y>,
 
 " map <F3> :RN<CR>
-nmap <F12> <Esc>:source ~/.config/nvim/init.vim<CR>
+nmap <F12> <Esc>:source ~/.vimrc<CR>
 " map <F5> <Esc>:EnableFastPHPFolds<Cr>
 " map <F6> <Esc>:EnablePHPFolds<Cr>
 " map <F7> <Esc>:DisablePHPFolds<Cr>
@@ -477,12 +477,6 @@ map <M-j> <RIGHT>
 " nmap <Space> :
 " vmap <Space> :
 " nmap <C-A> ggVG " colide com incremento
-
-" Use CTRL-S for saving, also in Insert mode
-noremap <C-S> :update<CR>
-vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <C-O>:update<CR>
-
 
 " }}} Navigation "
 
