@@ -106,6 +106,7 @@ alias ctags-init='ctags -R -f ./.git/tags --tag-relative=yes'
 # le status dos arquivos de subdiretorios contendo repositorios
 alias php-inter="php -a -d auto_prepend_file="
 alias git-ls-status="find . -maxdepth 1 -mindepth 1 -type d -exec sh -c '(echo {} && cd {} && git status -s && echo)' \;"
+alias aptupdate="sudo apt update && sudo apt upgrade"
 alias vim-clean-swp="rm ~/.config/nvim/tmp/swp/*"
 # alias tma='tmux attach -d -t'
 # alias git-tmux='tmux new -s $(basename $(pwd))'
