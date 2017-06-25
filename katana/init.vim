@@ -110,7 +110,7 @@ set cursorline              " Highlight current line
 set cursorcolumn            "hightlight current column
 " set colorcolumn=80        " set column marker
 set nofoldenable
-
+set mouse=a
 
 set guifont=Inconsolata-g\ for\ Powerline\ Medium\ 9
 
@@ -135,8 +135,8 @@ let g:airline_powerline_fonts = 1
 " sessions {{{ "
 
 set sessionoptions+=tabpages,globals  " to taboo(tab naming) remember names
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
+let g:session_autoload = 'no'
+" let g:session_autosave = 'yes'
 
 " }}} sessions "
 
