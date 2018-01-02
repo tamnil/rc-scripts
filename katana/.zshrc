@@ -11,10 +11,9 @@ if [ -f `which powerline-daemon` ]; then
   . /usr/share/powerline/bindings/zsh/powerline.zsh
 fi
 
-
 # Path to your oh-my-zsh installation.
 export ZSH=/home/tamnil/.oh-my-zsh
-
+export EDITOR='vim'
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -64,7 +63,7 @@ ZSH_THEME="lukerandall"
 # ZSH_TMUX_AUTOSTART_ONCE=false
 # ZSH_TMUX_AUTOCONNECT=true
 
-plugins=(git vi-mode tmux)
+plugins=(git vi-mode tmux tmuxinator)
 
 # User configuration
 
@@ -97,10 +96,27 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+
+alias ccat='pygmentize -O style=monokai -f terminal -g'
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias gv='gvim'
+alias novnc='/var/www/noVNC/utils/launch.sh'
+alias ctags-init='ctags -R -f ./.git/tags --tag-relative=yes'
+# le status dos arquivos de subdiretorios contendo repositorios
+alias php-inter="php -a -d auto_prepend_file="
+alias git-ls-status="find . -maxdepth 1 -mindepth 1 -type d -exec sh -c '(echo {} && cd {} && git status -s && echo)' \;"
+alias aptupdate="sudo apt update && sudo apt upgrade"
+alias vim-clean-swp="rm ~/.config/nvim/tmp/swp/*"
+# alias tma='tmux attach -d -t'
+# alias git-tmux='tmux new -s $(basename $(pwd))'
+#
 export ACKRC=".ackrc"
 
+# ignore duplicate history:
+setopt HIST_IGNORE_DUPS
 
-### Added by the Heroku Toolbelt
+### Added by the Heroku Tool belt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 export ANDROID_HOME=/home/tamnil/Android/Sdk
@@ -117,23 +133,25 @@ bindkey '^[OB' down-line-or-beginning-search
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 
-bindkey '^N' up-line-or-beginning-search
-bindkey '^P' down-line-or-beginning-search
+bindkey '^P' up-line-or-beginning-search
+bindkey '^N' down-line-or-beginning-search
 
-#tranpose words
+bindkey '^R' history-incremental-pattern-search-backward
+
+#transpose words
 bindkey '^T' transpose-words
 
 bindkey '^f' forward-char
 bindkey '^b' backward-char
 
-
 bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
 bindkey '^[l' forward-word                        # [Alt-l] - move forward one word
 bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
-bindkey '^[h' backward-word                       # [Alt-h] - move backward one word
+bindkey '^[h' backward-word                       # [Ctrl-h] - move backward one word
 
 # bindkey '^[[C' forward-word                        # [Ctrl-RightArrow] - move forward one word
 # bindkey '^[[D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
 
-alias ccat='pygmentize -O style=monokai -f terminal -g'
-
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache

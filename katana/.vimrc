@@ -1,8 +1,8 @@
-" vim:fdm=marker
+"vim:fdm=marker
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" Plugins install   {{{*  
+" Plugin Install  {{{ "
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 """""""""""""""""""""""init of Vundle plugins"""""""""""
@@ -10,118 +10,193 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive' " plugin on GitHub repo
 " All of your Plugins must be added before the following line
-
-Plugin 'mbbill/undotree' " undo manager     
-Plugin 'tamnil/vim-browser-reload-linux' " Session manager 
+" Vundle {{{2 "
+Plugin 'qpkorr/vim-bufkill' " kill/delete buffer without close window
 Bundle 'Shougo/vimproc'
-Bundle 'stephpy/vim-php-cs-fixer'
 Bundle 'm2mdas/phpcomplete-extended'
+Bundle 'stephpy/vim-php-cs-fixer'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
 Plugin 'KabbAmine/vCoolor.vim'      " color picker:
+Plugin 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
+Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'    "autocmplete plugin
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ap/vim-css-color'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'cakebaker/scss-syntax.vim'
-" Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'easymotion/vim-easymotion'  " move with shortcuts
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'godlygeek/tabular' " tabular data organizer
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'joonty/vdebug'  "debugger
 Plugin 'jszakmeister/vim-togglecursor'        "detector de cursor insert mode
 Plugin 'majutsushi/tagbar'                "tagbar navigation
 Plugin 'marijnh/tern_for_vim' "javascript tag corrector
 Plugin 'mattn/emmet-vim'        "emmet plugin    
+Plugin 'matze/vim-move'    " move blocks/lines
+Plugin 'mbbill/undotree' " undo manager     
 Plugin 'mileszs/ack.vim'
 Plugin 'pangloss/vim-javascript'        "javascript compatibility plugin
 Plugin 'roblillack/vim-bufferlist'
 Plugin 'scrooloose/nerdtree' "tree file explorer
-Plugin 'tomtom/tlib_vim'          "necessary for snippets
-Plugin 'tpope/vim-surround' " plugin for surrounding in tags
-Plugin 'tyok/nerdtree-ack'  "plugin nerdtree + ack
-Plugin 'vim-scripts/tComment'
-" Plugin 'wincent/Command-T'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session' " Session manager     
-Plugin 'tpope/vim-repeat'
 Plugin 'scrooloose/syntastic'    "code syntax review
+Plugin 'shawncplus/phpcomplete.vim'  " autocompletion for php
+Plugin 'shougo/unite.vim'  "fuzzy navigator
+Plugin 'tamnil/vim-browser-reload-linux' " Session manager 
+Plugin 'terryma/vim-multiple-cursors'  "debuger
 Plugin 'tobys/pdv'    "PDV para phpDocumentor
 Plugin 'tobys/vmustache'    "PDV para phpDocumentor
-Plugin 'garbas/vim-snipmate'
-Plugin 'SirVer/ultisnips'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'matze/vim-move'    " move blocks/lines
-Plugin 'jistr/vim-nerdtree-tabs'  " open nerdtree in tabs
-Plugin 'Xuyuanp/nerdtree-git-plugin'   "git plugin for nerdtree
-Plugin 'shawncplus/phpcomplete.vim'  " autocompletion for php
-Plugin 'joonty/vdebug'  "debuger
-Plugin 'terryma/vim-multiple-cursors'  "debuger
-Plugin 'shougo/unite.vim'  "fuzzy navigator
-Plugin 'godlygeek/tabular' " tabular data organizer
+Plugin 'tomtom/tlib_vim'          "necessary for snippets
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround' " plugin for surrounding in tags
+" Plugin 'zhaocai/GoldenView.Vim' " arrange windows
+Plugin 'Shougo/neomru.vim' " arrange windows
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-scripts/tComment'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session' " Session manager     
+Plugin 'easymotion/vim-easymotion'  " move with shortcuts
+Plugin 'beloglazov/vim-online-thesaurus'
+Plugin 'tamnil/vim-custom-scripts'  " scripts customizados diversos
+Plugin 'kshenoy/vim-signature' "vim-signature is a plugin to place, toggle and display marks. 
+Plugin 'vim-scripts/dbext.vim'  " database pipe
 
+
+" Plugin 'tyok/nerdtree-ack'  "plugin nerdtree + ack
+" Plugin 'jistr/vim-nerdtree-tabs'  " open nerdtree in tabs
+" Plugin 'Xuyuanp/nerdtree-git-plugin'   "git plugin for nerdtree
+" Plugin 'Townk/vim-autoclose'    "autoclose plugin
+" Plugin 'Raimondi/delimitMate'  " Fecha parenteses e outras formas ---------> caus problema em arrasta e copia-colar
+" Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'garbas/vim-snipmate'
+" Plugin 'wincent/Command-T'
 " Plugin 'yuratomo/w3m.vim'
 " Plugin '2072/PHP-Indenting-for-VIm'
 " Plugin 'maksimr/vim-jsbeautify'
 " Plugin 'joonty/vim-phpqa.git'
-" Plugin 'honza/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
+Plugin 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
 " Plugin 'einars/js-beautify' 
 " Plugin  'vim-scripts/highlight.vim'
+
+" 2}}} " endvundle
 
 
 " filetype plugin on
 """"""""""""""""""""""end of vundle plugins"""""""""""""""""""""""""""
 call vundle#end()            " required
-
-""""""""""""""""""""""plugins pathogen instalation begin""""""""""""""""""""""""""
+            
+""""""""""""""""""""""plugins pathogen installation begin""""""""""""""""""""""""""
 execute pathogen#infect()
-"  }}} end of plugins
 
-" Enviromet variables  {{{**************************************************
 
+" }}}  " end plugin2
+" Environment variables  {{{**************************************************
+" Basic Setup {{{basic "
+
+" Editor setup {{{ "
 let g:airline#extensions#tabline#enabled = 1
 let NERDTreeShowLineNumbers=1
 let g:airline_powerline_fonts = 1
 
+runtime macros/matchit.vim  "match angle brackets(xml)
 set undodir=~/.vim/tmp/undo//
 set undofile   " enable undo
 set backupdir=~/.vim/tmp/backup//
-" set backup  "enable backups
+set backup  "enable backups
 set laststatus=2
 set directory=~/.vim/tmp/swp//
 set t_Co=256
-set tabstop=4   " size of a hard tabstop
+set tabstop=4   " size of a hard tab stop
 set shiftwidth=4 " size of an indent
-" a combination of spaces and tabs are used to simulate tab stops at a width
-" other than the (hard)tabstop
 set smarttab " make "tab" insert indents instead of tabs at the beginning of a line
 set expandtab  " always uses spaces instead of tab characters
 set softtabstop=4
 set encoding=utf-8
-set mouse=a " set mouse value
-let g:editorconfig_Beautifier= '~/.vim/.editorconfig'
-" LustyExplorer hide messages error:
-" set hidden
+set title                   " Show the filename in the window title bar.
+set showcmd                 " show partial command on last line of screen.
+set noshowmatch               " show matching parenthesis
+set splitbelow splitright   " how to split new windows.
+set scrolloff=3             " Start scrolling n lines before horizontal border of window.
+set sidescrolloff=7         " Start scrolling n chars before end of screen.
+set sidescroll=1            " The minimal number of columns to scroll horizontally.
+set hidden
 set nosol  "not go to start of line in 'G'
+set autoread "reload a file when modified externally
+
+" }}} Editor setup "
+
+" mouse setup {{{ "
+
+set mouse+=a " set mouse value
+" if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+" endif
+" }}} mouse setup "
+
+
+let g:editorconfig_Beautifier= '~/.vim/.editorconfig'
 let g:snips_author = 'Tamnil Saito Junior - www.tamnil.com'
+
+" --- history / file handling ---
+set history=999             " Increase history (default = 20)
+set undolevels=999          " Moar undo (default=100)
+set autoread                " reload files if changed externally
+
+" --- search / regexp ---
+set magic                   " Enable extended regexes.
+set hlsearch                " highlight searches
+set incsearch               " show the `best match so far' astyped
+set ignorecase smartcase    " make searches case-insensitive, unless they contain upper-case letters
+set backspace=indent,eol,start  " allow backspacing over everything.
+" set esckeys                     " Allow cursor keys in insert mode.
+set cursorline              " Highlight current line
+set cursorcolumn            "hightlight current column
+" set colorcolumn=80        " set column marker
 
 let g:BufferListWidth = 25
 let g:BufferListMaxWidth = 50
+"  colors:  {{{
+""""""""""""""""""""colors and desktop"""""""""""""""""""""""""""""""""""""
+colorscheme monokai
 "color options 
 " hi BufferSelected term=reverse ctermfg=white ctermbg=red cterm=bold
 " hi BufferNormal term=NONE ctermfg=black ctermbg=darkcyan cterm=NONE
 " hi NonText ctermfg=7 guifg=black guibg=gray20
+hi Search cterm=bold,underline ctermfg=grey ctermbg=238
+hi Search guifg=white guibg=#767676
+hi LineNr ctermbg=234 guibg=#262626
 
-""""""""""""""""""""colors and desktop"""""""""""""""""""""""""""""""""""""
-colorscheme industry 
+highlight clear SignColumn     " reset colors
+" terminal:
+hi   GitGutterAdd            ctermfg=black   ctermbg=green        guifg=black   guibg=green
+hi   GitGutterChange         ctermfg=black   ctermbg=yellow       guifg=black   guibg=yellow
+hi   GitGutterDelete         ctermfg=black   ctermbg=red          guifg=black   guibg=red
+hi   GitGutterChangeDelete   ctermfg=black   ctermbg=darkyellow   guifg=black   guibg=darkyellow
+hi   Visual                  ctermbg=blue    guibg=blue
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+" highlight  NonText      guifg=#4a4a59
+" highlight  SpecialKey   guifg=#4a4a59
+
+" }}} end of colors
 " sessions states
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
-" dicionarios ispell configuraoes:
-au! BufNewFile,BufRead * let b:spell_language="brasileiro"
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+" end basic}}} end basic "
+" vcolor mappings {{{1 "
+let g:vcoolor_custom_picker = 'yad --title "custom" --color-selection --show-palette --init-color='
+let g:vcoolor_disable_mappings = 1
+" let g:vcoolor_map
+let g:vcoolor_map = '<leader>c'
+let g:vcool_ins_rgba_map = '<leader>cr'
+" 1}}} "end of vcolor mappings
+
+" Syntastic {{{1 "
 let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -130,11 +205,12 @@ autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default
 " let g:syntastic_php_checkers = ["php" ]
 let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
 let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
-
 set clipboard^=unnamed  " set clipboard on GUI
+" end sysntastic}}} "-------####
+autocmd BufNewFile,BufRead cvim*.txt   set ft=web
+
 let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
-
-
+" php {{{php1 "
 """"""""""""""""""""code fixers"""""""""""
 " If php-cs-fixer is in $PATH, you don't need to define line below
 " let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
@@ -152,21 +228,19 @@ let php_folding = 1        "Set PHP folding of classes and functions.
 let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
 let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
 let php_noShortTags = 1    "Disable PHP short tags.
-
-
+" end php}}} " php end
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 "let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$','file': '\v\.(exe|so|dll)$','link': 'some_bad_symbolic_links' }
 " Use a custom file listing command:
 " let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux  Ctrlp custom (trocado por unite \\f)
 
-"""""""""""""""""""""""""highlight search"""""""""""""""""""""""""""""""
+"highlight search {{{1 "
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
-set wildmode=longest:full
-set wildmenu
+"                                                               end hightlight}}} "
 """"""""""""""""""""""""""" Enable Code Folding"""""""""""""""""""""""""""'
 
 " set foldmethod=syntax
@@ -177,8 +251,6 @@ set foldmethod=indent
 set number
 au FocusLost * :set number
 au FocusGained * :set relativenumber
-" autocmd InsertEnter * :set number
-"autocmd InsertLeave * :set relativenumber
 
 " let php_folding=1
 set nofoldenable
@@ -189,6 +261,28 @@ set viminfo='1000,f1,<250
 filetype on
 filetype plugin on
 filetype plugin indent on    " required
+
+filetype plugin on
+
+
+au BufNewFile,BufRead *.gitignore set filetype=gitignore
+
+
+set omnifunc=syntaxcomplete#Complete
+au FileType php setl ofu=phpcomplete#CompletePHP
+au FileType ruby,eruby setl ofu=rubycomplete#Complete
+au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
+au FileType c setl ofu=ccomplete#CompleteCpp
+au FileType css setl ofu=csscomplete#CompleteCSS
+au FileType python setl ofu=pythoncomplete#Complete
+
+" Templates {{{ "
+au BufNewFile *.sh 0r ~/Templates/sh_template.sh
+au BufNewFile *.py 0r ~/Templates/Python_template.py
+" }}} Templates "
+
+
+let g:ycm_min_num_of_chars_for_completion = 1
 
 "correct html code formatting
 let g:html_indent_inctags = "html,body,head,tbody"
@@ -202,23 +296,7 @@ if executable('ag')
 endif
 
 " set tags=./tags,tags,.git/tags;
-autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o " remove autocomment
 
-" GitGutter colors:  {{{
-highlight clear SignColumn     " reset colors
-" terminal:
-highlight  GitGutterAdd           ctermfg=black ctermbg=green       guifg=black  guibg=green
-highlight  GitGutterChange        ctermfg=black ctermbg=yellow      guifg=black  guibg=yellow
-highlight  GitGutterDelete        ctermfg=black ctermbg=red         guifg=black  guibg=red
-highlight  GitGutterChangeDelete  ctermfg=black ctermbg=darkyellow  guifg=black  guibg=darkyellow
-
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
- 
-" highlight  NonText      guifg=#4a4a59
-" highlight  SpecialKey   guifg=#4a4a59
- 
-""""""""""""""""""""""""""""""""""""" }}}
 :let multi_cursor_exit_from_insert_mode=0 " setup for multicursor on normal mode
 
 " vim-autoformat:extra templates:  {{{
@@ -226,20 +304,40 @@ set listchars=tab:▸\ ,eol:¬
 
 "" for php use gg=G and f5(autoformat) after
 " php
-
 let g:formatdef_tidy_php = '"tidy -q --show-errors 0 --show-warnings 0 --force-output --indent auto --indent-spaces ".shiftwidth()." --vertical-space yes --tidy-mark no -asphp -wrap ".&textwidth'
 let g:formatters_php = ['tidy_php']
 
 " phtml
-
 let g:formatdef_tidy_phtml = '"tidy -q --show-errors 0 --show-warnings 0 --force-output --indent auto --indent-spaces ".shiftwidth()." --vertical-space yes --tidy-mark no -asphtml -wrap ".&textwidth'
 let g:formatters_phtml = ['tidy_phtml']
 
 """"""""""""""""""""""""""""""""""""""""""""""}}}
 
+" dicionários ispell configurações:
+" au! BufNewFile,BufRead * let b:spell_language="brasileiro"
+" au! BufNewFile,BufRead * let b:spell_language="en_us"
+set spelllang=en_us,pt
+" set spell
+set completeopt=menuone,longest,noinsert,preview
+set wildmode=longest:list,full
+set wildmenu
+" set complete +=k
+set omnifunc=syntaxcomplete#Complete
+set completefunc=syntaxcomplete#Complete
+set complete=.,w,b,u,U,t,i,d
+augroup omni_complete
+    " clear commands before resetting
+    autocmd!
+    " Enable omnicomplete for supported filetypes
+    autocmd FileType css,scss setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup END
 
-"                               }}} **********  End of enviroment variables **********
 
+"                               }}} **********  End of environment variables **********
 "  Keyboard Mappings  {{{**************************************************
 
 " map <silent> <F2> :call BufferList()<CR> trocado por unite \\b
@@ -248,15 +346,9 @@ let g:formatters_phtml = ['tidy_phtml']
 cmap w!! w !sudo tee > /dev/null %
 
 "map <F4> :TlistToggle<cr>
-nmap \e :NERDTreeTabsToggle<CR>
+nmap \e :NERDTreeToggle<CR>
 """""""""""""""""""""""""""Snippets and code aux."""""""""""""""""""""""""
 "  let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/snippets']
-" let g:snips_trigger_key = '<tab>'
-" let g:snips_trigger_key_backwards = '<s-tab>'
-" smap <C-j> <Plug>snipMateNextOrTrigger
-" imap <C-j> <Plug>snipMateNextOrTrigger
-"let g:user_emmet_leader_key='çç'
-
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 " let g:UltiSnipsExpandTrigger="<c-j>"
 " let g:UltiSnipsJumpForwardTrigger="<c-ç>"
@@ -266,6 +358,7 @@ nmap \e :NERDTreeTabsToggle<CR>
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"                                       
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>" 
 
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/vim-snippets/UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
@@ -273,20 +366,22 @@ let g:UltiSnipsEditSplit="vertical"
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
-imap <C-CR> <C-o>o
+
 "tagbar shortcut
 nmap <F8> :TagbarToggle<CR>
-imap <S-Space> <C-y>,
+
+" emmet expand shortcut
+imap <C-e> <C-y>,
+
 " map <F3> :RN<CR>
 nmap <F12> <Esc>:source ~/.vimrc<CR>
 " map <F5> <Esc>:EnableFastPHPFolds<Cr>
 " map <F6> <Esc>:EnablePHPFolds<Cr>
 " map <F7> <Esc>:DisablePHPFolds<Cr>
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
 
-" emmet expan dshortcut
-    imap <F3> <C-y>,
+" let g:ctrlp_map = '<c-p>'
+" let g:ctrlp_cmd = 'CtrlP'
+
 " tmux hack arrows:
 if &term =~ '^screen'
     "tmux will send xterm-style keys when its xterm-keys option is on
@@ -297,24 +392,26 @@ if &term =~ '^screen'
 endif
 let g:move_key_modifier = 'C'  " move plugin key settings C=control
 
-""""""""""""""""""begin easy motion"""""""""""""""""""""""""""""""
+""""""""""""""""""begin easy motion"""""""""""""""""""""""""""""{{
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 " s{char}{char} to move to {char}{char}
 "  nmap s <Plug>(easymotion-overwin-f0)
 " Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
+" map <Leader>L <Plug>(easymotion-bd-jk)
+" nmap <Leader>L <Plug>(easymotion-overwin-line)
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
-"""""""""""""""""""""end easy motion""""""""""""""""""""""""""
-noremap <F7> :Autoformat<CR><CR>
+""}}""""""""""""""""""""end easy motion"""""""""""""""""""""""
+" noremap <F7> :Autoformat<CR><CR>
 " remap for wrap jumps
 nnoremap j gj
 nnoremap k gk
+cmap <C-p> <up>
+cmap <C-n> <DOWN>
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -330,7 +427,6 @@ nmap <leader>f6 :set foldlevel=6<CR>
 nmap <leader>f7 :set foldlevel=7<CR>
 nmap <leader>f8 :set foldlevel=8<CR>
 nmap <leader>f9 :set foldlevel=9<CR>
-
 
 " Tabularize {
 if isdirectory(expand("~/.vim/bundle/tabular"))
@@ -348,40 +444,113 @@ if isdirectory(expand("~/.vim/bundle/tabular"))
     vmap <Leader>a, :Tabularize /,<CR>
     nmap <Leader>a,, :Tabularize /,\zs<CR>
     vmap <Leader>a,, :Tabularize /,\zs<CR>
-    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    nmap <Leader>a<Space> :Tabularize / <CR>
+    vmap <Leader>a<Space> :Tabularize / <CR>
 endif
-" }
+" end of tabularize }
+
+"  Unite key bindings {{
 
 nnoremap <leader><leader><leader> :Unite -start-insert<CR>
 nnoremap <leader><leader>f :Unite file -start-insert<CR>
 nnoremap <leader><leader>fr :Unite file_rec -start-insert<CR>
+nnoremap <leader><leader>fm :Unite file_mru -start-insert<CR>
+nnoremap <leader><leader>fl :Unite file_list -start-insert<CR>
+nnoremap <leader><leader>fra :Unite file_rec/async -start-insert<CR>
+nnoremap <leader><leader>frg :Unite file_rec/git -start-insert<CR>
 nnoremap <leader><leader>fb :Unite file buffer -start-insert<CR>
-
 nnoremap <leader><leader>b :Unite buffer -start-insert<CR>
 nnoremap <leader><leader>bt :Unite buffer_tab -start-insert<CR>
-
 nnoremap <leader><leader>j :Unite jump -start-insert<CR>
-
 nnoremap <leader><leader>w :Unite window -start-insert<CR>
-
+nnoremap <leader><leader>wg :Unite window/gui -start-insert<CR>
 nnoremap <leader><leader>t :Unite tab -start-insert<CR>
 nnoremap <leader><leader>m :Unite mappings -start-insert<CR>
-
 nnoremap <leader><leader>c :Unite command -start-insert<CR>
-nnoremap <leader><leader>r :Unite registers -start-insert <CR>
+nnoremap <leader><leader>r :Unite register -start-insert <CR>
+nnoremap <leader><leader>d :Unite directory -start-insert <CR>
+nnoremap <leader><leader>dr :Unite directory_rec -start-insert <CR>
+nnoremap <leader><leader>dra :Unite directory_rec/async -start-insert <CR>
+nnoremap <leader><leader>dm :Unite directory_mru -start-insert <CR>
+nnoremap <leader><leader>g :Unite grep -start-insert <CR>
+nnoremap <leader><leader>gg :Unite grep/git -start-insert <CR>
+nnoremap <leader><leader>gv :Unite vimgrep -start-insert <CR>
+" nnoremap <leader><leader> :Unite -start-insert <CR>
+"  }}                       end of Unite
 
+command! Bd BD
 
+" copy paste {{
+vmap <C-c><C-c> "+ygv"*y
+" nmap <C-c> "dpyiw
+vmap <C-v><C-v> "+p
+nmap <C-v><C-v> "+P
+imap <C-v><C-v> <Esc>"+pa
 
+" }} fim do copy paste 
+
+let g:online_thesaurus_map_keys = 0
+nnoremap <leader>d :OnlineThesaurusCurrentWord<CR>
+
+" tab next/previous
+nmap <C-UP> gt
+nmap <C-DOWN> gT
+
+" easier window navigation
+execute "set <M-j>=\ej"
+execute "set <M-l>=\el"
+execute "set <M-h>=\eh"
+execute "set <M-k>=\ek"
+
+imap <M-h> <C-LEFT>
+imap <M-l> <C-RIGHT>
+imap <M-k> <LEFT>
+imap <M-j> <RIGHT>
+
+cmap <M-h> <C-LEFT>
+cmap <M-l> <C-RIGHT>
+cmap <M-k> <LEFT>
+cmap <M-j> <RIGHT>
+
+map <M-h> <C-LEFT>
+map <M-l> <C-RIGHT>
+
+map <M-k> <LEFT>
+map <M-j> <RIGHT>
+" nmap <M-o> o<ESC><ESC>
+" nmap <Space> :
+" vmap <Space> :
 
 "                                }}} ********************end of key mappings********************
 
 """""""""""""'initialize repeat after map functions
 silent! call repeat#set("\<Plug>tComment", v:count)
 silent! call repeat#set("\<Plug>surround", v:count)
+autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o " remove autocomment
 
+"Tagbar {{{1 "
+noremap <silent> <Leader>t :<C-u>TagbarToggle<CR>
 
+let g:tagbar_type_css = {
+            \ 'ctagstype' : 'Css',
+            \ 'kinds'     : [
+                \ 'c:classes',
+                \ 's:selectors',
+                \ 'i:ids',
+                \ 't:tags',
+                \ 'm:media' ]
+            \ }
+
+" External Configuration{{{ "
+" Xdebug  configuration{{{1 "
 let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
 let g:vdebug_options = {'break_on_open': 0}
 let g:vdebug_options = {'server': 'localhost'}
 let g:vdebug_options = {'port': '9000'}
+
+" }}} end-sdebug" 
+" dbext configuration {{{1 "
+let g:dbext_default_profile_mySQLServer = 'type=SQLSRV:integratedlogin=1:srvname=mySrv:dbname=myDB'
+let g:dbext_default_profile_mySQL = 'type=MYSQL:user=root:passwd=whatever:dbname=mysql'
+" }}} Fold description " 
+" }}} end-external-configuration " 
