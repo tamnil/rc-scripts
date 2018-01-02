@@ -1,7 +1,7 @@
 "vim:fdm=marker
 set nocompatible  
 " Installer {{{ "
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Plugins go here
 Plug 'tpope/vim-fugitive'
@@ -32,7 +32,7 @@ Plug 'mileszs/ack.vim'
 Plug 'pangloss/vim-javascript'        "javascript compatibility Plug
     " Plug 'roblillack/vim-bufferlist'
 Plug 'scrooloose/nerdtree' "tree file explorer
-Plug 'scrooloose/syntastic'    "code syntax review
+" Plug 'scrooloose/syntastic'    "code syntax review
 Plug 'shawncplus/phpcomplete.vim'  " autocompletion for php
 Plug 'shougo/unite.vim'  "fuzzy navigator
 Plug 'tamnil/vim-browser-reload-linux' " Session manager 
@@ -53,10 +53,13 @@ Plug 'beloglazov/vim-online-thesaurus'
 Plug 'kshenoy/vim-signature' "vim-signature is a Plug to place, toggle and display marks. 
 Plug 'vim-scripts/dbext.vim'  " database pipe
 Plug 'gcmt/taboo.vim'  " Naming tabs
-
+Plug 'stevearc/vim-arduino'  " Naming tabs
 "my custom scripts:
 Plug 'tamnil/vim-custom-scripts'  " scripts customizados diversos
 Plug 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
+
+" python autocomplete
+Plug 'davidhalter/jedi-vim'
 
 " Plug 'zhaocai/GoldenView.Vim' " arrange windows
 " Plug 'tyok/nerdtree-ack'  "Plug nerdtree + ack
@@ -110,12 +113,13 @@ set cursorline              " Highlight current line
 set cursorcolumn            "hightlight current column
 " set colorcolumn=80        " set column marker
 set nofoldenable
+set mouse=a
+language en_US
 
-set pastetoggle=<F2>
 set guifont=Inconsolata-g\ for\ Powerline\ Medium\ 9
 
-
-
+set pastetoggle=<F2>
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " }}} General editor configuration "
 
@@ -130,20 +134,19 @@ let g:airline#extensions#tabline#enabled = 1
 let NERDTreeShowLineNumbers=1
 let g:airline_powerline_fonts = 1
 let g:phpcomplete_index_composer_command='composer'
-
 " }}} General plugins configurations "
 
 " sessions {{{ "
 
 set sessionoptions+=tabpages,globals  " to taboo(tab naming) remember names
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
+let g:session_autoload = 'no'
+" let g:session_autosave = 'yes'
 
 " }}} sessions "
 
 " Status line {{{ "
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 " }}} Status line "
 
@@ -191,7 +194,7 @@ au FocusGained * :set relativenumber
 " au! BufNewFile,BufRead * let b:spell_language="en_us"
 set spelllang=en_us,pt
 " set spell
-set completeopt=menuone,longest,noinsert,preview
+set completeopt=longest,menuone,noinsert,preview
 set wildmode=longest:list,full
 set wildmenu
 " set complete +=k
@@ -209,7 +212,6 @@ augroup omni_complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup END
 
-autocmd BufNewFile,BufRead cvim*.txt   set ft=web
 
 " }}} Code completion "
 
@@ -222,14 +224,14 @@ let g:vcool_ins_rgba_map = '<leader>cr'
 " }}} "end of vcolor mappings
 
 " Syntastic {{{1 "
-let g:syntastic_check_on_open = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
-autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default 
-" let g:syntastic_php_checkers = ["php" ]
-let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
-let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_wq = 0
+" autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default 
+" " let g:syntastic_php_checkers = ["php" ]
+" let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
+" let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
 " end sysntastic}}} "-------####
 
 " php {{{php1 "
@@ -265,11 +267,11 @@ au BufNewFile,BufRead *.gitignore set filetype=gitignore
 
 set omnifunc=syntaxcomplete#Complete
 au FileType php setl ofu=phpcomplete#CompletePHP
-au FileType ruby,eruby setl ofu=rubycomplete#Complete
+au FileType ruby,eruby setl ofu=rubycomplete#Complete  sw=2 sts=2 et
 au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
 au FileType c setl ofu=ccomplete#CompleteCpp
 au FileType css setl ofu=csscomplete#CompleteCSS
-au FileType python setl ofu=pythoncomplete#Complete
+au FileType python setl ofu=pythoncomplete#Complete sw=4 sts=4 et
 "   }}}  end of ft detection
 
 "  Keyboard Mappings  {{{
@@ -286,14 +288,15 @@ nmap <F7> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""Snippets and code aux."""""""""""""""""""""""""
 "  let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/snippets']
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<c-j>"
-" let g:UltiSnipsJumpForwardTrigger="<c-ç>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-s-j>"
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-ç>"
+let g:UltiSnipsJumpBackwardTrigger="<c-s-j>"
 " Set ultisnips triggers
 " let g:UltiSnipsExpandTrigger="<c-j>"                                            
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"                                       
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>" 
-
+" let g:UltiSnipsListSnippets='<c-ç>'
+ 
 let g:UltiSnipsSnippetsDir = "~/.config/nvim/plugged/vim-snippets/UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -312,7 +315,7 @@ nmap <F8> :TagbarToggle<CR>
 " imap <C-e> <C-y>,
 
 " map <F3> :RN<CR>
-nmap <F12> <Esc>:source ~/.vimrc<CR>
+nmap <F12> <Esc>:source ~/.config/nvim/init.vim<CR>
 " map <F5> <Esc>:EnableFastPHPFolds<Cr>
 " map <F6> <Esc>:EnablePHPFolds<Cr>
 " map <F7> <Esc>:DisablePHPFolds<Cr>
@@ -356,6 +359,7 @@ cmap <C-n> <DOWN>
 nmap <leader>l :set list!<CR>
 
 " Code folding options {{{
+" problem searchinf numbers with easymotion disabling
 " nmap <leader>f0 :set foldlevel=0<CR>
 " nmap <leader>f1 :set foldlevel=1<CR>
 " nmap <leader>f2 :set foldlevel=2<CR>
@@ -479,6 +483,12 @@ map <M-j> <RIGHT>
 " vmap <Space> :
 " nmap <C-A> ggVG " colide com incremento
 
+" Use CTRL-S for saving, also in Insert mode
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
+
+
 " }}} Navigation "
 
 " keyboard mappings }}}
@@ -512,7 +522,7 @@ let g:tagbar_type_css = {
 
 " Xdebug  configuration{{{ "
 let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
-let g:vdebug_options = {'break_on_open': 0}
+let g:vdebug_options = {'break_on_open': 0}"{{{}}}
 let g:vdebug_options = {'server': 'localhost'}
 let g:vdebug_options = {'port': '9000'}
 
@@ -526,4 +536,5 @@ let g:dbext_default_profile_mySQL = 'type=MYSQL:user=local:passwd=!local!:dbname
 
 
 " }}} External Functions "
+set shell=/usr/bin/zsh
 

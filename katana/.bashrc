@@ -123,3 +123,8 @@ export NVM_DIR="/home/tamnil/.nvm"
 
 export ANDROID_HOME=/home/tamnil/Android/Sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
