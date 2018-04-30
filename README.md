@@ -1,4 +1,4 @@
-# rc-scripts
+# rc-scripts (personal use)
 
 Script de inicialização
 
@@ -7,6 +7,4 @@ Script de inicialização
 
 - bash
 
-- zsh asd
-
-  sdsada
+- zsh
