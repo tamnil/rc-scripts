@@ -8,7 +8,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'KabbAmine/vCoolor.vim'      " color picker:
 Plug 'qpkorr/vim-bufkill' " kill/delete buffer without close window
 Plug 'Shougo/vimproc'
-Plug 'm2mdas/phpcomplete-extended'
 Plug 'stephpy/vim-php-cs-fixer'
 Plug 'Chiel92/vim-autoformat'
 Plug 'KabbAmine/vCoolor.vim'      " color picker:
@@ -30,11 +29,13 @@ Plug 'matze/vim-move'    " move blocks/lines
 Plug 'mbbill/undotree' " undo manager     
 Plug 'mileszs/ack.vim'
 Plug 'pangloss/vim-javascript'        "javascript compatibility Plug
-    " Plug 'roblillack/vim-bufferlist'
+" Plug 'roblillack/vim-bufferlist'
 Plug 'scrooloose/nerdtree' "tree file explorer
-" Plug 'scrooloose/syntastic'    "code syntax review
+Plug 'scrooloose/nerdcommenter' "tree file explorer
+Plug 'scrooloose/syntastic'    "code syntax review
 Plug 'shawncplus/phpcomplete.vim'  " autocompletion for php
-Plug 'shougo/unite.vim'  "fuzzy navigator
+Plug 'm2mdas/phpcomplete-extended'
+Plug 'shougo/denite.nvim'  "fuzzy navigator
 Plug 'tamnil/vim-browser-reload-linux' " Session manager 
 Plug 'terryma/vim-multiple-cursors'  "debuger
 Plug 'tobys/pdv'    "PDV para phpDocumentor
@@ -54,6 +55,11 @@ Plug 'kshenoy/vim-signature' "vim-signature is a Plug to place, toggle and displ
 Plug 'vim-scripts/dbext.vim'  " database pipe
 Plug 'gcmt/taboo.vim'  " Naming tabs
 Plug 'stevearc/vim-arduino'  " Naming tabs
+Plug 'moll/vim-node'  " Naming tabs
+Plug 'leafgarland/typescript-vim'  " Naming tabs
+Plug 'craigemery/vim-autotag'  " Naming tabs
+Plug 'luochen1990/rainbow'  " Naming tabs
+
 "my custom scripts:
 Plug 'tamnil/vim-custom-scripts'  " scripts customizados diversos
 Plug 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
@@ -61,12 +67,15 @@ Plug 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diret
 " python autocomplete
 Plug 'davidhalter/jedi-vim'
 
+Plug 'Quramy/tsuquyomi'
+
+Plug 'posva/vim-vue'
 " Plug 'zhaocai/GoldenView.Vim' " arrange windows
 " Plug 'tyok/nerdtree-ack'  "Plug nerdtree + ack
 " Plug 'jistr/vim-nerdtree-tabs'  " open nerdtree in tabs
 " Plug 'Xuyuanp/nerdtree-git-Plug'   "git plugin for nerdtree
 " Plug 'Townk/vim-autoclose'    "autoclose Plug
-" Plug 'Raimondi/delimitMate'  " Fecha parenteses e outras formas ---------> caus problema em arrasta e copia-colar
+Plug 'Raimondi/delimitMate'  " Fecha parenteses e outras formas ---------> caus problema em arrasta e copia-colar
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'garbas/vim-snipmate'
 " Plug 'wincent/Command-T'
@@ -111,7 +120,8 @@ set backspace=indent,eol,start  " allow backspacing over everything.
 " set esckeys                     " Allow cursor keys in insert mode.
 set cursorline              " Highlight current line
 set cursorcolumn            "hightlight current column
-" set colorcolumn=80        " set column marker
+set colorcolumn=120        " set column marker
+
 set nofoldenable
 set mouse=a
 language en_US
@@ -144,13 +154,7 @@ let g:session_autoload = 'no'
 
 " }}} sessions "
 
-" Status line {{{ "
-set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-" }}} Status line "
-
-"  colors:  {{{
+"  colors:  {{
 colorscheme monokai
 hi Search cterm=bold,underline ctermfg=grey ctermbg=238
 hi Search guifg=white guibg=#767676
@@ -186,7 +190,8 @@ au FocusLost * :set number
 au FocusGained * :set relativenumber
 
 " }}} Line numbering "
-
+" chech file changes
+au CursorHold,CursorHoldI * checktime
 " Code completion {{{ "
 
 " dicionários ispell configurações:
@@ -209,7 +214,9 @@ augroup omni_complete
     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTag
+    autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+
 augroup END
 
 
@@ -224,14 +231,14 @@ let g:vcool_ins_rgba_map = '<leader>cr'
 " }}} "end of vcolor mappings
 
 " Syntastic {{{1 "
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_wq = 0
-" autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default 
-" " let g:syntastic_php_checkers = ["php" ]
-" let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
-" let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
+let g:syntastic_check_on_open = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
+autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default 
+let g:syntastic_php_checkers = ["php" ]
+let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
+let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
 " end sysntastic}}} "-------####
 
 " php {{{php1 "
@@ -265,6 +272,9 @@ au BufNewFile,BufRead *.gitignore set filetype=gitignore
 
 " }}} custom filetype "
 
+
+set tags=./.git/tags,tags;$HOME
+
 set omnifunc=syntaxcomplete#Complete
 au FileType php setl ofu=phpcomplete#CompletePHP
 au FileType ruby,eruby setl ofu=rubycomplete#Complete  sw=2 sts=2 et
@@ -284,6 +294,9 @@ cmap w!! w !sudo tee > /dev/null %
 "map <F4> :TlistToggle<cr>
 nmap <F7> :NERDTreeToggle<CR>
 
+
+map <C-c> "+y<CR>
+
 " Snippets and completions {{{ "
 """""""""""""""""""""""""""Snippets and code aux."""""""""""""""""""""""""
 "  let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/snippets']
@@ -296,7 +309,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-s-j>"
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"                                       
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>" 
 " let g:UltiSnipsListSnippets='<c-ç>'
- 
+
 let g:UltiSnipsSnippetsDir = "~/.config/nvim/plugged/vim-snippets/UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -394,34 +407,34 @@ if isdirectory(expand("~/.vim/bundle/tabular"))
 endif
 " end of tabularize }}}
 
-"  Unite key bindings {{{
+"  Denite key bindings {{{
 
-nnoremap <leader><leader><leader> :Unite -start-insert<CR>
-nnoremap <leader><leader>f :Unite file -start-insert<CR>
-nnoremap <leader><leader>fr :Unite file_rec -start-insert<CR>
-nnoremap <leader><leader>fm :Unite file_mru -start-insert<CR>
-nnoremap <leader><leader>fl :Unite file_list -start-insert<CR>
-nnoremap <leader><leader>fra :Unite file_rec/async -start-insert<CR>
-nnoremap <leader><leader>frg :Unite file_rec/git -start-insert<CR>
-nnoremap <leader><leader>fb :Unite file buffer -start-insert<CR>
-nnoremap <leader><leader>b :Unite buffer -start-insert<CR>
-nnoremap <leader><leader>bt :Unite buffer_tab -start-insert<CR>
-nnoremap <leader><leader>j :Unite jump -start-insert<CR>
-nnoremap <leader><leader>w :Unite window -start-insert<CR>
-nnoremap <leader><leader>wg :Unite window/gui -start-insert<CR>
-nnoremap <leader><leader>t :Unite tab -start-insert<CR>
-nnoremap <leader><leader>m :Unite mappings -start-insert<CR>
-nnoremap <leader><leader>c :Unite command -start-insert<CR>
-nnoremap <leader><leader>r :Unite register -start-insert <CR>
-nnoremap <leader><leader>d :Unite directory -start-insert <CR>
-nnoremap <leader><leader>dr :Unite directory_rec -start-insert <CR>
-nnoremap <leader><leader>dra :Unite directory_rec/async -start-insert <CR>
-nnoremap <leader><leader>dm :Unite directory_mru -start-insert <CR>
-nnoremap <leader><leader>g :Unite grep -start-insert <CR>
-nnoremap <leader><leader>gg :Unite grep/git -start-insert <CR>
-nnoremap <leader><leader>gv :Unite vimgrep -start-insert <CR>
-" nnoremap <leader><leader> :Unite -start-insert <CR>
-"  }}}                      end of Unite
+nnoremap <leader><leader><leader> :Denite <CR>
+nnoremap <leader><leader>f :Denite file <CR>
+nnoremap <leader><leader>fr :Denite file_rec <CR>
+nnoremap <leader><leader>fm :Denite file_mru <CR>
+nnoremap <leader><leader>fl :Denite file_list <CR>
+nnoremap <leader><leader>fra :Denite file_rec/async <CR>
+nnoremap <leader><leader>frg :Denite file_rec/git <CR>
+nnoremap <leader><leader>fb :Denite file buffer <CR>
+nnoremap <leader><leader>b :Denite buffer <CR>
+nnoremap <leader><leader>bt :Denite buffer_tab <CR>
+nnoremap <leader><leader>j :Denite jump <CR>
+nnoremap <leader><leader>w :Denite window <CR>
+nnoremap <leader><leader>wg :Denite window/gui <CR>
+nnoremap <leader><leader>t :Denite tab <CR>
+nnoremap <leader><leader>m :Denite mappings <CR>
+nnoremap <leader><leader>c :Denite command <CR>
+nnoremap <leader><leader>r :Denite register  <CR>
+nnoremap <leader><leader>d :Denite directory  <CR>
+nnoremap <leader><leader>dr :Denite directory_rec  <CR>
+nnoremap <leader><leader>dra :Denite directory_rec/async  <CR>
+nnoremap <leader><leader>dm :Denite directory_mru  <CR>
+nnoremap <leader><leader>g :Denite grep  <CR>
+nnoremap <leader><leader>gg :Denite grep/git  <CR>
+nnoremap <leader><leader>gv :Denite vimgrep  <CR>
+" nnoremap <leader><leader> :Denite  <CR>
+"  }}}                      end of Denite
 
 command! Bd BD
 
@@ -533,8 +546,22 @@ let g:dbext_default_profile_mySQLLocal = 'type=SQLSRV:integratedlogin=1:srvname=
 let g:dbext_default_profile = 'mySQLocal'
 let g:dbext_default_profile_mySQL = 'type=MYSQL:user=local:passwd=!local!:dbname=mysql'
 " }}} dbext" 
+" Status line {{{ "
+set statusline+=%f 
+set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" }}} Status line "
 
+
+"  colors:  {{
 
 " }}} External Functions "
 set shell=/usr/bin/zsh
 
+highlight ColorColumn ctermbg=232
+highlight MatchParen cterm=none ctermbg=530 ctermfg=white  
+highlight Normal ctermfg=7 ctermbg=233 
+hi cursorcolumn ctermbg=234
+highlight comment ctermfg=22 
+let g:rainbow_active = 1
