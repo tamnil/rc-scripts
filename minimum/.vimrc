@@ -14,14 +14,14 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'KabbAmine/vCoolor.vim'      " color picker:
 Plug 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe'    "autocmplete Plug
+" Plug 'Valloric/YouCompleteMe'    "autocmplete Plug
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular' " tabular data organizer
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'joonty/vdebug'  "debugger
+" Plug 'joonty/vdebug'  "debugger
 Plug 'jszakmeister/vim-togglecursor'        "detector de cursor insert mode
 Plug 'majutsushi/tagbar'                "tagbar navigation
 Plug 'marijnh/tern_for_vim' "javascript tag corrector
@@ -147,7 +147,7 @@ set statusline+=%*
 " }}} Status line "
 
 "  colors:  {{{
-colorscheme monokai
+" colorscheme monokai
 hi Search cterm=bold,underline ctermfg=grey ctermbg=238
 hi Search guifg=white guibg=#767676
 hi LineNr ctermbg=235 guibg=#262626
@@ -190,7 +190,7 @@ au FocusGained * :set relativenumber
 " au! BufNewFile,BufRead * let b:spell_language="en_us"
 set spelllang=en_us,pt
 " set spell
-set completeopt=menuone,longest,noinsert,preview
+" set completeopt=menuone,longest,noinsert,preview
 set wildmode=longest:list,full
 set wildmenu
 " set complete +=k
@@ -510,10 +510,10 @@ let g:tagbar_type_css = {
 " External Functions {{{ "
 
 " Xdebug  configuration{{{ "
-let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
-let g:vdebug_options = {'break_on_open': 0}
-let g:vdebug_options = {'server': 'localhost'}
-let g:vdebug_options = {'port': '9000'}
+" let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
+" let g:vdebug_options = {'break_on_open': 0}
+" let g:vdebug_options = {'server': 'localhost'}
+" let g:vdebug_options = {'port': '9000'}
 
 " }}} end-sdebug" 
 
