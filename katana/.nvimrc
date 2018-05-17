@@ -3,79 +3,106 @@ set nocompatible
 " Installer {{{ "
 call plug#begin('~/.config/nvim/plugged')
 
-" Plugins go here
-Plug 'tpope/vim-fugitive'
-Plug 'KabbAmine/vCoolor.vim'      " color picker:
-Plug 'qpkorr/vim-bufkill' " kill/delete buffer without close window
-Plug 'Shougo/vimproc'
-Plug 'stephpy/vim-php-cs-fixer'
-Plug 'Chiel92/vim-autoformat'
-Plug 'KabbAmine/vCoolor.vim'      " color picker:
-Plug 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
-Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe'    "autocmplete Plug
+
+"""""editor plugins
+Plug 'xolox/vim-misc'
 Plug 'airblade/vim-gitgutter'
-Plug 'ap/vim-css-color'
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'beloglazov/vim-online-thesaurus'
+Plug 'blueyed/vim-diminactive'  " Naming tabs
+Plug 'Chiel92/vim-autoformat'
+Plug 'craigemery/vim-autotag'  " ctags update
+Plug 'easymotion/vim-easymotion'  " move with shortcuts
 Plug 'editorconfig/editorconfig-vim'
+Plug 'gcmt/taboo.vim'  " Naming tabs
 Plug 'godlygeek/tabular' " tabular data organizer
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'joonty/vdebug'  "debugger
 Plug 'jszakmeister/vim-togglecursor'        "detector de cursor insert mode
+Plug 'KabbAmine/vCoolor.vim'      " color picker:
+Plug 'kshenoy/vim-signature' "vim-signature is a Plug to place, toggle and display marks. 
 Plug 'majutsushi/tagbar'                "tagbar navigation
-Plug 'marijnh/tern_for_vim' "javascript tag corrector
-Plug 'mattn/emmet-vim'        "emmet Plug    
+Plug 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
 Plug 'matze/vim-move'    " move blocks/lines
 Plug 'mbbill/undotree' " undo manager     
 Plug 'mileszs/ack.vim'
-Plug 'pangloss/vim-javascript'        "javascript compatibility Plug
-" Plug 'roblillack/vim-bufferlist'
+Plug 'qpkorr/vim-bufkill' " kill/delete buffer without close window
 Plug 'scrooloose/nerdtree' "tree file explorer
-Plug 'scrooloose/nerdcommenter' "tree file explorer
 Plug 'scrooloose/syntastic'    "code syntax review
-Plug 'shawncplus/phpcomplete.vim'  " autocompletion for php
-Plug 'm2mdas/phpcomplete-extended'
-Plug 'shougo/denite.nvim'  "fuzzy navigator
-Plug 'tamnil/vim-browser-reload-linux' " Session manager 
-Plug 'terryma/vim-multiple-cursors'  "debuger
-Plug 'tobys/pdv'    "PDV para phpDocumentor
-" Plug 'tobys/vmustache'    
-Plug 'tomtom/tlib_vim'          "necessary for snippets
+Plug 'Shougo/vimproc'
+Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround' " Plug for surrounding in tags
-Plug 'Shougo/neomru.vim' " arrange windows
+Plug 'Valloric/YouCompleteMe'    "autocmplete Plug
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-scripts/tComment'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session' " Session manager     
-Plug 'easymotion/vim-easymotion'  " move with shortcuts
-Plug 'beloglazov/vim-online-thesaurus'
-Plug 'kshenoy/vim-signature' "vim-signature is a Plug to place, toggle and display marks. 
 Plug 'vim-scripts/dbext.vim'  " database pipe
-Plug 'gcmt/taboo.vim'  " Naming tabs
-Plug 'stevearc/vim-arduino'  " Naming tabs
-Plug 'moll/vim-node'  " Naming tabs
-Plug 'leafgarland/typescript-vim'  " Naming tabs
-Plug 'craigemery/vim-autotag'  " Naming tabs
-Plug 'luochen1990/rainbow'  " Naming tabs
+Plug 'vim-scripts/tComment'
+Plug 'ervandew/supertab'
+Plug 'metakirby5/codi.vim'
+" Plug 'luochen1990/rainbow'  " Naming tabs -> da problema com tComment
+" Plug 'roblillack/vim-bufferlist'
+" Plug 'scrooloose/nerdcommenter' "tree file explorer
 
 "my custom scripts:
 Plug 'tamnil/vim-custom-scripts'  " scripts customizados diversos
 Plug 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
 
-" python autocomplete
+""""" PHP Plugins
+Plug 'stephpy/vim-php-cs-fixer'
+" Plug 'shawncplus/phpcomplete.vim'  " autocompletion for php
+Plug 'phpactor/phpactor'
+Plug 'roxma/nvim-completion-manager'
+Plug 'phpactor/ncm-phpactor'
+
+" Plug 'padawan-php/padawan.vim'
+" Plug 'm2mdas/phpcomplete-extended'
+Plug 'StanAngeloff/php.vim'
+" Plug 'swekaj/php-foldexpr.vim'
+" Plug 'rayburgemeestre/phpfolding.vim'
+
+"""" CSS hTML
+Plug 'mattn/emmet-vim'        "emmet Plug    
+Plug 'ap/vim-css-color'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'KabbAmine/vCoolor.vim'      " color picker:
+"""""Arduino
+
+Plug 'stevearc/vim-arduino'  " Arduino helper
+Plug 'alvan/vim-closetag' "close HTML tag
+
+
+"""""node JS TS ECMA
+Plug 'leafgarland/typescript-vim'  " typescript helper
+Plug 'marijnh/tern_for_vim' "javascript tag corrector
+Plug 'moll/vim-node'  " Nodejs Helper
+Plug 'pangloss/vim-javascript'        "javascript compatibility Plug
+Plug 'posva/vim-vue'
+Plug 'Quramy/tsuquyomi'  " typewscript plugin
+
+
+""""" python 
 Plug 'davidhalter/jedi-vim'
 
-Plug 'Quramy/tsuquyomi'
+""""" General navigation Plugins
 
-Plug 'posva/vim-vue'
+Plug 'shougo/denite.nvim'  "fuzzy navigator
+Plug 'tamnil/vim-browser-reload-linux' " Session manager 
+Plug 'terryma/vim-multiple-cursors'  "debuger
+Plug 'tobys/pdv'    "PDV para phpDocumentor
+Plug 'tomtom/tlib_vim'          "necessary for snippets
+Plug 'Shougo/neomru.vim' " arrange windows
+Plug 'xolox/vim-session' " Session manager     
+" Plug 'tobys/vmustache'    
+
+
+
 " Plug 'zhaocai/GoldenView.Vim' " arrange windows
 " Plug 'tyok/nerdtree-ack'  "Plug nerdtree + ack
 " Plug 'jistr/vim-nerdtree-tabs'  " open nerdtree in tabs
 " Plug 'Xuyuanp/nerdtree-git-Plug'   "git plugin for nerdtree
 " Plug 'Townk/vim-autoclose'    "autoclose Plug
-Plug 'Raimondi/delimitMate'  " Fecha parenteses e outras formas ---------> caus problema em arrasta e copia-colar
+" Plug 'Raimondi/delimitMate'  " Fecha parenteses e outras formas ---------> caus problema em arrasta e copia-colar
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'garbas/vim-snipmate'
 " Plug 'wincent/Command-T'
@@ -135,7 +162,7 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " General plugins configurations {{{ "
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-let g:snips_author = 'Tamnil Saito Junior - www.tamnil.com'
+let g:snips_author = 'Tamnil Saito Junior (tamnil@gmail.com) - www.tamnil.com'
 
 " let g:BufferListWidth = 25
 " let g:BufferListMaxWidth = 50
@@ -158,7 +185,7 @@ let g:session_autoload = 'no'
 colorscheme monokai
 hi Search cterm=bold,underline ctermfg=grey ctermbg=238
 hi Search guifg=white guibg=#767676
-hi LineNr ctermbg=235 guibg=#262626
+hi LineNr ctermbg=237 guibg=#262626
 
 highlight clear SignColumn     " reset colors
 " terminal:
@@ -186,8 +213,8 @@ set smartcase
 
 " Line numbering {{{ "
 set number
-au FocusLost * :set number
-au FocusGained * :set relativenumber
+" au FocusLost * :set number
+" au FocusGained * :set relativenumber
 
 " }}} Line numbering "
 " chech file changes
@@ -205,7 +232,7 @@ set wildmenu
 " set complete +=k
 set omnifunc=syntaxcomplete#Complete
 set completefunc=syntaxcomplete#Complete
-set complete=.,w,b,u,U,t,i,d
+set complete=.,w,t,U,i,b,d,u
 augroup omni_complete
     " clear commands before resetting
     autocmd!
@@ -215,7 +242,7 @@ augroup omni_complete
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTag
-    autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+    autocmd FileType php setlocal omnifunc=phpactor#Complete
 
 augroup END
 
@@ -273,7 +300,7 @@ au BufNewFile,BufRead *.gitignore set filetype=gitignore
 " }}} custom filetype "
 
 
-set tags=./.git/tags,tags;$HOME
+set tags+=./.git/tags,tags,$HOME/tags
 
 set omnifunc=syntaxcomplete#Complete
 au FileType php setl ofu=phpcomplete#CompletePHP
@@ -301,16 +328,16 @@ map <C-c> "+y<CR>
 """""""""""""""""""""""""""Snippets and code aux."""""""""""""""""""""""""
 "  let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/snippets']
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-ç>"
-let g:UltiSnipsJumpBackwardTrigger="<c-s-j>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Set ultisnips triggers
 " let g:UltiSnipsExpandTrigger="<c-j>"                                            
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"                                       
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>" 
 " let g:UltiSnipsListSnippets='<c-ç>'
 
-let g:UltiSnipsSnippetsDir = "~/.config/nvim/plugged/vim-snippets/UltiSnips"
+" let g:UltiSnipsSnippetsDir = "~/.config/nvim/plugged/vim-snippets/UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
@@ -325,7 +352,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 nmap <F8> :TagbarToggle<CR>
 
 " emmet expand shortcut
-" imap <C-e> <C-y>,
+imap <C-e> <C-y>,
 
 " map <F3> :RN<CR>
 nmap <F12> <Esc>:source ~/.config/nvim/init.vim<CR>
@@ -559,9 +586,20 @@ set statusline+=%*
 " }}} External Functions "
 set shell=/usr/bin/zsh
 
-highlight ColorColumn ctermbg=232
+hi CursorLine ctermbg = 233 
+highlight ColorColumn ctermbg=235
 highlight MatchParen cterm=none ctermbg=530 ctermfg=white  
-highlight Normal ctermfg=7 ctermbg=233 
+highlight Normal ctermfg=251 ctermbg=232 
 hi cursorcolumn ctermbg=234
 highlight comment ctermfg=22 
 let g:rainbow_active = 1
+noremap <F3> :Autoformat<CR>
+" let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+""" closetags
+
+let closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.vue'
