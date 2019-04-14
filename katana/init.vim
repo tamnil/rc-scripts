@@ -1,62 +1,133 @@
 "vim:fdm=marker
+filetype off
 set nocompatible  
 " Installer {{{ "
 call plug#begin('~/.config/nvim/plugged')
-
-" Plugins go here
-Plug 'tpope/vim-fugitive'
-Plug 'KabbAmine/vCoolor.vim'      " color picker:
-Plug 'qpkorr/vim-bufkill' " kill/delete buffer without close window
-Plug 'Shougo/vimproc'
-Plug 'm2mdas/phpcomplete-extended'
-Plug 'stephpy/vim-php-cs-fixer'
+" set tags=tags
+set tags=./tags,tags;
+set path=.
+"""""editor plugins
+Plug 'xolox/vim-misc'
+" Plug 'airblade/vim-gitgutter'
+" Plug 'beloglazov/vim-online-thesaurus'
+Plug 'blueyed/vim-diminactive'  " Naming tabs
 Plug 'Chiel92/vim-autoformat'
-Plug 'KabbAmine/vCoolor.vim'      " color picker:
-Plug 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
-Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe'    "autocmplete Plug
-Plug 'airblade/vim-gitgutter'
-Plug 'ap/vim-css-color'
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'ludovicchabant/vim-gutentags' " ctags generations /manage
+" Plug 'craigemery/vim-autotag'  " ctags update
+Plug 'easymotion/vim-easymotion'  " move with shortcuts
 Plug 'editorconfig/editorconfig-vim'
+Plug 'gcmt/taboo.vim'  " Naming tabs
 Plug 'godlygeek/tabular' " tabular data organizer
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'joonty/vdebug'  "debugger
 Plug 'jszakmeister/vim-togglecursor'        "detector de cursor insert mode
+Plug 'KabbAmine/vCoolor.vim'      " color picker:
+Plug 'kshenoy/vim-signature' "vim-signature is a Plug to place, toggle and display marks. 
 Plug 'majutsushi/tagbar'                "tagbar navigation
-Plug 'marijnh/tern_for_vim' "javascript tag corrector
-Plug 'mattn/emmet-vim'        "emmet Plug    
+Plug 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
 Plug 'matze/vim-move'    " move blocks/lines
 Plug 'mbbill/undotree' " undo manager     
 Plug 'mileszs/ack.vim'
-Plug 'pangloss/vim-javascript'        "javascript compatibility Plug
-    " Plug 'roblillack/vim-bufferlist'
+Plug 'tomtom/tlib_vim'          "necessary for snippets
+Plug 'qpkorr/vim-bufkill' " kill/delete buffer without close window
 Plug 'scrooloose/nerdtree' "tree file explorer
 Plug 'scrooloose/syntastic'    "code syntax review
-Plug 'shawncplus/phpcomplete.vim'  " autocompletion for php
-Plug 'shougo/unite.vim'  "fuzzy navigator
-Plug 'tamnil/vim-browser-reload-linux' " Session manager 
-Plug 'terryma/vim-multiple-cursors'  "debuger
-Plug 'tobys/pdv'    "PDV para phpDocumentor
-" Plug 'tobys/vmustache'    
-Plug 'tomtom/tlib_vim'          "necessary for snippets
+Plug 'Shougo/vimproc'
+Plug 'lambdalisue/suda.vim'  " substitute sudo ':w !sudo tee % > /dev/null'
+
+
+" Plug 'ervandew/supertab'
+
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
+" Plug 'garbas/vim-snipmate'
+
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround' " Plug for surrounding in tags
-Plug 'Shougo/neomru.vim' " arrange windows
+" Plug 'Valloric/YouCompleteMe'    "autocmplete Plug
+
+
+
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-scripts/dbext.vim'  " database pipe
 Plug 'vim-scripts/tComment'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session' " Session manager     
-Plug 'easymotion/vim-easymotion'  " move with shortcuts
-Plug 'beloglazov/vim-online-thesaurus'
-Plug 'kshenoy/vim-signature' "vim-signature is a Plug to place, toggle and display marks. 
-Plug 'vim-scripts/dbext.vim'  " database pipe
-Plug 'gcmt/taboo.vim'  " Naming tabs
+Plug 'metakirby5/codi.vim'
+" Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" Plug 'luochen1990/rainbow'  " Naming tabs -> da problema com tComment
+" Plug 'roblillack/vim-bufferlist'
+" Plug 'scrooloose/nerdcommenter' "tree file explorer
 
 "my custom scripts:
 Plug 'tamnil/vim-custom-scripts'  " scripts customizados diversos
-Plug 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
+" Plug 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
+
+
+" Plug 'xolox/vim-easytags'
+
+""""" PHP Plugins
+Plug 'stephpy/vim-php-cs-fixer'
+" Plug 'shawncplus/phpcomplete.vim'  " autocompletion for php
+" Plug 'phpactor/phpactor'
+" Plug 'roxma/nvim-completion-manager'
+" Plug 'phpactor/ncm-phpactor'
+
+" Plug 'padawan-php/padawan.vim'
+" Plug 'm2mdas/phpcomplete-extended'
+" Plug 'swekaj/php-foldexpr.vim'
+" Plug 'rayburgemeestre/phpfolding.vim'
+
+"""" CSS hTML
+" Plug 'mattn/emmet-vim'        "emmet Plug    
+Plug 'ap/vim-css-color'
+Plug 'cakebaker/scss-syntax.vim'
+" Plug 'KabbAmine/vCoolor.vim'      " color picker:
+"""""Arduino
+
+Plug 'stevearc/vim-arduino'  " Arduino helper
+" Plug 'alvan/vim-closetag' "close HTML tag
+
+
+"""""node JS TS ECMA
+Plug 'leafgarland/typescript-vim'  " typescript helper
+Plug 'marijnh/tern_for_vim' "javascript tag corrector
+Plug 'moll/vim-node'  " Nodejs Helper
+Plug 'pangloss/vim-javascript'        "javascript compatibility Plug
+Plug 'posva/vim-vue'
+" Plug 'Quramy/tsuquyomi'  " typewscript plugin
+
+
+""""" python 
+" Plug 'davidhalter/jedi-vim'
+
+""""" General navigation Plugins
+
+Plug 'shougo/denite.nvim'  "fuzzy navigator
+" Plug 'tamnil/vim-browser-reload-linux' " Session manager 
+Plug 'terryma/vim-multiple-cursors'  "debuger
+" Plug 'tobys/pdv'    "PDV para phpDocumentor
+Plug 'Shougo/neomru.vim' " arrange windows
+Plug 'xolox/vim-session' " Session manager     
+" Plug 'tobys/vmustache'    
+
+
+
+" Include Phpactor
+" Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
+
+" Require ncm2 and this plugin
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
+" Plug 'phpactor/ncm2-phpactor'
+
+"""less
+Plug 'groenewege/vim-less'
+
+""" ale plugin para lint no gutter
+" Plug 'w0rp/ale'
 
 " Plug 'zhaocai/GoldenView.Vim' " arrange windows
 " Plug 'tyok/nerdtree-ack'  "Plug nerdtree + ack
@@ -73,6 +144,31 @@ Plug 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diret
 " Plug 'joonty/vim-phpqa.git'
 " Plug 'einars/js-beautify' 
 " Plug  'vim-scripts/highlight.vim'
+Plug  'suan/vim-instant-markdown'
+
+""" deoplete and plugins
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'Shougo/neco-vim',
+Plug 'zchee/deoplete-jedi'
+Plug 'Shougo/deoplete-clangx'
+Plug 'Shougo/neco-syntax'
+Plug 'eagletmt/neco-ghc'
+" Plug 'wokalski/autocomplete-flow'
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+
+
+
+
 
 
 call plug#end()
@@ -108,20 +204,24 @@ set backspace=indent,eol,start  " allow backspacing over everything.
 " set esckeys                     " Allow cursor keys in insert mode.
 set cursorline              " Highlight current line
 set cursorcolumn            "hightlight current column
-" set colorcolumn=80        " set column marker
+set colorcolumn=120        " set column marker
+
 set nofoldenable
 set mouse=a
+language en_US
+
+let g:deoplete#enable_at_startup = 1
 
 set guifont=Inconsolata-g\ for\ Powerline\ Medium\ 9
 
-
-
+set pastetoggle=<F2>
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " }}} General editor configuration "
 
 " General plugins configurations {{{ "
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-let g:snips_author = 'Tamnil Saito Junior - www.tamnil.com'
+let g:snips_author = 'Tamnil Saito Junior (tamnil@gmail.com) - www.tamnil.com'
 
 " let g:BufferListWidth = 25
 " let g:BufferListMaxWidth = 50
@@ -129,7 +229,7 @@ let g:snips_author = 'Tamnil Saito Junior - www.tamnil.com'
 let g:airline#extensions#tabline#enabled = 1
 let NERDTreeShowLineNumbers=1
 let g:airline_powerline_fonts = 1
-
+let g:phpcomplete_index_composer_command='composer'
 " }}} General plugins configurations "
 
 " sessions {{{ "
@@ -140,17 +240,11 @@ let g:session_autoload = 'no'
 
 " }}} sessions "
 
-" Status line {{{ "
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-" }}} Status line "
-
-"  colors:  {{{
+"  colors:  {{
 colorscheme monokai
 hi Search cterm=bold,underline ctermfg=grey ctermbg=238
 hi Search guifg=white guibg=#767676
-hi LineNr ctermbg=235 guibg=#262626
+hi LineNr ctermbg=237 guibg=#262626
 
 highlight clear SignColumn     " reset colors
 " terminal:
@@ -178,11 +272,12 @@ set smartcase
 
 " Line numbering {{{ "
 set number
-au FocusLost * :set number
-au FocusGained * :set relativenumber
+" au FocusLost * :set number
+" au FocusGained * :set relativenumber
 
 " }}} Line numbering "
-
+" chech file changes
+au CursorHold,CursorHoldI * checktime
 " Code completion {{{ "
 
 " dicionários ispell configurações:
@@ -190,23 +285,25 @@ au FocusGained * :set relativenumber
 " au! BufNewFile,BufRead * let b:spell_language="en_us"
 set spelllang=en_us,pt
 " set spell
-set completeopt=longest,menuone,noinsert,preview
+" set completeopt=longest,menuone,preview
 set wildmode=longest:list,full
 set wildmenu
 " set complete +=k
-set omnifunc=syntaxcomplete#Complete
-set completefunc=syntaxcomplete#Complete
-set complete=.,w,b,u,U,t,i,d
-augroup omni_complete
-    " clear commands before resetting
-    autocmd!
-    " Enable omnicomplete for supported filetypes
-    autocmd FileType css,scss setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup END
+" set omnifunc=syntaxcomplete#Complete
+" set completefunc=syntaxcomplete#Complete
+set complete=.,w,b,u,t,i
+" augroup omni_complete
+"     " clear commands before resetting
+"     autocmd!
+"     " Enable omnicomplete for supported filetypes
+"     autocmd FileType css,scss setlocal omnifunc=csscomplete#CompleteCSS
+"     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTag
+"     autocmd FileType php setlocal omnifunc=phpactor#Complete
+"
+" augroup END
 
 
 " }}} Code completion "
@@ -225,7 +322,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
 autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default 
-" let g:syntastic_php_checkers = ["php" ]
+let g:syntastic_php_checkers = ["php" ]
 let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
 let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
 " end sysntastic}}} "-------####
@@ -251,8 +348,6 @@ let php_noShortTags = 1    "Disable PHP short tags.
 " end php}}} " php end
 
 "  File Type detection""""{{{
-filetype on
-filetype plugin on
 filetype plugin indent on    " required
 
 
@@ -261,13 +356,16 @@ au BufNewFile,BufRead *.gitignore set filetype=gitignore
 
 " }}} custom filetype "
 
-set omnifunc=syntaxcomplete#Complete
-au FileType php setl ofu=phpcomplete#CompletePHP
-au FileType ruby,eruby setl ofu=rubycomplete#Complete  sw=2 sts=2 et
-au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
-au FileType c setl ofu=ccomplete#CompleteCpp
-au FileType css setl ofu=csscomplete#CompleteCSS
-au FileType python setl ofu=pythoncomplete#Complete sw=2 sts=2 et
+
+" set tags+=./.git/tags,tags,$HOME/tags
+
+" set omnifunc=syntaxcomplete#Complete
+" au FileType php setl ofu=phpcomplete#CompletePHP
+" au FileType ruby,eruby setl ofu=rubycomplete#Complete  sw=2 sts=2 et
+" au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
+" au FileType c setl ofu=ccomplete#CompleteCpp
+" au FileType css setl ofu=csscomplete#CompleteCSS
+" au FileType python setl ofu=pythoncomplete#Complete sw=4 sts=4 et
 "   }}}  end of ft detection
 
 "  Keyboard Mappings  {{{
@@ -275,32 +373,43 @@ au FileType python setl ofu=pythoncomplete#Complete sw=2 sts=2 et
 " map <silent> <F2> :call BufferList()<CR> trocado por unite \\b
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
+" cmap w!! w !sudo tee > /dev/null %
+cmap w!! w suda://%
 
 "map <F4> :TlistToggle<cr>
-nmap \e :NERDTreeToggle<CR>
+nmap <F7> :NERDTreeToggle<CR>
+
+
+map <C-c> "+y<CR>
 
 " Snippets and completions {{{ "
 """""""""""""""""""""""""""Snippets and code aux."""""""""""""""""""""""""
-"  let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/snippets']
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<c-j>"
-" let g:UltiSnipsJumpForwardTrigger="<c-ç>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-s-j>"
-" Set ultisnips triggers
-" let g:UltiSnipsExpandTrigger="<c-j>"                                            
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"                                       
-" let g:UltiSnipsJumpBackwardTrigger="<c-k>" 
-" let g:UltiSnipsListSnippets='<c-ç>'
- 
-let g:UltiSnipsSnippetsDir = "~/.config/nvim/plugged/vim-snippets/UltiSnips"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.nvim/plugged/vim-snippets/snippets'
+
+
+
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+
+
 
 " }}} Snippets and completions "
 
@@ -311,7 +420,7 @@ nmap <F8> :TagbarToggle<CR>
 imap <C-e> <C-y>,
 
 " map <F3> :RN<CR>
-nmap <F12> <Esc>:source ~/.config/nvim/init.vim<CR>
+" nmap <F12> <Esc>:source ~/.config/nvim/init.vim<CR>
 " map <F5> <Esc>:EnableFastPHPFolds<Cr>
 " map <F6> <Esc>:EnablePHPFolds<Cr>
 " map <F7> <Esc>:DisablePHPFolds<Cr>
@@ -355,17 +464,18 @@ cmap <C-n> <DOWN>
 nmap <leader>l :set list!<CR>
 
 " Code folding options {{{
-nmap <leader>f0 :set foldlevel=0<CR>
-nmap <leader>f1 :set foldlevel=1<CR>
-nmap <leader>f2 :set foldlevel=2<CR>
-nmap <leader>f3 :set foldlevel=3<CR>
-    nmap <leader>f4 :set foldlevel=4<CR>
-nmap <leader>f5 :set foldlevel=5<CR>
-nmap <leader>f6 :set foldlevel=6<CR>
-nmap <leader>f7 :set foldlevel=7<CR>
-nmap <leader>f8 :set foldlevel=8<CR>
-nmap <leader>f9 :set foldlevel=9<CR>
-
+" problem searchinf numbers with easymotion disabling
+" nmap <leader>f0 :set foldlevel=0<CR>
+" nmap <leader>f1 :set foldlevel=1<CR>
+" nmap <leader>f2 :set foldlevel=2<CR>
+" nmap <leader>f3 :set foldlevel=3<CR>
+"     nmap <leader>f4 :set foldlevel=4<CR>
+" nmap <leader>f5 :set foldlevel=5<CR>
+" nmap <leader>f6 :set foldlevel=6<CR>
+" nmap <leader>f7 :set foldlevel=7<CR>
+" nmap <leader>f8 :set foldlevel=8<CR>
+" nmap <leader>f9 :set foldlevel=9<CR>
+"
 "}}} Code folding options
 
 " Tabularize {{{
@@ -389,34 +499,36 @@ if isdirectory(expand("~/.vim/bundle/tabular"))
 endif
 " end of tabularize }}}
 
-"  Unite key bindings {{{
+"  Denite key bindings {{{
 
-nnoremap <leader><leader><leader> :Unite -start-insert<CR>
-nnoremap <leader><leader>f :Unite file -start-insert<CR>
-nnoremap <leader><leader>fr :Unite file_rec -start-insert<CR>
-nnoremap <leader><leader>fm :Unite file_mru -start-insert<CR>
-nnoremap <leader><leader>fl :Unite file_list -start-insert<CR>
-nnoremap <leader><leader>fra :Unite file_rec/async -start-insert<CR>
-nnoremap <leader><leader>frg :Unite file_rec/git -start-insert<CR>
-nnoremap <leader><leader>fb :Unite file buffer -start-insert<CR>
-nnoremap <leader><leader>b :Unite buffer -start-insert<CR>
-nnoremap <leader><leader>bt :Unite buffer_tab -start-insert<CR>
-nnoremap <leader><leader>j :Unite jump -start-insert<CR>
-nnoremap <leader><leader>w :Unite window -start-insert<CR>
-nnoremap <leader><leader>wg :Unite window/gui -start-insert<CR>
-nnoremap <leader><leader>t :Unite tab -start-insert<CR>
-nnoremap <leader><leader>m :Unite mappings -start-insert<CR>
-nnoremap <leader><leader>c :Unite command -start-insert<CR>
-nnoremap <leader><leader>r :Unite register -start-insert <CR>
-nnoremap <leader><leader>d :Unite directory -start-insert <CR>
-nnoremap <leader><leader>dr :Unite directory_rec -start-insert <CR>
-nnoremap <leader><leader>dra :Unite directory_rec/async -start-insert <CR>
-nnoremap <leader><leader>dm :Unite directory_mru -start-insert <CR>
-nnoremap <leader><leader>g :Unite grep -start-insert <CR>
-nnoremap <leader><leader>gg :Unite grep/git -start-insert <CR>
-nnoremap <leader><leader>gv :Unite vimgrep -start-insert <CR>
-" nnoremap <leader><leader> :Unite -start-insert <CR>
-"  }}}                      end of Unite
+nnoremap <leader><leader><leader> :Denite <CR>
+nnoremap <leader><leader>f :Denite file <CR>
+nnoremap <leader><leader>fr :Denite file_rec <CR>
+nnoremap <leader><leader>fm :Denite file_mru <CR>
+nnoremap <leader><leader>fl :Denite file_list <CR>
+nnoremap <leader><leader>fra :Denite file_rec/async <CR>
+nnoremap <leader><leader>frg :Denite file_rec/git <CR>
+nnoremap <leader><leader>fb :Denite file buffer <CR>
+nnoremap <leader><leader>b :Denite buffer <CR>
+nnoremap <leader><leader>bt :Denite buffer_tab <CR>
+nnoremap <leader><leader>j :Denite jump <CR>
+nnoremap <leader><leader>w :Denite window <CR>
+nnoremap <leader><leader>wg :Denite window/gui <CR>
+nnoremap <leader><leader>t :Denite tab <CR>
+nnoremap <leader><leader>m :Denite mappings <CR>
+nnoremap <leader><leader>c :Denite command <CR>
+nnoremap <leader><leader>r :Denite register  <CR>
+nnoremap <leader><leader>d :Denite directory  <CR>
+nnoremap <leader><leader>dr :Denite directory_rec  <CR>
+nnoremap <leader><leader>dra :Denite directory_rec/async  <CR>
+nnoremap <leader><leader>dm :Denite directory_mru  <CR>
+nnoremap <leader><leader>g :Denite grep  <CR>
+nnoremap <leader><leader>gg :Denite grep/git  <CR>
+nnoremap <leader><leader>gv :Denite vimgrep  <CR>
+" nnoremap <leader><leader> :Denite  /<CR>
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+"  }}}                      end of Denite
 
 command! Bd BD
 
@@ -516,10 +628,10 @@ let g:tagbar_type_css = {
 " External Functions {{{ "
 
 " Xdebug  configuration{{{ "
-let g:vdebug_options = {'ide_key': 'netbeans-xdebug'}
-let g:vdebug_options = {'break_on_open': 0}
+let g:vdebug_options = {'ide_key': 'dbgp'}
+let g:vdebug_options = {'break_on_open': 0}"{{{}}}
 let g:vdebug_options = {'server': 'localhost'}
-let g:vdebug_options = {'port': '9000'}
+let g:vdebug_options = {'port': '10000'}
 
 " }}} end-sdebug" 
 
@@ -528,7 +640,38 @@ let g:dbext_default_profile_mySQLLocal = 'type=SQLSRV:integratedlogin=1:srvname=
 let g:dbext_default_profile = 'mySQLocal'
 let g:dbext_default_profile_mySQL = 'type=MYSQL:user=local:passwd=!local!:dbname=mysql'
 " }}} dbext" 
+" Status line {{{ "
+set statusline+=%f 
+set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" }}} Status line "
 
+
+"  colors:  {{
 
 " }}} External Functions "
+set shell=/usr/bin/zsh
 
+hi CursorLine ctermbg = 233 
+highlight ColorColumn ctermbg=235
+highlight MatchParen cterm=none ctermbg=530 ctermfg=white  
+highlight Normal ctermfg=251 ctermbg=232 
+hi cursorcolumn ctermbg=234
+" highlight comment ctermfg=22 
+let g:rainbow_active = 1
+noremap <F3> :Autoformat<CR>
+
+hi Comment ctermfg=darkgreen 
+" let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+""" closetags
+
+let closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.vue'
+
+""" phpactor setup
+" autocmd BufEnter * call ncm2#enable_for_buffer()
