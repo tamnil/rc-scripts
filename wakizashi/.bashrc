@@ -119,4 +119,5 @@ source /usr/share/doc/cdargs/examples/cdargs-bash.sh
 export TERM=xterm-256color
 
 export NVM_DIR="/home/tamnil/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+alias openvpn-tamnil='echo "\n**** Opening openVPN in tamnil.com ****\n " ;sudo openvpn --config /home/tamnil/.openvpn/tamnil.ovpn
