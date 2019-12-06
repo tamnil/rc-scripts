@@ -1,6 +1,6 @@
 "vim:fdm=marker
 filetype off
-set nocompatible  
+set nocompatible
 " Installer {{{ "
 call plug#begin('~/.config/nvim/plugged')
 " set tags=tags
@@ -22,11 +22,11 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'joonty/vdebug'  "debugger
 Plug 'jszakmeister/vim-togglecursor'        "detector de cursor insert mode
 Plug 'KabbAmine/vCoolor.vim'      " color picker:
-Plug 'kshenoy/vim-signature' "vim-signature is a Plug to place, toggle and display marks. 
+Plug 'kshenoy/vim-signature' "vim-signature is a Plug to place, toggle and display marks.
 Plug 'majutsushi/tagbar'                "tagbar navigation
 Plug 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
 Plug 'matze/vim-move'    " move blocks/lines
-Plug 'mbbill/undotree' " undo manager     
+Plug 'mbbill/undotree' " undo manager
 Plug 'mileszs/ack.vim'
 Plug 'tomtom/tlib_vim'          "necessary for snippets
 Plug 'qpkorr/vim-bufkill' " kill/delete buffer without close window
@@ -34,6 +34,7 @@ Plug 'scrooloose/nerdtree' "tree file explorer
 Plug 'scrooloose/syntastic'    "code syntax review
 Plug 'Shougo/vimproc'
 Plug 'lambdalisue/suda.vim'  " substitute sudo ':w !sudo tee % > /dev/null'
+
 
 
 " Plug 'ervandew/supertab'
@@ -46,6 +47,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround' " Plug for surrounding in tags
 " Plug 'Valloric/YouCompleteMe'    "autocmplete Plug
+Plug 'tpope/vim-sensible'
 
 
 
@@ -74,21 +76,21 @@ Plug 'stephpy/vim-php-cs-fixer'
 " Plug 'phpactor/phpactor'
 " Plug 'roxma/nvim-completion-manager'
 " Plug 'phpactor/ncm-phpactor'
-
+Plug 'w0rp/ale' " code lint
 " Plug 'padawan-php/padawan.vim'
 " Plug 'm2mdas/phpcomplete-extended'
 " Plug 'swekaj/php-foldexpr.vim'
 " Plug 'rayburgemeestre/phpfolding.vim'
 
 """" CSS hTML
-" Plug 'mattn/emmet-vim'        "emmet Plug    
+Plug 'mattn/emmet-vim'        "emmet Plug
 Plug 'ap/vim-css-color'
 Plug 'cakebaker/scss-syntax.vim'
 " Plug 'KabbAmine/vCoolor.vim'      " color picker:
 """""Arduino
 
 Plug 'stevearc/vim-arduino'  " Arduino helper
-" Plug 'alvan/vim-closetag' "close HTML tag
+Plug 'alvan/vim-closetag' "close HTML tag
 
 
 """""node JS TS ECMA
@@ -97,23 +99,24 @@ Plug 'marijnh/tern_for_vim' "javascript tag corrector
 Plug 'moll/vim-node'  " Nodejs Helper
 Plug 'pangloss/vim-javascript'        "javascript compatibility Plug
 Plug 'posva/vim-vue'
+Plug 'mxw/vim-jsx'
 " Plug 'Quramy/tsuquyomi'  " typewscript plugin
 
 
-""""" python 
+""""" python
 " Plug 'davidhalter/jedi-vim'
 
 """"" General navigation Plugins
 
 Plug 'shougo/denite.nvim'  "fuzzy navigator
-" Plug 'tamnil/vim-browser-reload-linux' " Session manager 
+" Plug 'tamnil/vim-browser-reload-linux' " Session manager
 Plug 'terryma/vim-multiple-cursors'  "debuger
 " Plug 'tobys/pdv'    "PDV para phpDocumentor
 Plug 'Shougo/neomru.vim' " arrange windows
-Plug 'xolox/vim-session' " Session manager     
-" Plug 'tobys/vmustache'    
+Plug 'xolox/vim-session' " Session manager
+" Plug 'tobys/vmustache'
 
-
+Plug 'sheerun/vim-polyglot'
 
 " Include Phpactor
 " Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
@@ -126,50 +129,28 @@ Plug 'xolox/vim-session' " Session manager
 """less
 Plug 'groenewege/vim-less'
 
-""" ale plugin para lint no gutter
-" Plug 'w0rp/ale'
-
-" Plug 'zhaocai/GoldenView.Vim' " arrange windows
-" Plug 'tyok/nerdtree-ack'  "Plug nerdtree + ack
-" Plug 'jistr/vim-nerdtree-tabs'  " open nerdtree in tabs
-" Plug 'Xuyuanp/nerdtree-git-Plug'   "git plugin for nerdtree
-" Plug 'Townk/vim-autoclose'    "autoclose Plug
-" Plug 'Raimondi/delimitMate'  " Fecha parenteses e outras formas ---------> caus problema em arrasta e copia-colar
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'garbas/vim-snipmate'
-" Plug 'wincent/Command-T'
-" Plug 'yuratomo/w3m.vim'
-" Plug '2072/PHP-Indenting-for-VIm'
-" Plug 'maksimr/vim-jsbeautify'
-" Plug 'joonty/vim-phpqa.git'
-" Plug 'einars/js-beautify' 
-" Plug  'vim-scripts/highlight.vim'
 Plug  'suan/vim-instant-markdown'
 
 """ deoplete and plugins
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'HerringtonDarkholme/yats.vim' " Yet Another TypeScript Syntax
+" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'mhartington/nvim-typescript', {'do': ':!install.sh \| UpdateRemotePlugins'}
 Plug 'Shougo/neco-vim',
-Plug 'zchee/deoplete-jedi'
-Plug 'Shougo/deoplete-clangx'
+" Plug 'zchee/deoplete-jedi'
+" Plug 'Shougo/deoplete-clangx'
 Plug 'Shougo/neco-syntax'
 Plug 'eagletmt/neco-ghc'
 " Plug 'wokalski/autocomplete-flow'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
-
-
-
-
-
+            \ 'branch': 'next',
+            \ 'do': 'bash install.sh',
+            \ }
 
 call plug#end()
 " }}} Installer "
@@ -208,11 +189,25 @@ set colorcolumn=120        " set column marker
 
 set nofoldenable
 set mouse=a
-language en_US
+" language en_US
 
 let g:deoplete#enable_at_startup = 1
 
 set guifont=Inconsolata-g\ for\ Powerline\ Medium\ 9
+
+let g:ale_linters = {'javascript': ['eslint'],'scss':['sasslint']}
+let g:ale_fixers = {'javascript': [ 'prettier','eslint'],'yaml':['prettier'],'sh':['shfmt'],'scss':['prettier','stylelint'],'html':['prettier'],'css':['prettier','stylelint']}
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
+
+let g:arduino_dir = '/opt/arduino-1.8.10/'
+
+hi ALEError guibg=52 ctermbg=52 guifg=white ctermfg=white
+hi ALEWarning guibg=17 ctermbg=17 guifg=white ctermfg=white
+
+hi Error ctermbg=52 ctermfg=white
+
+
 
 set pastetoggle=<F2>
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -269,6 +264,8 @@ set incsearch               " show the `best match so far' astyped
 set ignorecase smartcase    " make searches case-insensitive, unless they contain upper-case letters
 set smartcase
 " end of regesxp-search }}}
+" resize windows when change width
+autocmd VimResized * wincmd =
 
 " Line numbering {{{ "
 set number
@@ -285,7 +282,7 @@ au CursorHold,CursorHoldI * checktime
 " au! BufNewFile,BufRead * let b:spell_language="en_us"
 set spelllang=en_us,pt
 " set spell
-" set completeopt=longest,menuone,preview
+set completeopt=longest,menuone,preview
 set wildmode=longest:list,full
 set wildmenu
 " set complete +=k
@@ -321,7 +318,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
-autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default 
+autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default
 let g:syntastic_php_checkers = ["php" ]
 let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
 let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
@@ -357,15 +354,8 @@ au BufNewFile,BufRead *.gitignore set filetype=gitignore
 " }}} custom filetype "
 
 
-" set tags+=./.git/tags,tags,$HOME/tags
 
-" set omnifunc=syntaxcomplete#Complete
-" au FileType php setl ofu=phpcomplete#CompletePHP
-" au FileType ruby,eruby setl ofu=rubycomplete#Complete  sw=2 sts=2 et
-" au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
-" au FileType c setl ofu=ccomplete#CompleteCpp
-" au FileType css setl ofu=csscomplete#CompleteCSS
-" au FileType python setl ofu=pythoncomplete#Complete sw=4 sts=4 et
+
 "   }}}  end of ft detection
 
 "  Keyboard Mappings  {{{
@@ -395,9 +385,9 @@ let g:neosnippet#snippets_directory='~/.nvim/plugged/vim-snippets/snippets'
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-x>     <Plug>(neosnippet_expand_or_jump)
+smap <C-x>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-x>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -406,7 +396,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " \ neosnippet#expandable_or_jumpable() ?
 " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 
 
@@ -553,7 +543,7 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 
-" }}} fim do copy paste 
+" }}} fim do copy paste
 
 let g:online_thesaurus_map_keys = 0
 nnoremap <leader>d :OnlineThesaurusCurrentWord<CR>
@@ -585,10 +575,6 @@ map <M-l> <C-RIGHT>
 
 map <M-k> <LEFT>
 map <M-j> <RIGHT>
-" nmap <M-o> o<ESC><ESC>
-" nmap <Space> :
-" vmap <Space> :
-" nmap <C-A> ggVG " colide com incremento
 
 " Use CTRL-S for saving, also in Insert mode
 noremap <C-S> :update<CR>
@@ -606,7 +592,7 @@ inoremap <C-S> <C-O>:update<CR>
 """""""""""""'initialize repeat after map functions
 silent! call repeat#set("\<Plug>tComment", v:count)
 silent! call repeat#set("\<Plug>surround", v:count)
-autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o " remove autocomment
+autocmd FileType * set formatoptions-=c formatoptions+=r formatoptions+=o " remove autocomment
 
 " }}} repeat plugin "
 
@@ -633,15 +619,15 @@ let g:vdebug_options = {'break_on_open': 0}"{{{}}}
 let g:vdebug_options = {'server': 'localhost'}
 let g:vdebug_options = {'port': '10000'}
 
-" }}} end-sdebug" 
+" }}} end-sdebug"
 
 " dbext configuration {{{ "
 let g:dbext_default_profile_mySQLLocal = 'type=SQLSRV:integratedlogin=1:srvname=mySrv:dbname=myDB'
 let g:dbext_default_profile = 'mySQLocal'
 let g:dbext_default_profile_mySQL = 'type=MYSQL:user=local:passwd=!local!:dbname=mysql'
-" }}} dbext" 
+" }}} dbext"
 " Status line {{{ "
-set statusline+=%f 
+set statusline+=%f
 set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -653,21 +639,33 @@ set statusline+=%*
 " }}} External Functions "
 set shell=/usr/bin/zsh
 
-hi CursorLine ctermbg = 233 
+hi CursorLine ctermbg = 233
 highlight ColorColumn ctermbg=235
-highlight MatchParen cterm=none ctermbg=530 ctermfg=white  
-highlight Normal ctermfg=251 ctermbg=232 
+highlight MatchParen cterm=none ctermbg=530 ctermfg=white
+highlight Normal ctermfg=251 ctermbg=232
 hi cursorcolumn ctermbg=234
-" highlight comment ctermfg=22 
+
+
+hi Visual ctermfg=black
+hi SpellLocal ctermfg=black
+hi SpellBad ctermfg=black
+hi SpellCap ctermfg=black
+
+" highlight comment ctermfg=22
 let g:rainbow_active = 1
 noremap <F3> :Autoformat<CR>
 
-hi Comment ctermfg=darkgreen 
+hi Comment ctermfg=darkgreen
 " let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
 
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag --vimgrep'
 endif
+
+
+
+
+
 
 """ closetags
 
@@ -675,3 +673,8 @@ let closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.vue'
 
 """ phpactor setup
 " autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+au BufNewFile,BufRead Jenkinsfile setf groovy
