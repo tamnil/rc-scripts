@@ -1,231 +1,78 @@
-"vim:fdm=marker
-filetype off
 set nocompatible
-" Installer {{{ "
-call plug#begin('~/.config/nvim/plugged')
-" set tags=tags
 set tags=./tags,tags;
 set path=.
-"""""editor plugins
-Plug 'xolox/vim-misc'
-" Plug 'airblade/vim-gitgutter'
-" Plug 'beloglazov/vim-online-thesaurus'
-Plug 'blueyed/vim-diminactive'  " Naming tabs
-Plug 'Chiel92/vim-autoformat'
-Plug 'ludovicchabant/vim-gutentags' " ctags generations /manage
-" Plug 'craigemery/vim-autotag'  " ctags update
-Plug 'easymotion/vim-easymotion'  " move with shortcuts
-Plug 'editorconfig/editorconfig-vim'
-Plug 'gcmt/taboo.vim'  " Naming tabs
-Plug 'godlygeek/tabular' " tabular data organizer
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'joonty/vdebug'  "debugger
-Plug 'jszakmeister/vim-togglecursor'        "detector de cursor insert mode
-Plug 'KabbAmine/vCoolor.vim'      " color picker:
-Plug 'kshenoy/vim-signature' "vim-signature is a Plug to place, toggle and display marks.
-Plug 'majutsushi/tagbar'                "tagbar navigation
-Plug 'MarcWeber/vim-addon-mw-utils'   "necessary for snippets
-Plug 'matze/vim-move'    " move blocks/lines
-Plug 'mbbill/undotree' " undo manager
-Plug 'mileszs/ack.vim'
-Plug 'tomtom/tlib_vim'          "necessary for snippets
-Plug 'qpkorr/vim-bufkill' " kill/delete buffer without close window
-Plug 'scrooloose/nerdtree' "tree file explorer
-Plug 'scrooloose/syntastic'    "code syntax review
-Plug 'Shougo/vimproc'
-Plug 'lambdalisue/suda.vim'  " substitute sudo ':w !sudo tee % > /dev/null'
+call plug#begin('~/.config/nvim/plugged')
 
-
-
-" Plug 'ervandew/supertab'
-
-" Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'tomtom/tlib_vim'
-" Plug 'garbas/vim-snipmate'
 
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
+Plug 'xolox/vim-misc'  " required by vim-session
+Plug 'xolox/vim-session' " Session manager
+" Plug 'leafgarland/typescript-vim' " TS syntax hightlight
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'editorconfig/editorconfig-vim'
+Plug 'majutsushi/tagbar'                "tagbar navigation
+Plug 'w0rp/ale' 			" code lint
+Plug 'lambdalisue/suda.vim'
+Plug 'vim-scripts/tComment' 		" commenter
+Plug 'vim-vdebug/vdebug'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'mileszs/ack.vim'
+Plug 'heavenshell/vim-jsdoc' " JSDOC generator
 Plug 'tpope/vim-surround' " Plug for surrounding in tags
-" Plug 'Valloric/YouCompleteMe'    "autocmplete Plug
-Plug 'tpope/vim-sensible'
-
-
-
+if has('nvim')
+    Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/denite.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'vim-scripts/dbext.vim'  " database pipe
-Plug 'vim-scripts/tComment'
-Plug 'metakirby5/codi.vim'
-" Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-" Plug 'luochen1990/rainbow'  " Naming tabs -> da problema com tComment
-" Plug 'roblillack/vim-bufferlist'
-" Plug 'scrooloose/nerdcommenter' "tree file explorer
 
-"my custom scripts:
-Plug 'tamnil/vim-custom-scripts'  " scripts customizados diversos
-" Plug 'tamnil/vim-snippets' " substituido por /tamnil/vimcustom-snippets no diretorio vim/snippets
+Plug 'ludovicchabant/vim-gutentags' " ctags generations /manage
+
+Plug 'sheerun/vim-polyglot'  " multiple language packes
 
 
-" Plug 'xolox/vim-easytags'
 
-""""" PHP Plugins
-Plug 'stephpy/vim-php-cs-fixer'
-" Plug 'shawncplus/phpcomplete.vim'  " autocompletion for php
-" Plug 'phpactor/phpactor'
-" Plug 'roxma/nvim-completion-manager'
-" Plug 'phpactor/ncm-phpactor'
-Plug 'w0rp/ale' " code lint
-" Plug 'padawan-php/padawan.vim'
-" Plug 'm2mdas/phpcomplete-extended'
-" Plug 'swekaj/php-foldexpr.vim'
-" Plug 'rayburgemeestre/phpfolding.vim'
-
-"""" CSS hTML
-Plug 'mattn/emmet-vim'        "emmet Plug
-Plug 'ap/vim-css-color'
-Plug 'cakebaker/scss-syntax.vim'
-" Plug 'KabbAmine/vCoolor.vim'      " color picker:
-"""""Arduino
-
-Plug 'stevearc/vim-arduino'  " Arduino helper
-Plug 'alvan/vim-closetag' "close HTML tag
-
-
-"""""node JS TS ECMA
-Plug 'leafgarland/typescript-vim'  " typescript helper
-Plug 'marijnh/tern_for_vim' "javascript tag corrector
-Plug 'moll/vim-node'  " Nodejs Helper
-Plug 'pangloss/vim-javascript'        "javascript compatibility Plug
-Plug 'posva/vim-vue'
-Plug 'mxw/vim-jsx'
-" Plug 'Quramy/tsuquyomi'  " typewscript plugin
-
-
-""""" python
-" Plug 'davidhalter/jedi-vim'
-
-""""" General navigation Plugins
-
-Plug 'shougo/denite.nvim'  "fuzzy navigator
-" Plug 'tamnil/vim-browser-reload-linux' " Session manager
-Plug 'terryma/vim-multiple-cursors'  "debuger
-" Plug 'tobys/pdv'    "PDV para phpDocumentor
-Plug 'Shougo/neomru.vim' " arrange windows
-Plug 'xolox/vim-session' " Session manager
-" Plug 'tobys/vmustache'
-
-Plug 'sheerun/vim-polyglot'
-
-" Include Phpactor
-" Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
-
-" Require ncm2 and this plugin
-" Plug 'ncm2/ncm2'
-" Plug 'roxma/nvim-yarp'
-" Plug 'phpactor/ncm2-phpactor'
-
-"""less
-Plug 'groenewege/vim-less'
-
-Plug  'suan/vim-instant-markdown'
-
-""" deoplete and plugins
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'HerringtonDarkholme/yats.vim' " Yet Another TypeScript Syntax
-" Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-Plug 'mhartington/nvim-typescript', {'do': ':!install.sh \| UpdateRemotePlugins'}
-Plug 'Shougo/neco-vim',
-" Plug 'zchee/deoplete-jedi'
-" Plug 'Shougo/deoplete-clangx'
-Plug 'Shougo/neco-syntax'
-Plug 'eagletmt/neco-ghc'
-" Plug 'wokalski/autocomplete-flow'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-Plug 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': 'bash install.sh',
-            \ }
 
 call plug#end()
-" }}} Installer "
 
-" General editor configuration {{{ "
-runtime macros/matchit.vim  "match angle brackets(xml)
+filetype plugin on
+
+syntax on
+
+let g:airline_theme='molokai'
+
+colorscheme molokai
+
+set number
+set history=999             " Increase history (default = 20)
+set undolevels=999          " Moar undo (default=100)
 set undodir=~/.config/nvim/tmp/undo//
 set backupdir=~/.config/nvim/tmp/backup//
 set directory=~/.config/nvim/tmp/swp//
 set undofile   " enable undo
 set backup  "enable backups
-set laststatus=2
-set t_Co=256
-set tabstop=4   " size of a hard tab stop
-set shiftwidth=4 " size of an indent
-set smarttab " make "tab" insert indents instead of tabs at the beginning of a line
-set expandtab  " always uses spaces instead of tab characters
-set softtabstop=4
-set encoding=utf-8
-set title                   " Show the filename in the window title bar.
-set showcmd                 " show partial command on last line of screen.
-set noshowmatch               " show matching parenthesis
-set splitbelow splitright   " how to split new windows.
+set clipboard+=unnamedplus  " Set clipboard mode install xsel to work!
+set nofoldenable            " not start folded
 set scrolloff=3             " Start scrolling n lines before horizontal border of window.
 set sidescrolloff=7         " Start scrolling n chars before end of screen.
 set sidescroll=1            " The minimal number of columns to scroll horizontally.
 set hidden
 set nosol  "not go to start of line in 'G'
-set autoread "reload a file when modified externally
-set clipboard+=unnamedplus  " Set clipboard mode install xsel to work!
-set backspace=indent,eol,start  " allow backspacing over everything.
-" set esckeys                     " Allow cursor keys in insert mode.
 set cursorline              " Highlight current line
 set cursorcolumn            "hightlight current column
 set colorcolumn=120        " set column marker
-
-set nofoldenable
+set updatetime=300 		" Having longer updatetime (default is 4000 ms = 4 s) leads to delays and poor user experience.
+set cmdheight=2 		" Give more space for displaying messages.
 set mouse=a
-" language en_US
-
-let g:deoplete#enable_at_startup = 1
-
-set guifont=Inconsolata-g\ for\ Powerline\ Medium\ 9
-
-let g:ale_linters = {'javascript': ['eslint'],'scss':['sasslint']}
-let g:ale_fixers = {'javascript': [ 'prettier','eslint'],'yaml':['prettier'],'sh':['shfmt'],'scss':['prettier','stylelint'],'html':['prettier'],'css':['prettier','stylelint']}
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
-
-let g:arduino_dir = '/opt/arduino-1.8.10/'
-
-hi ALEError guibg=52 ctermbg=52 guifg=white ctermfg=white
-hi ALEWarning guibg=17 ctermbg=17 guifg=white ctermfg=white
-
-hi Error ctermbg=52 ctermfg=white
 
 
 
-set pastetoggle=<F2>
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" }}} General editor configuration "
-
-" General plugins configurations {{{ "
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-let g:snips_author = 'Tamnil Saito Junior (tamnil@gmail.com) - www.tamnil.com'
-
-" let g:BufferListWidth = 25
-" let g:BufferListMaxWidth = 50
-
-let g:airline#extensions#tabline#enabled = 1
-let NERDTreeShowLineNumbers=1
-let g:airline_powerline_fonts = 1
-let g:phpcomplete_index_composer_command='composer'
-" }}} General plugins configurations "
 
 " sessions {{{ "
 
@@ -235,346 +82,86 @@ let g:session_autoload = 'no'
 
 " }}} sessions "
 
-"  colors:  {{
-colorscheme monokai
+
+" augroup filetype javascript syntax=javascript
+
+
+"           colors:  {{{
+hi clear SignColumn     " reset colors
+hi ColorColumn ctermbg=235
 hi Search cterm=bold,underline ctermfg=grey ctermbg=238
 hi Search guifg=white guibg=#767676
 hi LineNr ctermbg=237 guibg=#262626
-
-highlight clear SignColumn     " reset colors
 " terminal:
 hi   GitGutterAdd            ctermfg=black   ctermbg=green        guifg=black   guibg=green
 hi   GitGutterChange         ctermfg=black   ctermbg=yellow       guifg=black   guibg=yellow
 hi   GitGutterDelete         ctermfg=black   ctermbg=red          guifg=black   guibg=red
 hi   GitGutterChangeDelete   ctermfg=black   ctermbg=darkyellow   guifg=black   guibg=darkyellow
 hi   Visual                  ctermbg=blue    guibg=blue
+hi ALEError guibg=52 ctermbg=52 guifg=white ctermfg=white
+hi ALEWarning guibg=17 ctermbg=17 guifg=white ctermfg=white
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
-" }}} end of colors
+"           }}} end of colors
 
-" --- history / file handling --- {{{
-set history=999             " Increase history (default = 20)
-set undolevels=999          " Moar undo (default=100)
-" end of file handling }}}
-
-" --- search / regexp ---{{{
-set magic                   " Enable extended regexes.
-set hlsearch                " highlight searches
-set incsearch               " show the `best match so far' astyped
-set ignorecase smartcase    " make searches case-insensitive, unless they contain upper-case letters
-set smartcase
-" end of regesxp-search }}}
-" resize windows when change width
-autocmd VimResized * wincmd =
-
-" Line numbering {{{ "
-set number
-" au FocusLost * :set number
-" au FocusGained * :set relativenumber
-
-" }}} Line numbering "
-" chech file changes
-au CursorHold,CursorHoldI * checktime
-" Code completion {{{ "
-
-" dicionários ispell configurações:
-" au! BufNewFile,BufRead * let b:spell_language="brasileiro"
-" au! BufNewFile,BufRead * let b:spell_language="en_us"
-set spelllang=en_us,pt
-" set spell
-set completeopt=longest,menuone,preview
-set wildmode=longest:list,full
-set wildmenu
-" set complete +=k
-" set omnifunc=syntaxcomplete#Complete
-" set completefunc=syntaxcomplete#Complete
-set complete=.,w,b,u,t,i
-" augroup omni_complete
-"     " clear commands before resetting
-"     autocmd!
-"     " Enable omnicomplete for supported filetypes
-"     autocmd FileType css,scss setlocal omnifunc=csscomplete#CompleteCSS
-"     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTag
-"     autocmd FileType php setlocal omnifunc=phpactor#Complete
-"
-" augroup END
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_linters = {'javascript': ['eslint'],'scss':['sasslint']}
+let g:ale_fixers = {'javascript': [ 'eslint'],'typescript':['eslint'],'json':['fixjson'],'yaml':['prettier'],'sh':['shfmt'],'
+            \ scss':['prettier','stylelint'],'html':['prettier'],'css':['prettier','stylelint'],'c':['uncrustify'],
+            \ 'html.twig':['prettier','html-beautify'],'php':['php_cs_fixer']}
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
 
 
-" }}} Code completion "
-
-" vcolor mappings {{{ "
-let g:vcoolor_custom_picker = 'yad --title "custom" --color-selection --show-palette --init-color='
-let g:vcoolor_disable_mappings = 1
-" let g:vcoolor_map
-let g:vcoolor_map = '<leader>c'
-let g:vcool_ins_rgba_map = '<leader>cr'
-" }}} "end of vcolor mappings
-
-" Syntastic {{{1 "
-let g:syntastic_check_on_open = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 0
-autocmd VimEnter * SyntasticToggleMode " disable syntastic check by default
-let g:syntastic_php_checkers = ["php" ]
-let g:syntastic_php_checkers = ["php","phpmd","phpcs"]
-let g:syntastic_php_phpcs_args='--standard=PSR2 -n --tab-width=0'
-" end sysntastic}}} "-------####
-
-" php {{{php1 "
-""""""""""""""""""""code fixers"""""""""""
-" If php-cs-fixer is in $PATH, you don't need to define line below
-" let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
-let g:php_cs_fixer_level = "psr2"              " which level ?
-let g:php_cs_fixer_config = "default"             " configuration
-"let g:php_cs_fixer_config_file = '.php_cs'       " configuration file
-let g:php_cs_fixer_php_path = "php"               " Path to PHP
-" If you want to define specific fixers:
-"let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
-let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
-
-let php_folding = 0        "Set PHP folding of classes and functions.
-let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
-let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
-let php_noShortTags = 1    "Disable PHP short tags.
-" end php}}} " php end
-
-"  File Type detection""""{{{
-filetype plugin indent on    " required
 
 
-" custom filetype {{{ "
+"           custom filetype {{{ "
 au BufNewFile,BufRead *.gitignore set filetype=gitignore
+au BufNewFile,BufRead *.module set filetype=php
+" au FileType typescript :set makeprg=tsc
+" au FileType javascript :set syntax=typescript   	" use TS syntax highlight
 
-" }}} custom filetype "
+"           }}} custom filetype "
 
+"           vDebug {{{
+" let g:vdebug_options = {'ide_key': 'dbgp'}
+let g:vdebug_options = {'break_on_open': 0}"{{{}}}
+let g:vdebug_options = {'server': 'localhost'}
+let g:vdebug_options = {'port': '9009'}
+" let g:vdebug_options = {'path_maps': { '/var/www/html': '/var/www/docker-ecr/app' }}
+let g:vdebug_options["path_maps"] = { "/var/www/html": "/var/www/docker-ecr/app" }
 
+"           end vdebug  }}}
 
+"           JSDOC {{{
+let g:jsdoc_allow_input_prompt = 1
+let g:jsdoc_input_description = 1
+let g:jsdoc_additional_descriptions =1
+let g:jsdoc_enable_es6=1
 
-"   }}}  end of ft detection
+"           end JSDOC }}}
 
-"  Keyboard Mappings  {{{
-
-" map <silent> <F2> :call BufferList()<CR> trocado por unite \\b
-
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-" cmap w!! w !sudo tee > /dev/null %
 cmap w!! w suda://%
-
-"map <F4> :TlistToggle<cr>
 nmap <F7> :NERDTreeToggle<CR>
+" " " Copy to clipboard
+" vnoremap  <leader>y  "+y
+" nnoremap  <leader>Y  "+yg_
+" nnoremap  <leader>y  "+y
+" nnoremap  <leader>yy  "+yy
+"
+" " " Paste from clipboard
+" nnoremap <leader>p "+p
+" nnoremap <leader>P "+P
+" vnoremap <leader>p "+p
+" vnoremap <leader>P "+P
+"
+"
+"
 
-
-map <C-c> "+y<CR>
-
-" Snippets and completions {{{ "
-"""""""""""""""""""""""""""Snippets and code aux."""""""""""""""""""""""""
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.nvim/plugged/vim-snippets/snippets'
-
-
-
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-x>     <Plug>(neosnippet_expand_or_jump)
-smap <C-x>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-x>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-
-
-
-" }}} Snippets and completions "
-
-"tagbar shortcut
-nmap <F8> :TagbarToggle<CR>
-
-" emmet expand shortcut
-imap <C-e> <C-y>,
-
-" map <F3> :RN<CR>
-" nmap <F12> <Esc>:source ~/.config/nvim/init.vim<CR>
-" map <F5> <Esc>:EnableFastPHPFolds<Cr>
-" map <F6> <Esc>:EnablePHPFolds<Cr>
-" map <F7> <Esc>:DisablePHPFolds<Cr>
-
-" let g:ctrlp_map = '<c-p>'
-" let g:ctrlp_cmd = 'CtrlP'
-
-" tmux hack arrows:
-if &term =~ '^screen'
-    "tmux will send xterm-style keys when its xterm-keys option is on
-    " execute "set <xUp>=\e[1;*A"
-    " execute "set <xDown>=\e[1;*B"
-    " execute "set <xRight>=\e[1;*C"
-    " execute "set <xLeft>=\e[1;*D"
-endif
-let g:move_key_modifier = 'C'  " move plugin key settings C=control
-
-"    Easy motion   {{{
-" <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
-" s{char}{char} to move to {char}{char}
-"  nmap s <Plug>(easymotion-overwin-f0)
-" Move to line
-" map <Leader>L <Plug>(easymotion-bd-jk)
-" nmap <Leader>L <Plug>(easymotion-overwin-line)
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
-
-"   }}}   end easy motion
-
-" noremap <F7> :Autoformat<CR><CR>
-" remap for wrap jumps
-nnoremap j gj
-nnoremap k gk
 cmap <C-p> <up>
 cmap <C-n> <DOWN>
 
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
-
-" Code folding options {{{
-" problem searchinf numbers with easymotion disabling
-" nmap <leader>f0 :set foldlevel=0<CR>
-" nmap <leader>f1 :set foldlevel=1<CR>
-" nmap <leader>f2 :set foldlevel=2<CR>
-" nmap <leader>f3 :set foldlevel=3<CR>
-"     nmap <leader>f4 :set foldlevel=4<CR>
-" nmap <leader>f5 :set foldlevel=5<CR>
-" nmap <leader>f6 :set foldlevel=6<CR>
-" nmap <leader>f7 :set foldlevel=7<CR>
-" nmap <leader>f8 :set foldlevel=8<CR>
-" nmap <leader>f9 :set foldlevel=9<CR>
-"
-"}}} Code folding options
-
-" Tabularize {{{
-if isdirectory(expand("~/.vim/bundle/tabular"))
-    nmap <Leader>a& :Tabularize /&<CR>
-    vmap <Leader>a& :Tabularize /&<CR>
-    nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-    vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-    nmap <Leader>a=> :Tabularize /=><CR>
-    vmap <Leader>a=> :Tabularize /=><CR>
-    nmap <Leader>a: :Tabularize /:<CR>
-    vmap <Leader>a: :Tabularize /:<CR>
-    nmap <Leader>a:: :Tabularize /:\zs<CR>
-    vmap <Leader>a:: :Tabularize /:\zs<CR>
-    nmap <Leader>a, :Tabularize /,<CR>
-    vmap <Leader>a, :Tabularize /,<CR>
-    nmap <Leader>a,, :Tabularize /,\zs<CR>
-    vmap <Leader>a,, :Tabularize /,\zs<CR>
-    nmap <Leader>a<Space> :Tabularize / <CR>
-    vmap <Leader>a<Space> :Tabularize / <CR>
-endif
-" end of tabularize }}}
-
-"  Denite key bindings {{{
-
-nnoremap <leader><leader><leader> :Denite <CR>
-nnoremap <leader><leader>f :Denite file <CR>
-nnoremap <leader><leader>fr :Denite file_rec <CR>
-nnoremap <leader><leader>fm :Denite file_mru <CR>
-nnoremap <leader><leader>fl :Denite file_list <CR>
-nnoremap <leader><leader>fra :Denite file_rec/async <CR>
-nnoremap <leader><leader>frg :Denite file_rec/git <CR>
-nnoremap <leader><leader>fb :Denite file buffer <CR>
-nnoremap <leader><leader>b :Denite buffer <CR>
-nnoremap <leader><leader>bt :Denite buffer_tab <CR>
-nnoremap <leader><leader>j :Denite jump <CR>
-nnoremap <leader><leader>w :Denite window <CR>
-nnoremap <leader><leader>wg :Denite window/gui <CR>
-nnoremap <leader><leader>t :Denite tab <CR>
-nnoremap <leader><leader>m :Denite mappings <CR>
-nnoremap <leader><leader>c :Denite command <CR>
-nnoremap <leader><leader>r :Denite register  <CR>
-nnoremap <leader><leader>d :Denite directory  <CR>
-nnoremap <leader><leader>dr :Denite directory_rec  <CR>
-nnoremap <leader><leader>dra :Denite directory_rec/async  <CR>
-nnoremap <leader><leader>dm :Denite directory_mru  <CR>
-nnoremap <leader><leader>g :Denite grep  <CR>
-nnoremap <leader><leader>gg :Denite grep/git  <CR>
-nnoremap <leader><leader>gv :Denite vimgrep  <CR>
-" nnoremap <leader><leader> :Denite  /<CR>
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-"  }}}                      end of Denite
-
-command! Bd BD
-
-" copy paste {{{
-" vmap <C-c><C-c> "+ygv"*y
-" nmap <C-c> "dpyiw
-" vmap <C-v><C-v> "+p
-" nmap <C-v><C-v> "+P
-" imap <C-v><C-v> <Esc>"+pa
-"
-
-" " Copy to clipboard
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
-
-" " Paste from clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
-
-
-" }}} fim do copy paste
-
-let g:online_thesaurus_map_keys = 0
-nnoremap <leader>d :OnlineThesaurusCurrentWord<CR>
-
-" Navigation {{{ "
-
-" tab next/previous
-nmap <C-UP> gt
-nmap <C-DOWN> gT
-
-" easier window navigation
-" execute "set <M-j>=\ej"
-" execute "set <M-l>=\el"
-" execute "set <M-h>=\eh"
-" execute "set <M-k>=\ek"
-
-imap <M-h> <C-LEFT>
-imap <M-l> <C-RIGHT>
-imap <M-k> <LEFT>
-imap <M-j> <RIGHT>
-
-cmap <M-h> <C-LEFT>
-cmap <M-l> <C-RIGHT>
-cmap <M-k> <LEFT>
-cmap <M-j> <RIGHT>
-
-map <M-h> <C-LEFT>
-map <M-l> <C-RIGHT>
-
-map <M-k> <LEFT>
-map <M-j> <RIGHT>
 
 " Use CTRL-S for saving, also in Insert mode
 noremap <C-S> :update<CR>
@@ -582,99 +169,75 @@ vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
 
 
-" }}} Navigation "
-
-" keyboard mappings }}}
-
-" repeat plugin {{{ "
-
-
-"""""""""""""'initialize repeat after map functions
-silent! call repeat#set("\<Plug>tComment", v:count)
-silent! call repeat#set("\<Plug>surround", v:count)
-autocmd FileType * set formatoptions-=c formatoptions+=r formatoptions+=o " remove autocomment
-
-" }}} repeat plugin "
-
-"Tagbar {{{1 "
-noremap <silent> <Leader>t :<C-u>TagbarToggle<CR>
-
-let g:tagbar_type_css = {
-            \ 'ctagstype' : 'Css',
-            \ 'kinds'     : [
-            \ 'c:classes',
-            \ 's:selectors',
-            \ 'i:ids',
-            \ 't:tags',
-            \ 'm:media' ]
-            \ }
-
-" end of tagbar}}} "
-
-" External Functions {{{ "
-
-" Xdebug  configuration{{{ "
-let g:vdebug_options = {'ide_key': 'dbgp'}
-let g:vdebug_options = {'break_on_open': 0}"{{{}}}
-let g:vdebug_options = {'server': 'localhost'}
-let g:vdebug_options = {'port': '10000'}
-
-" }}} end-sdebug"
-
-" dbext configuration {{{ "
-let g:dbext_default_profile_mySQLLocal = 'type=SQLSRV:integratedlogin=1:srvname=mySrv:dbname=myDB'
-let g:dbext_default_profile = 'mySQLocal'
-let g:dbext_default_profile_mySQL = 'type=MYSQL:user=local:passwd=!local!:dbname=mysql'
-" }}} dbext"
-" Status line {{{ "
-set statusline+=%f
-set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-" }}} Status line "
-
-
-"  colors:  {{
-
-" }}} External Functions "
-set shell=/usr/bin/zsh
-
-hi CursorLine ctermbg = 233
-highlight ColorColumn ctermbg=235
-highlight MatchParen cterm=none ctermbg=530 ctermfg=white
-highlight Normal ctermfg=251 ctermbg=232
-hi cursorcolumn ctermbg=234
-
-
-hi Visual ctermfg=black
-hi SpellLocal ctermfg=black
-hi SpellBad ctermfg=black
-hi SpellCap ctermfg=black
-
-" highlight comment ctermfg=22
-let g:rainbow_active = 1
-noremap <F3> :Autoformat<CR>
-
-hi Comment ctermfg=darkgreen
-" let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
-
 if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --vimgrep'
 endif
 
 
+let g:gutentags_exclude_filetypes = ['gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail', 'git']
+let g:gutentags_ctags_exclude = [
+\  '*.git', '*.svn', '*.hg',
+\  'cache', 'build', 'dist', 'bin', 'node_modules', 'bower_components',
+\  '*-lock.json',  '*.lock',
+\  '*.min.*',
+\  '*.bak',
+\  '*.zip',
+\  '*.pyc',
+\  '*.class',
+\  '*.sln',
+\  '*.csproj', '*.csproj.user',
+\  '*.tmp',
+\  '*.cache',
+\  '*.vscode',
+\  '*.pdb',
+\  '*.exe', '*.dll', '*.bin',
+\  '*.mp3', '*.ogg', '*.flac',
+\  '*.swp', '*.swo',
+\  '.DS_Store', '*.plist',
+\  '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png', '*.svg',
+\  '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+\  '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx', '*.xls',
+\]
 
 
+call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+call denite#custom#option('default', 'prompt', 'λ')
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+      \ [ '.git/', '.ropeproject/', '__pycache__/*', '*.pyc', 'node_modules/',
+      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/', '*.png'])
+
+nmap <LEADER><LEADER>fr :Denite -start-filter file/rec<CR>
+nmap <LEADER><LEADER>b :Denite buffer
+nnoremap <LEADER><LEADER>/ :Denite grep<CR>
+
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
+
+nmap <F8> :TagbarToggle<CR>
 
 
-""" closetags
-
-let closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.vue'
-
-""" phpactor setup
-" autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" add yaml stuffs
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-au BufNewFile,BufRead Jenkinsfile setf groovy
+"-- FOLDING --
+set foldmethod=syntax "syntax highlighting items specify folds
+set foldcolumn=1 "defines 1 col at window left, to indicate folding
+let javaScript_fold=1 "activate folding by JS syntax
+set foldlevelstart=99 "start file with all folds opened
