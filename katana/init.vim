@@ -1,6 +1,6 @@
 " File  : .nvimrc
 " Author: Tamnil Saito Junior <tamnil@gmail.com>
-" Date  : 23.03.2020
+" Date  : 01.09.2020
 
 set nocompatible
 set tags=./tags,tags;
