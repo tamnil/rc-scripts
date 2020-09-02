@@ -1,0 +1,20 @@
+{
+    "plugins": {
+        "node": {},
+        "es_modules": {},
+        "angular": {},
+        "doc_comment": null
+    },
+    "libs": [
+        "browser",
+        "jquery",
+        "react",
+        "ecmascript",
+        "react",
+        "underscore"
+    ],
+    "ecmaVersion": 6 ,
+    "dontLoad": [
+        "node_modules/**"
+    ]
+}
