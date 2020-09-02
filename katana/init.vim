@@ -1,6 +1,7 @@
 " File  : .nvimrc
 " Author: Tamnil Saito Junior <tamnil@gmail.com>
 " Date  : 23.03.2020
+
 set nocompatible
 set tags=./tags,tags;
 set path=.
@@ -68,7 +69,9 @@ syntax on
 
 let g:airline_theme='molokai'
 
-
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 colorscheme molokai
 
@@ -130,7 +133,7 @@ let g:session_autosave = 'yes'
 
 "           colors:  {{{
 hi clear SignColumn     " reset colors
-hi ColorColumn ctermbg=235
+hi ColorColumn ctermbg=235 guibg=#222222
 hi Search cterm=bold,underline ctermfg=238 ctermbg=228   guifg=white guibg=#767676
 hi LineNr ctermbg=237 guibg=#262626
 " terminal:

@@ -1,8 +1,19 @@
+# zmodload zsh/zprof
+LANG=en_US.UTF-8
+LANGUAGE=en_US
+
+
 
 # if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
 #     source ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 # fi
 #
+
+# fix: problemna com autocmplete do systemctl enable
+_systemctl_unit_state() {
+  typeset -gA _sys_unit_state
+  _sys_unit_state=( $(__systemctl list-unit-files "$PREFIX*" | awk '{print $1, $2}') ) }
+
 
 if [ -f `which powerline-daemon` ]; then
   powerline-daemon -q
@@ -18,7 +29,9 @@ export EDITOR='vim'
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="lukerandall"
+# ZSH_THEME="lukerandall"
+ZSH_THEME="tamnil"
+# ZSH_THEME="flazz"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -59,55 +72,76 @@ ZSH_THEME="lukerandall"
 # EXAMPLE FORMAT: PLUGINS=(RAILS GIT TEXTMATE RUBY LIGHTHOUSE)
 # ADD WISELY, AS TOO MANY PLUGINS SLOW DOWN SHELL STARTUP.
 
-# ZSH_TMUX_AUTOSTART=true
-# ZSH_TMUX_AUTOSTART_ONCE=false
-# ZSH_TMUX_AUTOCONNECT=true
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART_ONCE=false
+ZSH_TMUX_AUTOCONNECT=false
 
-plugins=(git vi-mode tmux tmuxinator)
+
+
+# plugins=(git  tmux tmuxinator laravel5 pep8 virtualenv grunt gulp laravel npm pip python ruby)
 
 # User configuration
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+export ANDROID_HOME=/home/tamnil/Android/Sdk
+# export PATH=$PATH:/home/tamnil/Android/Sdk/tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+### Added by the Heroku Tool belt
+export PATH="/usr/local/heroku/bin:$PATH"
+# export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+export PATH="$PATH:/usr/local/cuda/bin"
+export PATH="$PATH:/opt/flutter/flutter/bin"
+
+export PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
+
+# fix: complete not found on asdf
+. $HOME/.asdf/asdf.sh
+fpath=(${ASDF_DIR}/completions $fpath)
+autoload -Uz compinit && compinit
+
+plugins=(git git-flow vi-mode tmux tmuxinator docker docker-compose virtualenv grunt yarn gulp npm pip python asdf  tamnil composer ansible git-prompt adb flutter laravel ruby )
+# plugins=(git vi-mode tmux tmuxinator docker docker-compose virtualenv grunt yarn gulp npm pip python zsh-docker-abbreviation tamnil )
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+################################### git-prompt
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+ZSH_THEME_GIT_PROMPT_PREFIX="("
+ZSH_THEME_GIT_PROMPT_SUFFIX=")"
+ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
+ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[magenta]%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}%{*%}%{%G%}"
+ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{x%}%{%G%}"
+ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[blue]%}%{+%}%{%G%}"
+ZSH_THEME_GIT_PROMPT_BEHIND="%{↓%}%{%G%}"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%}%{%G%}"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{…%G%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{=%}%{%G%}"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+RPROMPT='$(git_super_status)'
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
 
+alias ssh='TERM=xterm ssh'
+alias mux='tmuxinator'
 alias ccat='pygmentize -O style=monokai -f terminal -g'
 alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias gv='gvim'
-alias novnc='/var/www/noVNC/utils/launch.sh'
+# alias novnc='/var/www/noVNC/utils/launch.sh'
 alias ctags-init='ctags -R -f ./.git/tags --tag-relative=yes'
 # le status dos arquivos de subdiretorios contendo repositorios
 alias php-inter="php -a -d auto_prepend_file="
-alias git-ls-status="find . -maxdepth 1 -mindepth 1 -type d -exec sh -c '(echo {} && cd {} && git status -s && echo)' \;"
+
+alias gitflow="git flow"
 alias aptupdate="sudo apt update && sudo apt upgrade"
-alias vim-clean-swp="rm ~/.config/nvim/tmp/swp/*"
 # alias tma='tmux attach -d -t'
 # alias git-tmux='tmux new -s $(basename $(pwd))'
 #
@@ -116,42 +150,51 @@ export ACKRC=".ackrc"
 # ignore duplicate history:
 setopt HIST_IGNORE_DUPS
 
-### Added by the Heroku Tool belt
-export PATH="/usr/local/heroku/bin:$PATH"
 
-export ANDROID_HOME=/home/tamnil/Android/Sdk
-export PATH=$PATH:/home/tamnil/Android/Sdk/tools
+# Webasm emcc
+export PATH=$PATH:/opt/emsdk:/opt/emsdk/fastcomp/emscripten:/opt/emsdk/node/10.16.3_64bit/bin
 
-bindkey '^U' backward-kill-line
-bindkey '^Y' yank
-
-# bind keys for up/down search (vi mode)
-#tmux
-bindkey '^[OA' up-line-or-beginning-search
-bindkey '^[OB' down-line-or-beginning-search
-#notmux
-bindkey '^[[A' up-line-or-beginning-search
-bindkey '^[[B' down-line-or-beginning-search
-
-bindkey '^P' up-line-or-beginning-search
-bindkey '^N' down-line-or-beginning-search
-
-bindkey '^R' history-incremental-pattern-search-backward
-
-#transpose words
-bindkey '^T' transpose-words
-
-bindkey '^f' forward-char
-bindkey '^b' backward-char
-
-bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
-bindkey '^[l' forward-word                        # [Alt-l] - move forward one word
-bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
-bindkey '^[h' backward-word                       # [Ctrl-h] - move backward one word
-
-# bindkey '^[[C' forward-word                        # [Ctrl-RightArrow] - move forward one word
-# bindkey '^[[D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' hosts off                    #disable autocompletion of hosts file
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+# eval "$(rbenv init -)"
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+
+
+# export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
+# export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/TensorRT-3.0.4/lib"
+export TMP="/tmp"
+
+alias openvpn-tamnil='echo "\n**** Opening openVPN in tamnil.com ****\n " ;sudo openvpn --config /home/tamnil/.openvpn/tamnil.ovpn'
+alias wakizashi-synergy='ssh wakizashi synergy-ssh-local'
+alias vim='/home/tamnil/.asdf/shims/nvim'
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+export PATH=$PATH:$JAVA_HOME/bin
+export IDF_PATH=$HOME/esp/esp-idf
+export PATH="$PATH:$HOME/esp/xtensa-esp32-elf/bin"
+export PATH="$PATH:$HOME/esp/esp-idf/tools"
+
+# deno
+export DENO_INSTALL="/home/tamnil/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+
+
+# zprof
+
+
+export DOCKER_HOST_IP=172.17.0.1
+
+
+eval "$(direnv hook zsh)"
+
+alias conda-init='eval "$(/home/tamnil/miniconda3/bin/conda shell.zsh hook)"'
+
