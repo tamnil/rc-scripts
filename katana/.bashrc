@@ -118,13 +118,38 @@ source /usr/share/doc/cdargs/examples/cdargs-bash.sh
 # para o xterm aceita o alt
 export TERM=xterm-256color
 
-export NVM_DIR="/home/tamnil/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 export ANDROID_HOME=/home/tamnil/Android/Sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-
+export PATH="$PATH:$HOME/bin"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH="$PATH:/usr/local/cuda/bin"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/TensorRT-3.0.4/lib"
+export TMP="/tmp"
+
+alias openvpn-tamnil='echo "\n**** Opening openVPN in tamnil.com ****\n " ;sudo openvpn --config /home/tamnil/.openvpn/tamnil.ovpn'
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
+
+eval "$(direnv hook bash)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/tamnil/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/tamnil/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/tamnil/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/tamnil/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
