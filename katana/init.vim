@@ -20,6 +20,7 @@ Plug 'majutsushi/tagbar'                "tagbar navigation
 Plug 'w0rp/ale' 			" code lint
 Plug 'lambdalisue/suda.vim'
 Plug 'vim-scripts/tComment' 		" commenter
+Plug 'preservim/nerdcommenter'
 Plug 'vim-vdebug/vdebug'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
@@ -58,6 +59,7 @@ Plug 'leafoftree/vim-vue-plugin'
 Plug 'leafgarland/typescript-vim'
 Plug 'cakebaker/scss-syntax.vim'
 
+Plug 'jupyter-vim/jupyter-vim'
 
 Plug 'alpertuna/vim-header'
 
@@ -157,7 +159,7 @@ let g:ale_set_quickfix = 1
 
 let g:ale_linters = {
             \'javascript': ['eslint'],
-            \'php': ['php','phpcs','phpmd'],
+            \'php': ['php','phpcs','phpmd','langserver','intelephense'],
             \'css': ['stylelint'],
             \'scss':['stylelint'],
             \'html':['tidy','fecs','htmlhint'],
@@ -166,10 +168,11 @@ let g:ale_linters = {
             \'markdown':['markdown','writegood']
             \}
 let g:ale_fixers = {
+            \'*': ['remove_trailing_lines', 'trim_whitespace'],
             \'javascript': ['prettier','eslint' ],
             \'vue': ['prettier' ,'eslint'],
             \'typescript':['prettier','eslint'],
-            \'php':['php_cs_fixer','phpcbf'],
+            \'php':['phpcbf','php_cs_fixer'],
             \'json':['remove_trailing_lines','trim_whitespace','prettier','fixjson'],
             \'yaml':['prettier'],
             \'sh':['shfmt'],
@@ -179,6 +182,7 @@ let g:ale_fixers = {
             \'c':['uncrustify'],
             \'scss':['remove_trailing_lines','trim_whitespace','prettier','stylelint'],
             \'markdown':['prettier'],
+            \'xml':['xmllint'],
             \'python':['yapf'],
             \}
 
@@ -206,15 +210,21 @@ call deoplete#custom#option('sources', {
 \ '_': ['ale', 'foobar'],
 \})
 
-" ternjs - deoplete config
+"
+" You should not turn this setting on if you wish to use ALE as a completion
+" source for other completion plugins, like Deoplete.
+let g:ale_completion_enabled = 1
+
+set omnifunc=ale#completion#OmniFunc
+
+
 
 let g:deoplete#sources#ternjs#docs = 1
 "Add extra filetypes
 let g:deoplete#sources#ternjs#filetypes = [
                 \ 'jsx',
                 \ 'javascript.jsx',
-                \ 'vue',
-                \ '...'
+                \ 'vue'
                 \ ]
 
 
@@ -227,12 +237,12 @@ au BufNewFile,BufRead *.module set filetype=php
 "           }}} custom filetype "
 
 "           vDebug {{{
-" let g:vdebug_options = {'ide_key': 'dbgp'}
+let g:vdebug_options = {'ide_key': 'debug'}
 let g:vdebug_options = {'break_on_open': 0}"{{{}}}
-let g:vdebug_options = {'server': '172.17.0.1'}
+" let g:vdebug_options = {'server': '172.17.0.1'}
 let g:vdebug_options = {'port': '9009'}
 " let g:vdebug_options = {'path_maps': { '/var/www/html': '/var/www/docker-ecr/app' }}
-let g:vdebug_options["path_maps"] = { "/var/www/html": "/var/www/docker-ecr1/app" }
+let g:vdebug_options["path_maps"] = { "/var/www/html": $PWD }
 
 "           end vdebug  }}}
 
@@ -276,7 +286,6 @@ vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
 
 
-
 let g:UltiSnipsExpandTrigger="<tab>"
 "Use tab to switch the next trigger point, shit + tab on a trigger point
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -288,6 +297,9 @@ let g:UltiSnipsEditSplit="vertical"
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+set title
+" set titlestring=%F
 
 
 let g:gutentags_exclude_filetypes = ['gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail', 'git']
@@ -373,6 +385,9 @@ let g:header_auto_add_header = 0
 " let g:header_field_timestamp = 0
 let g:header_field_modified_timestamp = 0
 let g:header_field_modified_by = 0
+
+let  g:python3_host_prog = '/usr/bin/python3'
+let  g:python_host_prog = '/usr/bin/python2'
 
 " let g:user_emmet_leader_key=',' " uses ,, to expand emmet
 

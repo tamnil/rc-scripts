@@ -98,7 +98,9 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
-export PATH="$PATH:/usr/local/cuda/bin"
+
+
+# export PATH="$PATH:/usr/local/cuda/bin"
 export PATH="$PATH:/opt/flutter/flutter/bin"
 
 export PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
@@ -167,6 +169,9 @@ export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
 
 
+# export PATH=$PATH:/usr/local/cuda-10.2/bin
+
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.2/lib64
 
 # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
 # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/TensorRT-3.0.4/lib"
@@ -186,7 +191,7 @@ export PATH="$PATH:$HOME/esp/esp-idf/tools"
 export DENO_INSTALL="/home/tamnil/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
-
+export XDEBUG_CONFIG="remote_enable=1 remote_mode=req remote_port=10000 remote_host=127.0.0.1 remote_connect_back=0 idekey=debuge"
 
 # zprof
 
@@ -196,5 +201,7 @@ export DOCKER_HOST_IP=172.17.0.1
 
 eval "$(direnv hook zsh)"
 
-alias conda-init='eval "$(/home/tamnil/miniconda3/bin/conda shell.zsh hook)"'
+alias conda-init='eval "$(/home/tamnil/anaconda3/bin/conda shell.zsh hook)"'
 
+
+export PATH=$PATH:$(npm get prefix)/bin
