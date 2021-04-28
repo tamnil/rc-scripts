@@ -17,10 +17,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'majutsushi/tagbar'                "tagbar navigation
-Plug 'w0rp/ale' 			" code lint
 Plug 'lambdalisue/suda.vim'
-Plug 'vim-scripts/tComment' 		" commenter
-Plug 'preservim/nerdcommenter'
 Plug 'vim-vdebug/vdebug'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
@@ -29,7 +26,11 @@ Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
 
 Plug 'mileszs/ack.vim'
-Plug 'heavenshell/vim-jsdoc' " JSDOC generator
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
+
 Plug 'tpope/vim-surround' " Plug for surrounding in tags
 if has('nvim')
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -39,6 +40,8 @@ else
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'mattn/emmet-vim'
+
+
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -52,9 +55,9 @@ Plug 'SirVer/ultisnips'
 Plug 'tamnil/vim-snippets'
 
 
-
 Plug 'pangloss/vim-javascript'
-Plug 'storyn26383/vim-vue'
+" Plug 'storyn26383/vim-vue'
+Plug 'posva/vim-vue'
 Plug 'leafoftree/vim-vue-plugin'
 Plug 'leafgarland/typescript-vim'
 Plug 'cakebaker/scss-syntax.vim'
@@ -62,6 +65,13 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'jupyter-vim/jupyter-vim'
 
 Plug 'alpertuna/vim-header'
+
+
+Plug 'w0rp/ale' 			" code lint
+" Plug 'vim-scripts/tComment' 		" commenter
+" Plug 'preservim/nerdcommenter'
+Plug 'Shougo/context_filetype.vim'
+Plug 'tyru/caw.vim'
 
 call plug#end()
 
@@ -393,5 +403,14 @@ let  g:python_host_prog = '/usr/bin/python2'
 
 
 
-let g:user_emmet_expandabbr_key='<Tab>'
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" let g:user_emmet_expandabbr_key='<Tab>'
+" imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
+
+nmap <F2> <Plug>(ale_fix)
+
+"  map // to comment toggle (C-_) is /
+map <C-_><C-_> <Plug>(caw:i:toggle)
+
+
+let g:vim_vue_plugin_load_full_syntax = 1

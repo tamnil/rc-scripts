@@ -205,3 +205,6 @@ alias conda-init='eval "$(/home/tamnil/anaconda3/bin/conda shell.zsh hook)"'
 
 
 export PATH=$PATH:$(npm get prefix)/bin
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/home/tamnil/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
