@@ -11,15 +11,16 @@ if [ -f `which powerline-daemon` ]; then
   . /usr/share/powerline/bindings/zsh/powerline.zsh
 fi
 
-
 # Path to your oh-my-zsh installation.
 export ZSH=/home/tamnil/.oh-my-zsh
-
+export EDITOR='vim'
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="lukerandall"
+# ZSH_THEME="lukerandall"
+ZSH_THEME="tamnil-wakizashi"
+# ZSH_THEME="flazz"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -60,18 +61,30 @@ ZSH_THEME="lukerandall"
 # EXAMPLE FORMAT: PLUGINS=(RAILS GIT TEXTMATE RUBY LIGHTHOUSE)
 # ADD WISELY, AS TOO MANY PLUGINS SLOW DOWN SHELL STARTUP.
 
-# ZSH_TMUX_AUTOSTART=true
-# ZSH_TMUX_AUTOSTART_ONCE=false
-# ZSH_TMUX_AUTOCONNECT=true
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART_ONCE=false
+ZSH_TMUX_AUTOCONNECT=false
 
-plugins=(git vi-mode tmux)
+# plugins=(git  tmux tmuxinator laravel5 pep8 virtualenv grunt gulp laravel npm pip python ruby)
+plugins=(git vi-mode tmux tmuxinator docker docker-compose virtualenv grunt yarn gulp npm pip python asdf tamnil)
 
 # User configuration
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
+export PATH=$PATH:/home/tamnil/Android/Sdk/tools
+### Added by the Heroku Tool belt
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+export PATH="$PATH:/usr/local/cuda/bin"
 
 source $ZSH/oh-my-zsh.sh
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -97,14 +110,28 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+alias mux='tmuxinator'
+alias ccat='pygmentize -O style=monokai -f terminal -g'
+alias myip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias gv='gvim'
+alias novnc='/var/www/noVNC/utils/launch.sh'
+alias ctags-init='ctags -R -f ./.git/tags --tag-relative=yes'
+# le status dos arquivos de subdiretorios contendo repositorios
+alias php-inter="php -a -d auto_prepend_file="
+alias git-ls-status="find . -maxdepth 1 -mindepth 1 -type d -exec sh -c '(echo {} && cd {} && git status -s && echo)' \;"
+alias aptupdate="sudo apt update && sudo apt upgrade"
+alias vim-clean-swp="rm ~/.config/nvim/tmp/swp/*"
+# alias tma='tmux attach -d -t'
+# alias git-tmux='tmux new -s $(basename $(pwd))'
+#
 export ACKRC=".ackrc"
 
+# ignore duplicate history:
+setopt HIST_IGNORE_DUPS
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 
 export ANDROID_HOME=/home/tamnil/Android/Sdk
-export PATH=$PATH:/home/tamnil/Android/Sdk/tools
 
 bindkey '^U' backward-kill-line
 bindkey '^Y' yank
@@ -117,23 +144,44 @@ bindkey '^[OB' down-line-or-beginning-search
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 
-bindkey '^N' up-line-or-beginning-search
-bindkey '^P' down-line-or-beginning-search
+bindkey '^P' up-line-or-beginning-search
+bindkey '^N' down-line-or-beginning-search
 
-#tranpose words
+bindkey '^R' history-incremental-pattern-search-backward
+
+#transpose words
 bindkey '^T' transpose-words
 
 bindkey '^f' forward-char
 bindkey '^b' backward-char
-
+bindkey '^[f' forward-word
 
 bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
 bindkey '^[l' forward-word                        # [Alt-l] - move forward one word
 bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
-bindkey '^[h' backward-word                       # [Alt-h] - move backward one word
+bindkey '^[h' backward-word                       # [Ctrl-h] - move backward one word
 
 # bindkey '^[[C' forward-word                        # [Ctrl-RightArrow] - move forward one word
 # bindkey '^[[D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
 
-alias ccat='pygmentize -O style=monokai -f terminal -g'
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' hosts off                    #disable autocompletion of hosts file
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/TensorRT-3.0.4/lib"
+export TMP="/tmp"
+
+alias openvpn-tamnil='echo "\n**** Opening openVPN in tamnil.com ****\n " ;sudo openvpn --config /home/tamnil/.openvpn/tamnil.ovpn'
